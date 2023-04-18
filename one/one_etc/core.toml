@@ -1,0 +1,80 @@
+[server_workers]
+operating = 2
+ugc = 2
+query = 2
+monitor = 2
+
+[celery_workers]
+routine = 16
+
+[database.postgres.primary]  # 数据库配置
+db = 'mars_db'
+user = 'root'
+password = 'root'
+host = '127.0.0.1'
+port = 15432
+charset = 'utf8'
+pool_size = 20
+[database.postgres.secondary]
+db = 'mars_db'
+user = 'root'
+password = 'root'
+host = '127.0.0.1'
+port = 15432
+charset = 'utf8'
+pool_size = 20
+[database.redis]
+host = '127.0.0.1'
+port = 16379
+db = 0
+password = 'root'
+
+[parliament]
+senator_list = ['scheduler', 'launcher', 'server', 'k8swatcher']
+validate_attr = 'archive_unique_sign'
+mass_set = 'mass_set'
+info_channel = 'info_channel'
+monitor_count = 'monitor_count'
+backend = 'redis'
+
+[launcher]
+api_server = 'http://127.0.0.1'
+task_namespace = 'poly-hpp'
+manager_nodes = ["jd-a1006-dl","jd-a1007-dl","jd-a1008-dl","jd-a1101-dl"]
+image_pull_policy = 'Always'
+manager_image = 'registry.high-flyer.cn/platform/hai_platform:d372d093'
+[launcher.manager_envs]
+# KEY = VALUE
+[launcher.manager_mounts]
+# read_only_mount_name = "host_path:mount_path:ro"
+# writable_mount_name = "host_path:mount_path"
+
+[manager]  # 这里有两个与部署有关的配置，一个是任务启动的 namespace，一个是 manager 放在哪些节点上
+delete_pod.grace_period_seconds = 0
+redis_message_channel = 'DEV_manager_channel'
+stop_channel = 'DEV_manager_stop_channel'
+update_status_channel = 'DEV_manager_update_status_channel'
+suspend_waiting_seconds.final = 5
+suspend_waiting_seconds.recieved = 5
+unschedulable_timeout_Ms = 1
+not_stop_node_for_test = 0
+image_pull_policy = 'Always'
+
+[k8swatcher]
+configmap_lock = 'one-k8swatcher-leader-lock'
+
+[experiment.log]
+number_of_files = 4
+max_filesize = '2M'
+max_ops = '50k'
+max_line_length = 4096
+[[experiment.log.dist]]
+role = 'internal'
+dir = '/nfs_shared/workspace/log/{user_name}'
+
+[user_data_roaming]
+patch_ttl = 0.3
+sync_interval = 1.0
+sync_throttling_time = 0.1
+max_num_throttling = 5
+message_queue_channel = "user_data_mq_channel"

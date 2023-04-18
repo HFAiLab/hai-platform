@@ -1,0 +1,29 @@
+
+[jupyter]
+current_version = 1  # 填整数, 用于有新功能时辨识仍是旧版本没有重启过的容器 没用了
+shared_node_group_prefix = 'jupyter_cpu'
+mig_node_group_prefix = 'jupyter_cpu_mig'
+[jupyter.builtin_services.jupyter]
+startup_script = '/bin/bash /marsv2/scripts/start_jupyter_with_ext.sh'
+type = 'http'
+port = 8888
+[jupyter.builtin_services.jupyter.environ.internal]
+JUPYTER_DIR = '/nfs-shared/hai-platform/workspace/{user_name}/jupyter'
+JUPYTER_PORT = '{service_port}'
+[jupyter.builtin_services.jupyter.environ.external]
+JUPYTER_DIR = '/nfs-shared/hai-platform/workspace/{user_name}/jupyter'
+JUPYTER_PORT = '{service_port}'
+[jupyter.builtin_services.ssh]
+type = 'tcp'
+port = 22
+[jupyter.spot]
+max_number = 50  # 最多创建 50 个
+num_free_node_thresholds.min_to_create = 200  # 空闲节点少于 200 个就不允许创建了
+num_free_node_thresholds.min_to_run = 100  # 空闲节点少于 100 个就回收所有 spot jupyters
+[jupyter.ingress_host]
+hfhub = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
+yinghuo = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
+studio = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
+
+[exporter]
+ceph_root = '/ceph'

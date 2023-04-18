@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+if [[ ${BASH_SOURCE} = $0 ]]; then  # 直接执行，走cli
+  prog="/tmp/haienv"
+  cat <<EOF >> $prog
+import re
+import sys
+from haienv.client.cli import cli
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(cli())
+EOF
+  python3 ${prog} $*
+  exit $?
+fi
+
+HAIENV_NAME=$1
+BIND_USER=$3
+if [[ "$#" -eq 1 ]] && [[ ${HAIENV_NAME} =~ \[ ]]; then
+    BIND_USER=${HAIENV_NAME##*\[}
+    BIND_USER=${BIND_USER%\]*}
+    HAIENV_NAME=${HAIENV_NAME%\[*}
+fi
+
+if [[ "$#" -ne 1 ]] && [[ "$#" -ne 3 ]]; then
+    echo "usage: source haienv <haienv_name> [-u <user>]"
+    return -1
+fi
+
+if [[ "$#" -eq 3 ]] && [[ "$2" -ne "-u" ]]; then
+    echo "usage: source haienv <haienv_name> [-u <user>]"
+    return -1
+fi
+
+if [[ ${HAIENV_PATH}x = x ]]; then
+  HAIENV_DIR=${HOME}
+else
+  HAIENV_DIR=${HAIENV_PATH}
+fi
+
+HAIENV_ROOT=`dirname ${HAIENV_DIR}`
+mkdir -m 777 -p ~/.haienv
+
+NEWLINE=$'\n'
+FIND_ENV_SCRIPT=~/.haienv/find_haienv_$$.py
+FIND_ENV_CONFIG=~/.haienv/find_env_config_$$
+cat << EOF > ${FIND_ENV_SCRIPT}
+import os, sys, getpass
+from haienv.client.model import Haienv
+
+haienv_root = "${HAIENV_ROOT}"
+haienv_name = "${HAIENV_NAME}"
+bind_user = "${BIND_USER}"
+
+results = []
+for user in sorted(os.listdir(haienv_root)):
+  if bind_user != '' and user != bind_user:
+    continue
+  venv_db_dir = os.path.join(haienv_root, user, 'venv.db')
+  if not os.path.exists(venv_db_dir):
+    continue
+  try:
+    result = Haienv.select(outside_db_path=venv_db_dir, haienv_name=haienv_name)
+    if result is not None:
+      results.append((user, result))
+      if f'{haienv_root}/{user}' == '${HAIENV_PATH}':
+        results = [(user, result)]
+        break
+  except Exception as e:
+    pass
+
+if len(results) == 0:
+  print(f'找不到环境: {haienv_name}, 当前寻找的虚拟环境目录为：${HAIENV_DIR}；请设置环境变量 HAIENV_PATH 更改或 使用 haienv list 查看能够导入的环境', file=sys.stderr)
+else:
+  user, haienv = results[0]
+  print(f'found [{haienv_name}] from [{user}] in [{haienv.path}], start loading...', file=sys.stderr)
+  with open(os.environ['FIND_ENV_CONFIG'], 'w') as f:
+    extra_search_dir = ''.join(map(lambda x: f'{x}:', haienv.extra_search_dir))
+    extra_search_bin_dir = ''.join(map(lambda x: f'{x}:', haienv.extra_search_bin_dir))
+    extra_environment = ''.join(map(lambda x: f'{x}:', haienv.extra_environment))
+    f.write(f'HFAI_ENV_CERTAIN_PATH={haienv.path}\n')
+    f.write(f'NEW_HFAI_ENV_EXTEND_PATH={extra_search_dir}\n')
+    f.write(f'NEW_HFAI_ENV_EXTEND_BIN_PATH={extra_search_bin_dir}\n')
+    f.write(f'NEW_HFAI_ENV_EXTEND_ENVIRONMENT={extra_environment}\n')
+  print('success')
+EOF
+
+FIND_ENV_RESULT=`FIND_ENV_CONFIG=${FIND_ENV_CONFIG} python3 ${FIND_ENV_SCRIPT}`
+
+unset HAIENV_ROOT
+rm -rf ${FIND_ENV_SCRIPT}
+
+if [ -f ${FIND_ENV_CONFIG} ]; then
+    source ${FIND_ENV_CONFIG}
+    rm -rf ${FIND_ENV_CONFIG}
+fi
+
+if [ ! -n "${FIND_ENV_RESULT}" ]; then
+    return -1
+fi
+
+source ${HFAI_ENV_CERTAIN_PATH}/activate
+export PATH=${HFAI_ENV_CERTAIN_PATH}/bin:${PATH}
+unset HFAI_ENV_CERTAIN_PATH
+return 0
