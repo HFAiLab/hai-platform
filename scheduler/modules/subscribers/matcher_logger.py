@@ -65,7 +65,7 @@ class MatcherLogger(Subscriber):
                 task = BaseTask(**row)
                 task.re_impl(DbOperationImpl)
                 self.f_warning(row.scheduler_msg, task=BaseTask(**row))
-                task.set_restart_log(rule='节点异常', reason=row.scheduler_msg, result='重启')
+                task.set_restart_log(rule='节点异常', reason=row.scheduler_msg, result='智能重启成功')
         # 这里打印调度认为结束了的任务
         for _, row in last_tick_data.task_df[~last_tick_data.task_df.index.isin(tick_data.task_df.index)].iterrows():
             row.scheduler_msg = "任务结束了"

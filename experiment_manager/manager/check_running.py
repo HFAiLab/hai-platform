@@ -48,7 +48,7 @@ with logger.contextualize(uuid=f'{log_id}.create_zmq'):
     try:
         context = zmq.Context()
         socket = context.socket(zmq.REQ)
-        socket.connect(f"tcp://{task.user_name}-{task_id}-0:5779")
+        socket.connect(f"tcp://{task.user_name.replace('_', '-')}-{task_id}-0:5779")
     except Exception as e:
         logger.exception(e)
         logger.f_error('creating suspend zmq error!')

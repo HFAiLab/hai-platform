@@ -44,10 +44,10 @@ class NodeListWatcher(ListWatcher):
                     n['spec'].get('unschedulable', False) or
                     any(
                         c['type'] == 'Ready' and c['status'].lower() in ['false', 'unknown'] and now - parse(get_k8s_dict_val(c, 'lastTransitionTime')).astimezone(timezone.utc) >= timedelta(seconds=10)
-                        for c in n['status']['conditions']
+                        for c in n['status'].get('conditions', [])
                     )
                 ],
-                'internal_ip': next((data['address'] for data in n['status']['addresses'] if data['type']=='InternalIP'), None),
+                'internal_ip': next((data['address'] for data in n['status'].get('addresses', []) if data['type']=='InternalIP'), None),
                 **n['metadata'].get('labels', dict()),
                 **n['status'].get('allocatable', dict()),
             } for n in list(self._data.values())

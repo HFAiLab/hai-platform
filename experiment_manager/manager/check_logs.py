@@ -39,9 +39,9 @@ def setup():
 
     context = zmq.Context()
     socket = context.socket(zmq.PULL)
-    url = f"tcp://{task.user_name}-{task_id}-0:5775"
+    url = f"tcp://{task.user_name.replace('_', '-')}-{task_id}-0:5775"
+    logger.info(f'zmq socket will connect to {url}')
     socket.connect(url)
-    logger.info(f'zmq socket {url} connected')
     return task, socket
 
 

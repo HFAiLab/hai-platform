@@ -26,10 +26,14 @@ class TaskApiImpl(AdditionalPropertyImpl, ABC):
         exit_code = ''
         stop_code = 0
         rst_last_seen = None
-        task_id_list = sorted(task.id_list)
         last_seen_id = 0 if last_seen is None else last_seen.get('id', 0)
         current_seen_id = last_seen_id
-        suffix_filter = f'{service}.service_log' if service is not None else f'#{rank}'
+        if service is not None:
+            suffix_filter = f'{service}.service_log'
+            task_id_list = [task.id]    # 服务日志只查询当前任务, 不查询整个 chain
+        else:
+            suffix_filter = f'#{rank}'
+            task_id_list = sorted(task.id_list)
         for task_id in task_id_list:
             if task_id < last_seen_id:
                 continue
