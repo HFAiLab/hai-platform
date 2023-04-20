@@ -1,0 +1,5 @@
+.ipynb_checkpoints/
+.idea/
+/docs/docs/build
+/docs/docs/source/generated
+*.pyc
