@@ -11,7 +11,7 @@ HAI Platform 官方文档，使用 [Sphinx](https://www.sphinx-doc.org/en/master
 
 ## 使用说明
 
-1. 安装 [HAI Platform](https://github.com/HFAiLab/hai-platform)；
+1. 按照[说明](https://github.com/HFAiLab/hai-platform) 完成 [HAI Platform](https://github.com/HFAiLab/hai-platform) 的安装；
 
 2. 进入 HAI Platform 环境，安装 Sphinx 依赖：
 
