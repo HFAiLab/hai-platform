@@ -118,11 +118,18 @@ haienv remove extenv ## 删除虚拟环境
 1. `succeeded` / `failed` / `stopped`: 该任务节点已经完全退出。
 
 ### 步骤
-1. 执行 `hai-cli run` 通过提交yaml文件来运行一个任务，支持运行python文件或shell脚本。yaml格式[参考API说明](../api/client.html#hfai.client.create_experiment_v2)。另外也可使用 `hai-cli python`, `hai-cli bash`, `hai-cli exec` 提交任务执行。
+1. 执行 `hai-cli run` 通过提交yaml文件来运行一个任务，支持运行python文件或shell脚本。yaml格式[参考API说明](../api/client.html#hfai.client.create_experiment_v2)。
    
-   执行
    ```shell
    hai-cli run /path/to/yaml_file
+   ```
+
+   另外也可使用 `hai-cli python`, `hai-cli bash` 或 `hai-cli exec` 提交任务执行。
+
+   ```shell
+   hai-cli python <experiment.py> # 本地运行，等同于运行 python xxx
+   hai-cli python <experiment.py> -- [CLUSTER_OPTIONS]  # 提交到集群作为新建任务运行，提交前请先检查工作区是否同步；集群任务参数详见api文档
+   hai-cli python <experiment.py> ++ [SIMULATE_OPTIONS] # 在本地运行，模拟集群任务响应
    ```
 2. 使用 `hai-cli list`, `hai-cli status`, `hai-cli logs` 等查看任务状态、日志等。
 3. 对于运行中或者等待中的任务，可以执行 `hai-cli stop` 发起停止。用户停止的任务不再进入调度。
