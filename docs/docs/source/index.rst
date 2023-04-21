@@ -14,6 +14,7 @@
 
    start/hai_intro.rst
    start/install.rst
+   guide/studio.rst
    
 .. toctree::
    :maxdepth: 2
@@ -24,7 +25,6 @@
 
    guide/tutorial.rst
    guide/environment.rst
-   guide/studio.rst
    guide/schedule.rst
    
 

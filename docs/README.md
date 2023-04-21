@@ -6,7 +6,8 @@ HAI Platform 官方文档，使用 [Sphinx](https://www.sphinx-doc.org/en/master
 + HAI Platform
 + haiscale
 + Python >= 3.8.5
-+ Sphinx >= 6.1.3
++ Sphinx == 4.5.0
++ myst-parser == 0.16.1
 
 
 ## 使用说明
