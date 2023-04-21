@@ -4,10 +4,9 @@ HAI Platform 官方文档，使用 [Sphinx](https://www.sphinx-doc.org/en/master
 
 ## 依赖
 + HAI Platform
-+ haiscale
-+ Python >= 3.8.5
-+ Sphinx == 4.5.0
-+ myst-parser == 0.16.1
++ Python==3.8.5
++ Sphinx==4.5.0
++ myst-parser==0.16.1
 
 
 ## 使用说明
@@ -17,7 +16,7 @@ HAI Platform 官方文档，使用 [Sphinx](https://www.sphinx-doc.org/en/master
 2. 进入 HAI Platform 环境，安装 Sphinx 依赖：
 
     ```
-    pip install sphinx sphinx_rtd_theme myst-parser sphinx-click sphinxcontrib.httpdomain sphinx_copybutton
+    pip install sphinx==4.5.0 sphinx_rtd_theme myst-parser==0.16.1 sphinx-click sphinxcontrib.httpdomain sphinx_copybutton
     ```
 
     将 `sphinx_click_hfai/ext.py` 替换所安装的 `sphinx-click` 模块下的 `ext.py`；
