@@ -55,9 +55,9 @@ HAI Platform Studio 是为 [HAI Platform](../start/install) 提供的用户界�
 
 #### 1. 填写 .devrc 配置文件
 
-为了方便定义我们调试中的依赖项目，我们定义了一个 [`.devrc`](https://tobeadd/blob/master/.devrc) 文件，它基于 [JSON5](https://json5.org/) 规范，我们可以在其中定义本地开发的配置内容。
+为了方便定义我们调试中的依赖项目，我们定义了一个 [`.devrc`](https://github.com/HFAiLab/hai-platform-studio/blob/main/.devrc) 文件，它基于 [JSON5](https://json5.org/) 规范，我们可以在其中定义本地开发的配置内容。
 
-[`.devrc`](https://tobeadd/blob/master/.devrc) 文件中定义了我们调试开发中需要用到的后端服务、数据库等配置，其中标注 **`[必填]`** 的为必须要填写的项目。
+[`.devrc`](https://github.com/HFAiLab/hai-platform-studio/blob/main/.devrc) 文件中定义了我们调试开发中需要用到的后端服务、数据库等配置，其中标注 **`[必填]`** 的为必须要填写的项目。
 
 另外，我们项目中默认可以使用一些第三方依赖：
 
@@ -110,18 +110,18 @@ pnpm start
 
 模块：
 
-- [Fetion](https://tobeadd/blob/master/servers/ailab-server/src/biz/agg-fetion/fetion/public/index.ts): Fetion 可以用于处理告警信息，可以通过自定义 `CustomFetion` 的方式覆盖默认行为。
-- [Statistics](https://tobeadd/blob/master/servers/ailab-server/src/biz/custom-statistics/public/index.ts): Statistics 文件包含了我们的一些用户统计数据的接口，可以自行实现相关函数完成统计功能。
-- [PathGuide 组件](https://tobeadd/blob/master/apps/studio/src/biz-components/Panels/PathGuide/public/index.tsx): 由于使用场景不同，这个组件的展示默认被屏蔽，这里可以罗列一些实际使用中可能有用的路径，并且将其展示给用户。
-- 讨论区通知模块：我们在项目中携带了一个讨论区模块，不过要完整地使用其通知能力，还需要自行填入数据库模板，我们在[这里](https://tobeadd/servers/ailab-server/src/orm/db_log/xtopic_notification_demo.sql) 给出了一个示例内容，这部分模板需要插入到 `frontend.topic_notification_template` 中。
+- [Fetion](https://github.com/HFAiLab/hai-platform-studio/blob/main/servers/ailab-server/src/biz/agg-fetion/fetion/public/index.ts): Fetion 可以用于处理告警信息，可以通过自定义 `CustomFetion` 的方式覆盖默认行为。
+- [Statistics](https://github.com/HFAiLab/hai-platform-studio/blob/main/servers/ailab-server/src/biz/custom-statistics/public/index.ts): Statistics 文件包含了我们的一些用户统计数据的接口，可以自行实现相关函数完成统计功能。
+- [PathGuide 组件](https://github.com/HFAiLab/hai-platform-studio/blob/main/apps/studio/src/biz-components/Panels/PathGuide/public/index.tsx): 由于使用场景不同，这个组件的展示默认被屏蔽，这里可以罗列一些实际使用中可能有用的路径，并且将其展示给用户。
+- 讨论区通知模块：我们在项目中携带了一个讨论区模块，不过要完整地使用其通知能力，还需要自行填入数据库模板，我们在[这里](https://github.com/HFAiLab/hai-platform-studio/servers/mainab-server/src/orm/db_log/xtopic_notification_demo.sql) 给出了一个示例内容，这部分模板需要插入到 `frontend.topic_notification_template` 中。
 
 通用能力：
 
-- [i18n 多语言](https://tobeadd/blob/master/shared/i18n/src/config.ts): 我们对部分重点模块支持中文、英文双语，可以在这里补充更多的国际化支持。
-- [i18n Brand](https://tobeadd/blob/master/shared/i18n/src/brand/public/index.ts): 这里指定了我们的一些应用名称等内容，可以自行更改。
-- [Shared Public](https://tobeadd/blob/master/shared/shared/src/public/index.ts): 这里指定了我们通用的配置，包括路径、节点信息等配置以及相关默认值，可以按需完善。
+- [i18n 多语言](https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/i18n/src/config.ts): 我们对部分重点模块支持中文、英文双语，可以在这里补充更多的国际化支持。
+- [i18n Brand](https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/i18n/src/brand/public/index.ts): 这里指定了我们的一些应用名称等内容，可以自行更改。
+- [Shared Public](https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/shared/src/public/index.ts): 这里指定了我们通用的配置，包括路径、节点信息等配置以及相关默认值，可以按需完善。
 
-**注意**：在训练中，一般我们相同分组的节点需要保证同属 GPU/GPU 类型，所以我们可以简单地通过分组来判断当前分组的节点类型，在 [Group](https://tobeadd/blob/shared/shared/src/public/utils/group/group.ts) 这里提供了快速判断的相关函数，这部分需要根据实际情况自行修改。
+**注意**：在训练中，一般我们相同分组的节点需要保证同属 GPU/GPU 类型，所以我们可以简单地通过分组来判断当前分组的节点类型，在 [Group](https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/shared/src/public/utils/group/group.ts) 这里提供了快速判断的相关函数，这部分需要根据实际情况自行修改。
 
 ### 线上部署
 
@@ -184,9 +184,9 @@ export BFF_ADMIN_TOKEN=xxxxxxxx
 
 ## 贡献代码
 
-在二次开发或者提交代码前，请先阅读[调试与部署](#id2)。
+在二次开发或者提交代码前，请先阅读上文调试与部署部分。
 
-另外，本项目并未开源所有可用功能，如果你有大范围的定制或二次开发需求，不妨[联系我们](https://mp.weixin.qq.com/s/1orFQWkCzxH1sGZa8twleQ)确认是否能够提供更多帮助。
+另外，本项目并未开源所有可用功能，如果你有大范围的定制或二次开发需求，可以[在这里](https://github.com/HFAiLab/hai-platform-studio/issues)确认是否能够获取更多帮助。
 
 ### 提交代码
 
