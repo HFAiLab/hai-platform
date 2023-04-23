@@ -131,5 +131,5 @@ HAI Platform 主要由8个模块组成，可以分为：
 ![](../_static/pic/studio_screenshot1.png)
 
 
-更多细节请阅读 [Studio](../guide/studio) 篇章内容。
+更多细节请阅读 [Studio](../start/studio) 篇章内容。
 

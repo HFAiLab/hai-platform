@@ -20,7 +20,7 @@
 （**建议用户在开始使用时先测试该环境是否可以满足运行需求**）
 
 
-1. 不做代码更改，在使用 `hai-cli python`、`hai-cli bash` 或 `hai-cli exec` 提交任务时，命令行中指定运行环境：
+1. 不做代码更改，在使用 [`hai-cli python`](../cli/exec.html#hai-cli-python), [`hai-cli bash`](../cli/exec.html#hai-cli-bash) 或 [`hai-cli exec`](../cli/exec.html#hai-cli-exec) 提交任务时，命令行中指定运行环境：
 
     ```shell
     HF_ENV_NAME=< base_env_name > hai-cli python sample.py -- -n 1 --name test_exp_1
@@ -28,14 +28,14 @@
     HF_ENV_NAME=< base_env_name > hai-cli exec mybin -- -n 1 --name test_exp_1
     ```
 
-2. 在运行python代码中，使用`haienv`加载运行环境：
+2. 在运行python代码中，使用 `haienv` 加载运行环境：
 
     ```python
     import haienv
     haienv.set_env('env_name')
     ```
 
-3. 在运行shell代码中，使用`source`命令加载运行环境：
+3. 在运行shell代码中，使用 `source` 命令加载运行环境：
 
     ```shell
     source haienv < base_env_name >
@@ -43,9 +43,9 @@
 
 ## 使用 haienv 自建虚拟环境
 
-在基础环境无法满足用户需求的情况下（比如python版本、依赖包等），用户使用`haienv`工具创建和管理个人环境。
+在基础环境无法满足用户需求的情况下（比如python版本、依赖包等），用户使用 `haienv` 工具创建和管理个人环境。
 
-通常建议用户直接从集群基础环境中扩展配置个人环境。这种方式是**增量**的，**仅需要安装集群默认环境里缺少的依赖即可**。扩展配置环境需要在[**开发容器**](./studio)中操作。开发容器功能入口如下图所示：
+通常建议用户直接从集群基础环境中扩展配置个人环境。这种方式是**增量**的，**仅需要安装集群默认环境里缺少的依赖即可**。扩展配置环境需要在**开发容器**中操作，开发容器从 [Studio](../start/studio) 功能入口进入，如下图所示：
 
 ![](../_static/pic/devcontainer_01.png)
 
@@ -73,6 +73,6 @@ haienv create < myenv >
 
 注意不加 `--no_extend` 命令表示从 HAI Platform 默认环境扩展构建用户环境，最大降低环境配置的工作量。环境创建后即可进入环境并执行自定义安装。
 
-除此以外，`haienv`支持用户在本地（集群外）建立个人环境并推送到集群，这种方式建立的环境无法扩展基础环境，需要用户自己验证和维护。
+除此以外，`haienv` 支持用户在本地（集群外）建立个人环境并推送到集群，这种方式建立的环境无法扩展基础环境，需要用户自己验证和维护。
 
 自建环境与集群默认环境使用方式相同，支持提交任务指定和代码中加载。

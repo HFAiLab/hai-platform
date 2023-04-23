@@ -30,7 +30,7 @@
     bash hai-up.sh dryrun --provider k8s
     ```
 
-    配置文件可以按照您的需求进行调整，各配置项详细内容参见[这里](http://gitlab.high-flyer.cn/kang.guan/multi_gpu_runner_server/-/tree/master_v7/one)；
+    配置文件可以按照您的需求进行调整，各配置项详细内容参见[这里](https://github.com/HFAiLab/hai-platform/blob/main/README.md#%E9%99%84%E5%BD%95%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E)；
 
 5. 部署并启动服务
 
@@ -40,9 +40,4 @@
 
 6. 使用 `hai-cli`　初始化和提交任务。
 
-<br />更详细的配置指引可以阅读[容器化搭建指南](http://gitlab.high-flyer.cn/kang.guan/multi_gpu_runner_server/-/tree/master_v7/one)。
-
-
-<!-- ## 开发环境部署
-
-<font color='red'> 继续完善 ... </font> -->
+<br />更详细的配置指引可以阅读[容器化搭建指南](https://github.com/HFAiLab/hai-platform/blob/main/README.md)。

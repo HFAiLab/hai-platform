@@ -14,7 +14,7 @@
 
    start/hai_intro.rst
    start/install.rst
-   guide/studio.rst
+   start/studio.rst
    
 .. toctree::
    :maxdepth: 2
@@ -35,10 +35,10 @@
    :glob:
 
    cli/user.rst
-   cli/ugc.rst
    cli/exec.rst
    cli/task.rst
    cli/cluster.rst
+   cli/ugc.rst
 
 
 .. toctree::

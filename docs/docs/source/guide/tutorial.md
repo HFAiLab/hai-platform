@@ -36,7 +36,7 @@ User Commands:
   whoami  显示用户的个人信息, 包括集群用量、quota 等
 
 UGC Commands:
-  venv       创建、查询、删除虚拟环境
+  haienv       创建、查询、删除虚拟环境
 
 ```
 
@@ -44,7 +44,7 @@ UGC Commands:
 
 ## 用例1： 使用客户端工具的基本流程 
 ### 场景
-用户开始使用 HAI Platform 平台，需要搭建个人运行环境、准备实验代码、数据等。集群开发容器默认安装并配置了hai cli，用户也可以在个人本地安装。
+用户开始使用 HAI Platform 平台，需要搭建个人运行环境、准备实验代码、数据等。集群开发容器默认安装并配置了 hai cli，用户也可以在个人本地安装。
 
 ### 说明
 使用 hai 需要按用户初始化本地配置，支持用户创建个人虚拟环境，并且支持环境上传，确保本地和集群上环境一致。
@@ -52,11 +52,11 @@ UGC Commands:
 **注意**：**目前仅支持 bash**, 如果要使用其它 shell，需要手动修改 venv 环境下的 activate 脚本。
 
 ### 步骤
-1. 在本地首次安装使用，执行 `hai-cli init <token> ` 命令初始化 hai 客户端配置。初始化过程会生成配置文件`~/.hai/conf.yaml`。在集群开发容器中使用则无需重复初始化。
+1. 在本地首次安装使用，执行 [`hai-cli init <token>`](../cli/user.html#hai-cli-init) 命令初始化 hai 客户端配置。初始化过程会生成配置文件 `~/.hai/conf.yaml`。在集群开发容器中使用则无需重复初始化。
 
-2. 使用 `hai-cli whoami` 查看用户个人信息，包括集群用量、配额等。
+2. 使用 [`hai-cli whoami`](../cli/user.html#hai-cli-whoami) 查看用户个人信息，包括集群用量、配额等。
 
-3. 使用 `haienv` 工具创建及管理个人环境：
+3. 使用 [`haienv`](../cli/ugc.html#haienv) 工具创建及管理个人环境：
 
     ```shell
     haienv create <env_name>  # 创建虚拟环境
@@ -118,21 +118,21 @@ haienv remove extenv ## 删除虚拟环境
 1. `succeeded` / `failed` / `stopped`: 该任务节点已经完全退出。
 
 ### 步骤
-1. 执行 `hai-cli run` 通过提交yaml文件来运行一个任务，支持运行python文件或shell脚本。yaml格式[参考API说明](../api/client.html#hfai.client.create_experiment_v2)。
+1. 执行 [`hai-cli run`](../cli/exec.html#hai-cli-run) 通过提交yaml文件来运行一个任务，支持运行python文件或shell脚本。yaml格式[参考API说明](../api/client.html#hfai.client.create_experiment_v2)。
    
    ```shell
    hai-cli run /path/to/yaml_file
    ```
 
-   另外也可使用 `hai-cli python`, `hai-cli bash` 或 `hai-cli exec` 提交任务执行。
+   另外也可使用 [`hai-cli python`](../cli/exec.html#hai-cli-python), [`hai-cli bash`](../cli/exec.html#hai-cli-bash) 或 [`hai-cli exec`](../cli/exec.html#hai-cli-exec) 提交任务执行。
 
    ```shell
    hai-cli python <experiment.py> # 本地运行，等同于运行 python xxx
    hai-cli python <experiment.py> -- [CLUSTER_OPTIONS]  # 提交到集群作为新建任务运行，提交前请先检查工作区是否同步；集群任务参数详见api文档
    hai-cli python <experiment.py> ++ [SIMULATE_OPTIONS] # 在本地运行，模拟集群任务响应
    ```
-2. 使用 `hai-cli list`, `hai-cli status`, `hai-cli logs` 等查看任务状态、日志等。
-3. 对于运行中或者等待中的任务，可以执行 `hai-cli stop` 发起停止。用户停止的任务不再进入调度。
+2. 使用 [`hai-cli list`](../cli/task.html#hai-cli-list), [`hai-cli status`](../cli/task.html#hai-cli-status), [`hai-cli logs`](../cli/task.html#hai-cli-logs) 等查看任务状态、日志等。
+3. 对于运行中或者等待中的任务，可以执行 [`hai-cli stop`](../cli/task.html#hai-cli-stop) 发起停止。用户停止的任务不再进入调度。
 
 ### 示例
 通过 `hai-cli status <experiment>` 查看任务的状态
