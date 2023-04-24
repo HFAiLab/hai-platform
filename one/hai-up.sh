@@ -34,6 +34,8 @@ set_env() {
 
   # all in one image
   : ${BASE_IMAGE:="registry.cn-hangzhou.aliyuncs.com/hfai/hai-platform:latest"}
+  # train image
+  : ${TRAIN_IMAGE:="registry.cn-hangzhou.aliyuncs.com/hfai/hai-platform:latest"}
   # ingress hostname serving studio, jupyter
   : ${INGRESS_HOST:="nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com"}
   INGRESS_HOST=`echo ${INGRESS_HOST} | sed -e 's/^http:\/\///' -e 's/^https:\/\///'`
@@ -125,6 +127,7 @@ print_config_script() {
     export BFF_ADMIN_UID=10000 # uid of the reserved admin user for bff
     export BFF_ADMIN_TOKEN=$(echo $RANDOM | md5sum | head -c 20)    # token of the reserved admin user for bff
     export BASE_IMAGE="registry.cn-hangzhou.aliyuncs.com/hfai/hai-platform:latest" # all in one image
+    export TRAIN_IMAGE="registry.cn-hangzhou.aliyuncs.com/hfai/hai-platform:latest" # train image
     export NODE_GPUS=4 # gpus per node
     export HAS_RDMA_HCA_RESOURCE=0 # ib per node
     export KUBECONFIG="$HOME/.kube/config" # kubeconfig file path
@@ -336,8 +339,8 @@ ON CONFLICT DO NOTHING;
 
 INSERT INTO "train_environment" ("env_name", "image", "schema_template", "config")
 VALUES
-      -- 系统自定义的镜像，可以基于 multi_gpu_runner_server 来做，或者参考 validate_image.sh 中镜像的条件
-      ('hai_base', '${BASE_IMAGE}', '', '{"environments": {}, "python": "/usr/bin/python3.8"}')
+      -- 训练镜像，如自定义，需要满足 validate_image.sh 中镜像的条件
+      ('hai_base', '${TRAIN_IMAGE}', '', '{"environments": {}, "python": "/usr/bin/python3.8"}')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO "host" ("node", "gpu_num", "type", "use", "origin_group", "room")

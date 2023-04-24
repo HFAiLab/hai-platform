@@ -10,7 +10,7 @@ ls -A | grep -vE "^${BUILD_DIR}$|\.git*|__pycache__" | awk '{print $1}' | xargs 
 cd ${BUILD_DIR}
 
 echo "STEP: build hai-platform ${RELEASE_VERSION}"
-if [[ ${BUILD_HAI_ENV} == "1" ]]; then
+if [[ ${BUILD_TRAIN_IMAGE} == "1" ]]; then
 cat >> Dockerfile << EOF
 #### create haienv 202207 ####
 RUN ["/bin/bash", "-c", "export HAIENV_PATH=/hf_shared/hfai_envs/platform && \
