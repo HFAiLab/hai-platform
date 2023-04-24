@@ -147,7 +147,7 @@ async def get_task_node_idx_log(task_id, user, node_idx: int, last_seen=None, su
         }
     except Exception as exp:  # 共享盘里文件还没创建的情况
         if os.path.exists(path):  # path 存在的情况下，应该是出了异常了
-            raise Exception
+            raise exp
         return {
             "data": "还没产生日志",
             "success": 1,

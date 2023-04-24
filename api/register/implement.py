@@ -52,6 +52,9 @@ if 'operating' in REG_SERVERS:
     app.post('/operating/node/host_info/delete')(ar_cluster.delete_host_info_api)
     app.post('/operating/node/label')(ar_cluster.label_node_api)
 
+    app.post('/operating/mount_point/create')(ar_storage.create_mount_point)
+    app.post('/operating/mount_point/delete')(ar_storage.delete_mount_point)
+
 
 if 'ugc' in REG_SERVERS:
     app.post('/ugc/user/nodeport/create')(at_port.node_port_svc)
