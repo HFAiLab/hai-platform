@@ -368,6 +368,8 @@ def create_node_in_k8s(rank, node_schema):
             volumes.append(volume)
         for extra_training_mount in sidecar.extra_training_mounts:
             containers[0].volume_mounts.append(extra_training_mount)
+        for key, value in sidecar.extra_training_envs.items():
+            containers[0].env.append(get_env_var(key=key, value=value))
     # 为了启动 sbin init 的任务
     # todo 可能有安全问题
     if task.code_file == '/sbin/init':

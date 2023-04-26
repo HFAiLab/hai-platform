@@ -340,7 +340,7 @@ ON CONFLICT DO NOTHING;
 INSERT INTO "train_environment" ("env_name", "image", "schema_template", "config")
 VALUES
       -- 训练镜像，如自定义，需要满足 validate_image.sh 中镜像的条件
-      ('hai_base', '${TRAIN_IMAGE}', '', '{"environments": {}, "python": "/usr/bin/python3.8"}')
+      ('hai_base', '${TRAIN_IMAGE}', '', '{"environments": {"BFF_URL": "http://${INGRESS_HOST}", "WS_URL": "ws://${INGRESS_HOST}", "CLUSTER_SERVER_URL": "http://${HAI_SERVER_ADDR}"}, "python": "/usr/bin/python3.8"}')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO "host" ("node", "gpu_num", "type", "use", "origin_group", "room")

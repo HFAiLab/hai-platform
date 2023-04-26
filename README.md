@@ -1,6 +1,10 @@
 # HAI Platform
 
-High-flyer AI 的分时调度训练平台, 可通过 `docker-compose` 或 `k8s` 部署，提供功能：
+![Header](https://img.shields.io/badge/-hai--platform-orange)
+[![License](https://img.shields.io/badge/license-LGPL-4EB1BB)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
+
+
+HAI 分时调度训练平台, 可通过 `docker-compose` 或 `k8s` 部署，提供功能：
 - 训练任务分时调度
 - 训练任务管理
 - jupyter 开发容器管理
