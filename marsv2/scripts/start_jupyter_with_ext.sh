@@ -37,10 +37,13 @@ fi
 
 # jupyterlab
 mkdir -p ${NOTEBOOK_DIR}
-if [ ! -x "${JUPYTERLAB_SETTINGS_DIR}/HF_AiLab_ext/config.jupyterlab-settings" ]; then
-  mkdir -p ${JUPYTERLAB_SETTINGS_DIR}/HF_AiLab_ext
-  echo {\"token\": \"${USER_TOKEN}\"} > ${JUPYTERLAB_SETTINGS_DIR}/HF_AiLab_ext/config.jupyterlab-settings
-fi
+PLUGIN_NAMES=( HF_AiLab_ext jupyterlab_hai_platform_ext )
+for name in "${PLUGIN_NAMES[@]}"; do
+  if [ ! -x "${JUPYTERLAB_SETTINGS_DIR}/${name}/config.jupyterlab-settings" ]; then
+    mkdir -p ${JUPYTERLAB_SETTINGS_DIR}/${name}
+    echo {\"token\": \"${USER_TOKEN}\"} > ${JUPYTERLAB_SETTINGS_DIR}/${name}/config.jupyterlab-settings
+  fi
+done
 mkdir -p ${JUPYTERLAB_WORKSPACES_DIR}
 
 # 插件 server 端挂载路径

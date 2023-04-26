@@ -51,8 +51,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   --trusted-host=pypi.tuna.tsinghua.edu.cn
 
 # 安装 studio
-RUN mkdir -p /marsv2/scripts/studio && \
-  curl https://yinghuoai-public.oss-cn-hangzhou.aliyuncs.com/build_deps/hai-studio-linux-x64-0.0.2.tar.gz | tar zxvf - -C /marsv2/scripts/studio
+RUN pip install jupyterlab_hai_platform_ext && \
+  mkdir -p /marsv2/scripts/studio && \
+  curl https://github.com/HFAiLab/hai-platform-studio/releases/download/v0.19.0-alpha.1682329905.32209c5e/hai-studio-linux-x64-0.19.0-alpha.1682329905.32209c5e.tar.gz | tar zxvf - -C /marsv2/scripts/studio
 
 ############################################################
 
