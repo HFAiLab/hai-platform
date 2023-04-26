@@ -1,6 +1,4 @@
 #!/bin/bash
-# @Author       :hpp
-# @CreatedAt    :2022/11/07 13:36
 
 set -e
 
@@ -73,7 +71,7 @@ export STUDIO_ENABLE_ONLINE_DEBUG=true
 export STUDIO_ENABLE_COUNTLY=false
 export STUDIO_JUPYTER_URL=http://${INGRESS_HOST}
 export NODEJS_ENV=prod
-export PREPUB=is_true
+export PREPUB=is_false
 
 # export DEBUG_PKG=1 可以打印出虚拟文件系统来
 

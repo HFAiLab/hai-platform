@@ -1,5 +1,3 @@
-# @Author       :hpp
-# @CreatedAt    :2020/12/28 16:55
 
 if [ "x${1}" != "x" ]; then
   HFAI_PATH=$1
