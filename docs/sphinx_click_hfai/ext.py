@@ -314,10 +314,10 @@ def _format_command(ctx, nested, commands=None):
 
     is_hai_python = ctx.command.name == "python"
 
-    if ctx.info_name == 'hai python':
+    if ctx.info_name == 'hai-cli python':
         cmd = 'python'
         file_ext = 'py'
-    elif ctx.info_name == 'hai bash':
+    elif ctx.info_name == 'hai-cli bash':
         cmd = 'bash'
         file_ext = 'sh'
     else:
@@ -339,9 +339,9 @@ def _format_command(ctx, nested, commands=None):
     if is_hai_python:
         yield '.. code-block:: shell'
         yield ''
-        yield _indent(f'hai {cmd} <experiment.{file_ext}> [<experiment_params>...]                        # 在本地运行，等同 {cmd}')
-        yield _indent(f'hai {cmd} <experiment.{file_ext}> [<experiment_params>...] -- [CLUSTER_OPTIONS]   # 提交任务到萤火二号运行')
-        yield _indent(f'hai {cmd} <experiment.{file_ext}> [<experiment_params>...] ++ [SIMULATE_OPTIONS]  # 在本地模拟运行，会提供萤火二号一致的环境变量和表现')
+        yield _indent(f'hai-cli {cmd} <experiment.{file_ext}> [<experiment_params>...]                        # 在本地运行，等同 {cmd}')
+        yield _indent(f'hai-cli {cmd} <experiment.{file_ext}> [<experiment_params>...] -- [CLUSTER_OPTIONS]   # 提交任务到萤火二号运行')
+        yield _indent(f'hai-cli {cmd} <experiment.{file_ext}> [<experiment_params>...] ++ [SIMULATE_OPTIONS]  # 在本地模拟运行，会提供萤火二号一致的环境变量和表现')
         yield ''
 
     else:
@@ -422,12 +422,12 @@ def _format_command(ctx, nested, commands=None):
         yield ''
         yield '.. code-block:: shell'
         yield ''
-        yield _indent(f'hai {cmd} bert.{file_ext} -c large.yml -- -n 10  # 使用萤火十个节点')
-        yield _indent(f'HF_ENV_NAME=py38-202111 hai {cmd} bert.{file_ext} -c large.yml -- -n 1  # 使用萤火内建的 py38-202111 环境运行')
-        yield _indent(f'hai {cmd} bert.{file_ext} -c large.yml  # 本地运行')
-        yield _indent(f'hai {cmd} bert.{file_ext} -c large.yml -- --nodes 1  # 使用萤火一节点')
-        yield _indent(f'hai {cmd} bert.{file_ext} -c large.yml -- -n 1 -i default -e A=B -e C=D  # 使用 default 镜像，配置环境变量')
-        yield _indent(f'hai {cmd} bert.{file_ext} -c large.yml ++ --suspend_seconds 100  # 本地模拟100秒后打断')
+        yield _indent(f'hai-cli {cmd} bert.{file_ext} -c large.yml -- -n 10  # 使用萤火十个节点')
+        yield _indent(f'HF_ENV_NAME=py38-202111 hai-cli {cmd} bert.{file_ext} -c large.yml -- -n 1  # 使用萤火内建的 py38-202111 环境运行')
+        yield _indent(f'hai-cli {cmd} bert.{file_ext} -c large.yml  # 本地运行')
+        yield _indent(f'hai-cli {cmd} bert.{file_ext} -c large.yml -- --nodes 1  # 使用萤火一节点')
+        yield _indent(f'hai-cli {cmd} bert.{file_ext} -c large.yml -- -n 1 -i default -e A=B -e C=D  # 使用 default 镜像，配置环境变量')
+        yield _indent(f'hai-cli {cmd} bert.{file_ext} -c large.yml ++ --suspend_seconds 100  # 本地模拟100秒后打断')
         yield ''
 
     # environment variables
