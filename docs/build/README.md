@@ -21,11 +21,11 @@ HAI Platform 官方文档，使用 [Sphinx](https://www.sphinx-doc.org/en/master
 
     将 `sphinx_click_hfai/ext.py` 替换所安装的 `sphinx-click` 模块下的 `ext.py`；
 
-3. 执行脚本 `build.sh`, 生成文档 `./docs/build/html`；
+3. 执行脚本 `build.sh`，生成文档 `./docs/build/html`，放入 `../`；
 
 4. 搭建文件服务器，预览效果：
 
     ```
-    cd docs/build/html
+    cd ../
     python -m  http.server 8000
     ```
