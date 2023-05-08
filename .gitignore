@@ -1,5 +1,4 @@
 .ipynb_checkpoints/
 .idea/
-/docs/docs/build/doctrees/
 /docs/docs/source/generated
 *.pyc
