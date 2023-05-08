@@ -1,0 +1,551 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UGC 命令 &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="hfai" href="../api/hai.html" />
+  <link rel="prev" title="集群命令" href="cluster.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cluster.html">集群命令</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>UGC 命令</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cli/ugc.rst.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="ugc">
+<h1>UGC 命令<a class="headerlink" href="#ugc" title="Permalink to this headline">¶</a></h1>
+<section id="haienv">
+<h2>haienv<a class="headerlink" href="#haienv" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>COMMAND<span class="w"> </span>&lt;argument&gt;...<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+<span class="w">             </span>默认haienv路径为HOME，可以通过设置环境变量HAIENV_PATH来指定haienv路径（萤火平台下已设置该环境变量）
+</pre></div>
+</div>
+<section id="haienv-config">
+<h3>haienv config<a class="headerlink" href="#haienv-config" title="Permalink to this headline">¶</a></h3>
+<p>创建、查询、删除虚拟环境</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>config<span class="w"> </span>COMMAND<span class="w"> </span>&lt;argument&gt;...<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<section id="haienv-config-append">
+<h4>config append<a class="headerlink" href="#haienv-config-append" title="Permalink to this headline">¶</a></h4>
+<p>追加haienv的某项参数</p>
+<p>eg. haienv clear -n my_env -k extra-search-dir -v /tmp/123</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>config<span class="w"> </span>append<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--haienv_name</span> <span class="pre">&lt;haienv_name&gt;</span></code></p>
+<blockquote>
+<div><p><strong>required</strong>。haienv_name</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-k,</span> <span class="pre">--key</span> <span class="pre">&lt;key&gt;</span></code></p>
+<blockquote>
+<div><p><strong>required</strong>。选择追加的参数，目前只能指定extra-search-dir, extra-search-bin-dir, extra-environment中的一种</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v,</span> <span class="pre">--value</span> <span class="pre">&lt;value&gt;</span></code></p>
+<blockquote>
+<div><p><strong>required</strong>。追加的参数值</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="haienv-config-clear">
+<h4>config clear<a class="headerlink" href="#haienv-config-clear" title="Permalink to this headline">¶</a></h4>
+<p>清除haienv的某项参数</p>
+<p>eg. haienv clear -n my_env -k extra-search-dir</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>config<span class="w"> </span>clear<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--haienv_name</span> <span class="pre">&lt;haienv_name&gt;</span></code></p>
+<blockquote>
+<div><p><strong>required</strong>。haienv_name</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-k,</span> <span class="pre">--key</span> <span class="pre">&lt;key&gt;</span></code></p>
+<blockquote>
+<div><p><strong>required</strong>。选择清除的参数，目前只能指定extra-search-dir, extra-search-bin-dir, extra-environment中的一种</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="haienv-config-show">
+<h4>config show<a class="headerlink" href="#haienv-config-show" title="Permalink to this headline">¶</a></h4>
+<p>展示指定haienv的各项参数</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>config<span class="w"> </span>show<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--haienv_name</span> <span class="pre">&lt;haienv_name&gt;</span></code></p>
+<blockquote>
+<div><p><strong>required</strong>。haienv_name</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-u,</span> <span class="pre">--user</span> <span class="pre">&lt;user&gt;</span></code></p>
+<blockquote>
+<div><p>指定用户，默认走当前用户</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="haienv-create">
+<h3>haienv create<a class="headerlink" href="#haienv-create" title="Permalink to this headline">¶</a></h3>
+<p>使用conda创建新的虚拟环境，注意必须有conda并配置好相应代理（如有需要）</p>
+<p>eg. haienv create my_env –no_extend –py 3.6 –extra-search-dir /tmp/123 –extra-search-dir /tmp/456 –extra-environment TEMP=temp</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>create<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>haienv_name
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_extend</span></code></p>
+<blockquote>
+<div><p>扩展当前python环境（默认为扩展），注意扩展当前环境极有可能出现版本兼容问题</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p,</span> <span class="pre">--py</span> <span class="pre">&lt;py&gt;</span></code></p>
+<blockquote>
+<div><p>选择python版本，默认为当前python版本</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--extra-search-dir</span> <span class="pre">&lt;extra_search_dir&gt;</span></code></p>
+<blockquote>
+<div><p>指定在进入该虚拟环境时额外的pythonpath</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--extra-search-bin-dir</span> <span class="pre">&lt;extra_search_bin_dir&gt;</span></code></p>
+<blockquote>
+<div><p>指定在进入该虚拟环境时额外的path</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--extra-environment</span> <span class="pre">&lt;extra_environment&gt;</span></code></p>
+<blockquote>
+<div><p>指定在进入该虚拟环境时额外的环境变量</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+</section>
+<section id="haienv-list">
+<h3>haienv list<a class="headerlink" href="#haienv-list" title="Permalink to this headline">¶</a></h3>
+<p>列举所有虚拟环境</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-u,</span> <span class="pre">--user</span> <span class="pre">&lt;user&gt;</span></code></p>
+<blockquote>
+<div><p>指定用户，默认为所有用户</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-a,</span> <span class="pre">--all</span></code></p>
+<blockquote>
+<div><p>列出所有环境</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">&lt;output_format&gt;</span></code></p>
+<blockquote>
+<div><p>输出格式，可以选择json</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="haienv-remove">
+<h3>haienv remove<a class="headerlink" href="#haienv-remove" title="Permalink to this headline">¶</a></h3>
+<p>删除虚拟环境</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>remove<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>haienv_name
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="../api/hai.html" class="btn btn-neutral float-right" title="hfai" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="cluster.html" class="btn btn-neutral" title="集群命令" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">UGC 命令</a><ul>
+<li><a class="reference internal" href="#haienv">haienv</a><ul>
+<li><a class="reference internal" href="#haienv-config">haienv config</a><ul>
+<li><a class="reference internal" href="#haienv-config-append">config append</a></li>
+<li><a class="reference internal" href="#haienv-config-clear">config clear</a></li>
+<li><a class="reference internal" href="#haienv-config-show">config show</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#haienv-create">haienv create</a></li>
+<li><a class="reference internal" href="#haienv-list">haienv list</a></li>
+<li><a class="reference internal" href="#haienv-remove">haienv remove</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

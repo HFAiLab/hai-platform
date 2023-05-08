@@ -1,0 +1,918 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hfai.client.remote.session &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../../../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../../../../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>hfai.client.remote.session</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <h1>Source code for hfai.client.remote.session</h1><div class="highlight"><pre>
+<span></span><span class="c1"># @Author       :hpp</span>
+<span class="c1"># @CreatedAt    :2022/4/21 16:57</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">importlib</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">path</span>
+<span class="kn">import</span> <span class="nn">shlex</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">.data_package</span> <span class="kn">import</span> <span class="n">save</span><span class="p">,</span> <span class="n">load</span>
+<span class="kn">from</span> <span class="nn">.multiprocess</span> <span class="kn">import</span> <span class="n">AsyncResult</span><span class="p">,</span> <span class="n">Pool</span>
+
+
+<span class="k">class</span> <span class="nc">GlobalValuesRecorder</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_globals</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">main_globals</span> <span class="o">=</span> <span class="n">main_globals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enter_globals_keys</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_keys</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">global_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_globals</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_keys</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_globals</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">enter_record</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enter_globals_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_globals</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">exit_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">modules</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_globals</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">enter_globals_keys</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">global_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="n">modules</span><span class="p">)</span>
+
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">modules</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">enter_record</span><span class="p">()</span>
+            <span class="k">yield</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exit_record</span><span class="p">(</span><span class="o">*</span><span class="n">modules</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">modules</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">:</span>
+            <span class="c1"># 不管这个 item 是不是在 module 中，都设置上去</span>
+            <span class="n">global_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_values</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">global_values</span><span class="p">:</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">global_values</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+
+
+<div class="viewcode-block" id="SessionConfig"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.SessionConfig">[docs]</a><span class="k">class</span> <span class="nc">SessionConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    配置Session，本地还是远程，远程用哪个分组</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        local: 本地运行, 默认 True</span>
+<span class="sd">        inline: 在本地运行时候，不使用 python module.py 的模式，默认 True</span>
+<span class="sd">        group: 远程运行时候提交的分组, 默认 jd_dev_alpha</span>
+<span class="sd">        nb_auto_reload: 在运行 cell 之前自动 reload module</span>
+<span class="sd">        process_limit: 后台运行的子进程数量, 0 表示和 cpu_count 一样</span>
+<span class="sd">        priority: 以什么优先级来提交任务，不设置则用最高优先级运行</span>
+<span class="sd">        image: 使用什么镜像运行，不填则用用户默认的镜像</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;jd_dev_alpha&#39;</span><span class="p">,</span> <span class="n">nb_auto_reload</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">process_limit</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local</span> <span class="o">=</span> <span class="n">local</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inline</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">group</span> <span class="o">=</span> <span class="n">group</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_auto_reload</span> <span class="o">=</span> <span class="n">nb_auto_reload</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">process_limit</span> <span class="o">=</span> <span class="n">process_limit</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">priority</span> <span class="o">=</span> <span class="n">priority</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;local&#39;</span><span class="p">,</span> <span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;auto_reload_interval&#39;</span><span class="p">,</span> <span class="s1">&#39;process_limit&#39;</span><span class="p">]}</span></div>
+
+
+<div class="viewcode-block" id="GlobalSession"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession">[docs]</a><span class="k">class</span> <span class="nc">GlobalSession</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    远程运行的Session</span>
+
+<span class="sd">    在主进程构造一个 session，用于管理用户开发的 modules，并且，比如设置 modules 中的 global values</span>
+<span class="sd">    逻辑上和 multiprocess.pool 有点接近，可以以此类别，帮助理解</span>
+<span class="sd">    详细配置见 SessionConfig</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        # demo.py</span>
+<span class="sd">        foo = &#39;bar&#39;</span>
+<span class="sd">        def func1(param1, param2):</span>
+<span class="sd">            print(foo, param1, param2)</span>
+<span class="sd">            return f&#39;{foo}_{param1}_{param2}&#39;</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        # main.ipynb</span>
+<span class="sd">        # 构造 session 来运行</span>
+<span class="sd">        import demo as demo2</span>
+<span class="sd">        session = GlobalSession(globals(), (demo2, ), session_config=SessionConfig())</span>
+<span class="sd">        with session.modules_globals():</span>
+<span class="sd">            foo = 1</span>
+<span class="sd">        session.apply(demo2.func1, (1, ), {&#39;param2&#39;: &#39;b&#39;}) # 使用 foo = 1 且 demo 修改了会 自动 reload</span>
+<span class="sd">        session.apply(demo2.func1, (1, ), {&#39;param2&#39;: &#39;b&#39;}, local=False) # 远程运行</span>
+
+<span class="sd">        # 在 local + inline 运行模式中，等价与：</span>
+<span class="sd">        importlib.reload(demo2)</span>
+<span class="sd">        session.update_values(demo2)</span>
+<span class="sd">        demo2.func1(&#39;a&#39;, &#39;b&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_globals</span><span class="p">,</span> <span class="n">modules</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">session_config</span><span class="p">:</span> <span class="n">SessionConfig</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        构造 GlobalSession，一般而言，一个入口只有一个 session</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            main_globals: 构造函数传入 `globals()`</span>
+<span class="sd">            modules: 注册需要 remote call 的 module 列表，用以之后 module.func; 注意：现在只支持使用一个文件作为一个 module，即 `demo.py` 对应 `demo` 这个模块</span>
+<span class="sd">            session_config: 不指定则为默认的: local=True, inline=False, group=jd_dev_alpha, auto_reload_interval=2， process_limit=0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span> <span class="o">=</span> <span class="n">GlobalValuesRecorder</span><span class="p">(</span><span class="n">main_globals</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span> <span class="o">=</span> <span class="n">session_config</span> <span class="ow">or</span> <span class="n">SessionConfig</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">module_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">module</span><span class="o">.</span><span class="vm">__name__</span> <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">modules</span><span class="p">]</span>
+
+        <span class="c1"># 在 main 函数中会有 import demo as demo2 的情况，demo2 为 global_name，demo 为 module_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_name_to_module_names</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">module_name_to_global_names</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">global_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">main_globals</span><span class="p">:</span>
+            <span class="n">module</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">main_globals</span><span class="p">[</span><span class="n">global_name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span>
+                          <span class="n">types</span><span class="o">.</span><span class="n">ModuleType</span><span class="p">)</span> <span class="ow">and</span> <span class="n">module</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_names</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">global_name_to_module_names</span><span class="p">[</span><span class="n">global_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">module_name_to_global_names</span><span class="p">[</span><span class="n">module</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_name</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">saved_global_var_dp</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># notebook 注册，在 cell 运行前 auto reload</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">nb_auto_reload</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">register_auto_reload</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span> <span class="o">=</span> <span class="n">Pool</span><span class="p">(</span><span class="n">process_limit</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">process_limit</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">modules</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mn2gn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_name_to_global_names</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">main_globals</span><span class="p">[</span><span class="n">mn2gn</span><span class="p">[</span><span class="n">name</span><span class="p">]]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">module_names</span><span class="p">}</span>
+
+<div class="viewcode-block" id="GlobalSession.modules_globals"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.modules_globals">[docs]</a>    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">modules_globals</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        记录，并且更新 modules 中的 global_var(若有)</span>
+
+<span class="sd">        注意：</span>
+
+<span class="sd">        1. 对于 [引用] 的变量，在 modules_globals 记录之后，可以直接赋值，会进行更新</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                with session.modules_globals():</span>
+<span class="sd">                    a = []</span>
+<span class="sd">                a.append(1)    # module.a -&gt; [1]</span>
+<span class="sd">                a = [2, 3, 4]  # module.a -&gt; [2, 3, 4]</span>
+
+<span class="sd">        2. 对于 [赋值] 的变量，如 int、str，在 modules_globals 记录之后，直接赋值不会进行更新，</span>
+<span class="sd">            2.1 在同一个notebook cell中需要 reload 或者 with 重新更新；</span>
+
+<span class="sd">            2.2 不同 cell 之间，我们注册了 auto reload 机制，会在 cell 运行之前设置变量、更新代码</span>
+
+<span class="sd">            2.3 建议在赋值完成之后，启动一个新的 cell 运行，这样也比较清晰</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                # session = GlobalSession(auto_reload_interval=2) # 构造的时候输入也可以</span>
+<span class="sd">                # session.auto_reload(2)  # 显示调用，一般不用，在构造的时候可以传入，让他进行自动 reload</span>
+
+<span class="sd">                with session.modules_globals():</span>
+<span class="sd">                    a = 1</span>
+<span class="sd">                # 同一个 cell</span>
+<span class="sd">                a = 2</span>
+<span class="sd">                print(module.a) # -&gt; 1, 赋值的不会变;</span>
+<span class="sd">                session.reload() # 或者直接调用</span>
+<span class="sd">                print(module.a) # -&gt; 2, reload 之后就变了</span>
+
+<span class="sd">                #[] cell 0</span>
+<span class="sd">                # a = 3</span>
+<span class="sd">                #[] cell 1</span>
+<span class="sd">                print(module.a) # -&gt; 3, 新启动 cell 会进行 auto reload</span>
+
+<span class="sd">                # 另外重新记录的话，会立刻改变</span>
+<span class="sd">                with session.modules_globals():</span>
+<span class="sd">                    a = 3      # module.a -&gt; 3</span>
+
+
+
+<span class="sd">        Examples:</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            # main.ipynb</span>
+<span class="sd">            # 构造 session 来运行</span>
+<span class="sd">            import demo as demo2</span>
+<span class="sd">            demo2.foo = 123</span>
+<span class="sd">            session = GlobalSession(globals(), (demo2, ), session_config=SessionConfig())</span>
+<span class="sd">            with session.modules_globals():</span>
+<span class="sd">                foo = 1  # 如果 demo2 中定义了 doo，会更新demo2 中的 foo 为 1</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">enter_record</span><span class="p">()</span>
+            <span class="k">yield</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">exit_record</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span></div>
+
+    <span class="k">def</span> <span class="nf">reload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">module</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)))</span>
+            <span class="n">importlib</span><span class="o">.</span><span class="n">reload</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># reset global var</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">update_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">module</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GlobalSession.save_global_vars"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.save_global_vars">[docs]</a>    <span class="k">def</span> <span class="nf">save_global_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        手动触发保存 global var，这样不用每次调用的时候都存一遍了</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">workspace</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="n">io_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="s1">&#39;.hfai_session&#39;</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">io_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">global_values_pkl</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">io_path</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;global_values_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">session_id</span><span class="si">}</span><span class="s1">.dp&#39;</span><span class="p">)</span>
+        <span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">global_values</span><span class="p">,</span> <span class="n">global_values_pkl</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">saved_global_var_dp</span> <span class="o">=</span> <span class="n">global_values_pkl</span>
+        <span class="k">return</span> <span class="n">global_values_pkl</span></div>
+
+<div class="viewcode-block" id="GlobalSession.load_global_vars"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.load_global_vars">[docs]</a>    <span class="k">def</span> <span class="nf">load_global_vars</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">saved_global_values_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        从指定路径中加载上次保存的 global var</span>
+
+<span class="sd">        :param saved_global_values_path:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">global_vars</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="n">saved_global_values_path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">global_vars</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recorder</span><span class="o">.</span><span class="n">main_globals</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_vars</span><span class="p">[</span><span class="n">k</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="GlobalSession.set_process_limit"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.set_process_limit">[docs]</a>    <span class="k">def</span> <span class="nf">set_process_limit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">process_limit</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        动态调整，限制运行时候的 process pool 进程数量，注意，已经启动的 process 不会被关闭</span>
+
+<span class="sd">        :param process_limit: 0，表示不限制，将使用 cpu 的 process 数量</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">set_process_limit</span><span class="p">(</span><span class="n">process_limit</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.apply"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+              <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">stdout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+              <span class="n">renew_global_var</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+              <span class="n">packaging_func</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+              <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+              <span class="n">image</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            运行注册了的 module 中的 func 函数，运行 `module.func(*args, **kwargs)`</span>
+
+<span class="sd">            根据配置有以下三种核心模式(直接模式)与 packaging 特殊模式(建议使用 package 接口)：</span>
+
+<span class="sd">            1. local = True and inline = True:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                # 相当于下面的代码</span>
+<span class="sd">                importlib.reload(module)</span>
+<span class="sd">                session.update_values(module)</span>
+<span class="sd">                pool.apply(module.func, args, kwargs)</span>
+
+<span class="sd">            2. local = True and inline = False</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                # 注意，会带来 pkl 的开销，建议在使用 remote 之前 inline False 跑一跑</span>
+<span class="sd">                # 一般而言，这个模式能跑的，remote 模式也能跑</span>
+<span class="sd">                # inline = False 可以通过，async_result.stdout() 来打印输出</span>
+<span class="sd">                python remote_call.py --module module.py --func function</span>
+
+<span class="sd">            3. local = False and inline = False:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                # 提交任务远程运行</span>
+<span class="sd">                hfai python remote_call.py --module module.py --func function -- --nodes 1</span>
+
+<span class="sd">            4. packaging 模式： packaging_options:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                # 把多进程任务打包到一个任务上运行</span>
+<span class="sd">                # pool.map(func, iterable=args)</span>
+<span class="sd">                # pool.starmap(func, iterable=args)</span>
+
+<span class="sd">        :param func: 模块中的函数，输入中需要带上 `module.`，如 `demo.func1` 这样</span>
+<span class="sd">        :param args: func 的 args 参数</span>
+<span class="sd">        :param kwargs: func 的 kwargs 参数</span>
+<span class="sd">        :param local: 本地运行；不指定的话，会使用 session 构造中传入的 session_config</span>
+<span class="sd">        :param inline: local 下的 inline 模式, 不建议使用；不指定的话，会使用 session 构造中传入的 session_config</span>
+<span class="sd">        :param group: 远程运行到哪个分组的机器上</span>
+<span class="sd">        :param blocking: True 同步接口，False 异步接口，返回 AsyncResult</span>
+<span class="sd">        :param stdout: 是否在 outline 任务打印 stdout，apply 接口先不要用</span>
+<span class="sd">        :param renew_global_var: 在调用函数的时候，自动更新 global var</span>
+<span class="sd">        :param packaging_func: None, 表示不起用 outline 时候使用，此时，args 是一个 iterable，会启动一个 pool 来运行 func 把多个任务打包提交上去跑</span>
+<span class="sd">        :param priority: 设置远程提交任务的优先级，不填则使用 Session Config 中的设置</span>
+<span class="sd">        :param image: 使用哪个镜像运行，不填则用 Session Config 中的设置</span>
+
+<span class="sd">        :return: blocking: `func(*args, **kwargs)` 的结果；not blocking，返回 AsyncResult</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 如果 func 是新加的，那么在 remote 运行的时候，module.func 会找不到，所以要 reload 起来</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
+
+        <span class="n">local</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">local</span> <span class="k">if</span> <span class="n">local</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">local</span>
+        <span class="n">inline</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">inline</span> <span class="k">if</span> <span class="n">inline</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">inline</span>
+        <span class="n">module_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__module__</span>
+        <span class="n">module</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="n">module_name</span><span class="p">]</span>
+        <span class="n">func_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="n">stamp</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">_%H%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())[</span><span class="mi">0</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">job_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;local&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;remote&quot;</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="s2">&quot;inline&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inline</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">local</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;outline&quot;</span><span class="si">}</span><span class="s1">_call_</span><span class="si">{</span><span class="n">stamp</span><span class="si">}</span><span class="s1">&#39;</span>
+
+        <span class="k">if</span> <span class="n">packaging_func</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">inline</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;packaging 模式不支持 inline&#39;</span>
+            <span class="k">assert</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="p">,</span> <span class="s1">&#39;在 packaging 模式下，不能指定 kwargs&#39;</span>
+
+        <span class="k">if</span> <span class="n">local</span> <span class="ow">and</span> <span class="n">inline</span><span class="p">:</span>
+            <span class="c1"># 之所以在这里构建了一个 pool，是因为这样 notebook 才会把 func 中的 stdout 打印到 cell 中</span>
+            <span class="n">async_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">func_name</span><span class="p">),</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">blocking</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">async_result</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">async_result</span>
+
+        <span class="c1"># create each calls workspace</span>
+        <span class="n">workspace</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">io_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">workspace</span><span class="p">,</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">func_name</span><span class="p">,</span> <span class="n">job_name</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">io_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 加了 uuid 就不应该存在</span>
+
+        <span class="n">group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">group</span> <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">group</span>
+        <span class="k">if</span> <span class="n">renew_global_var</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">saved_global_var_dp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">save_global_vars</span><span class="p">()</span>
+        <span class="c1"># workspace/[module]/[func]/[job_name]/[params.pkl, global_values.pkl, output.pkl]</span>
+        <span class="c1">#    现在假设 workspace 是用户的 notebook，之后再考虑是也能过户本地的情况</span>
+        <span class="c1"># 可以把 remote call 和他们的 io python 记录到 .hfai/remote_call.sqlite 下，方便日后追查，不过目前没有看到这个需求</span>
+        <span class="n">args_params</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">io_path</span><span class="p">,</span> <span class="s1">&#39;args_params.dp&#39;</span><span class="p">)</span>
+        <span class="n">kwargs_params</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">io_path</span><span class="p">,</span> <span class="s1">&#39;kwargs_params.dp&#39;</span><span class="p">)</span>
+        <span class="n">output_pkl</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">io_path</span><span class="p">,</span> <span class="s1">&#39;output.pkl&#39;</span><span class="p">)</span>
+        <span class="n">save</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">args_params</span><span class="p">)</span>
+        <span class="n">save</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">kwargs_params</span><span class="p">)</span>
+        <span class="c1"># note: 保存这次调用的参数，不应该做，在循环里面这个性能就炸了</span>
+        <span class="n">remote_call_py</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)),</span> <span class="s1">&#39;remote_call.py&#39;</span><span class="p">)</span>
+        <span class="n">python_cmd</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;python </span><span class="si">{</span><span class="n">remote_call_py</span><span class="si">}</span><span class="s1"> --job </span><span class="si">{</span><span class="n">job_name</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--workspace </span><span class="si">{</span><span class="n">workspace</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--module </span><span class="si">{</span><span class="n">module_name</span><span class="si">}</span><span class="s1"> --function </span><span class="si">{</span><span class="n">func_name</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--args </span><span class="si">{</span><span class="n">args_params</span><span class="si">}</span><span class="s1"> --kwargs </span><span class="si">{</span><span class="n">kwargs_params</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--global_values </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">saved_global_var_dp</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--output </span><span class="si">{</span><span class="n">output_pkl</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--pool </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">process_limit</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">packaging_func</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1"> &#39;</span> \
+                     <span class="sa">f</span><span class="s1">&#39;--pool_func </span><span class="si">{</span><span class="n">packaging_func</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">priority</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">priority</span> <span class="k">if</span> <span class="n">priority</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">priority</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_config</span><span class="o">.</span><span class="n">image</span> <span class="k">if</span> <span class="n">image</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">image</span>
+        <span class="n">hfai_python</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;hfai </span><span class="si">{</span><span class="n">python_cmd</span><span class="si">}</span><span class="s1"> -- --follow --nodes 1 --priority </span><span class="si">{</span><span class="n">priority</span><span class="si">}</span><span class="s1"> --group </span><span class="si">{</span><span class="n">group</span><span class="si">}</span><span class="s1"> --name </span><span class="si">{</span><span class="n">job_name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">image</span><span class="p">:</span>
+            <span class="n">hfai_python</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; --image </span><span class="si">{</span><span class="n">image</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="n">python_cmd</span> <span class="k">if</span> <span class="n">local</span> <span class="k">else</span> <span class="n">hfai_python</span>
+
+        <span class="k">def</span> <span class="nf">outline_func</span><span class="p">():</span>
+            <span class="n">process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">command</span><span class="p">),</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                                       <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">)</span>
+            <span class="n">ar</span> <span class="o">=</span> <span class="n">AsyncResult</span><span class="p">(</span><span class="n">job</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span> <span class="n">process</span><span class="o">=</span><span class="n">process</span><span class="p">,</span> <span class="n">output_pkl</span><span class="o">=</span><span class="n">output_pkl</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">ar</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">)</span>  <span class="c1"># stdout 给 outline</span>
+
+        <span class="n">async_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">outline_func</span><span class="p">)</span>
+        <span class="n">async_result</span><span class="o">.</span><span class="n">output_pkl</span> <span class="o">=</span> <span class="n">output_pkl</span>
+        <span class="n">async_result</span><span class="o">.</span><span class="n">stdout_pkl</span> <span class="o">=</span> <span class="n">output_pkl</span> <span class="o">+</span> <span class="s1">&#39;.stdout.pkl&#39;</span>
+
+        <span class="k">if</span> <span class="n">blocking</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">async_result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">async_result</span></div>
+
+<div class="viewcode-block" id="GlobalSession.apply_async"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.apply_async">[docs]</a>    <span class="k">def</span> <span class="nf">apply_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{},</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">renew_global_var</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">image</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        一个异步的接口，返回一个 AsyncResult;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="n">local</span><span class="p">,</span>
+                          <span class="n">inline</span><span class="o">=</span><span class="n">inline</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                          <span class="n">renew_global_var</span><span class="o">=</span><span class="n">renew_global_var</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span>
+                          <span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.map"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.map">[docs]</a>    <span class="k">def</span> <span class="nf">map</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">image</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        多进程迭代运行，并且返回输出 list, 类比 pool.map, pool.starmap</span>
+
+<span class="sd">        注意事项:</span>
+<span class="sd">            1. 远程运行如果没有资源会一个个排队</span>
+<span class="sd">            2. args_list 和 kwargs_list 不能同时存在</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            func: 需要引用的函数</span>
+<span class="sd">            iterable: [(1, 2), (3, 4)] -&gt; start = True: func(1, 2), func(3, 4); star = False: func((1, 2), ), func((3, 4), )</span>
+<span class="sd">            local: 本地运行</span>
+<span class="sd">            inline:</span>
+<span class="sd">            group: 远程运行到哪个分组的机器上</span>
+<span class="sd">            blocking: 是否放后台运行</span>
+<span class="sd">            stdout: 要不要 stdout 输出内容，默认 False 防止 map 太多打爆；outline 会把 stdout pkl 下来方便日后查看</span>
+<span class="sd">            star: True 的时候相当于 pool 的 starmap</span>
+<span class="sd">            priority: 设置优先级，不设置则为 session config 中的</span>
+<span class="sd">            image: 设置运行的镜像，不设置则为 session config 中的</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            blocking True 返回对应的输出；False 返回List[AsyncResult]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">async_results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">args</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">star</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="p">)</span>
+            <span class="n">a_res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="n">local</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="n">inline</span><span class="p">,</span>
+                                     <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">,</span>
+                                     <span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">)</span>  <span class="c1"># 这个 stdout 传给 outline</span>
+            <span class="n">async_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a_res</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">blocking</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">a_res</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">)</span> <span class="k">for</span> <span class="n">a_res</span> <span class="ow">in</span> <span class="n">async_results</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">a_res</span> <span class="k">for</span> <span class="n">a_res</span> <span class="ow">in</span> <span class="n">async_results</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="GlobalSession.map_async"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.map_async">[docs]</a>    <span class="k">def</span> <span class="nf">map_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AsyncResult</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        map 的异步调用</span>
+
+<span class="sd">        :return: List[Async_result]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.starmap"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.starmap">[docs]</a>    <span class="k">def</span> <span class="nf">starmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AsyncResult</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        iterable: [(1, 2), (3, 4)] -&gt; start = True: func(1, 2), func(3, 4)</span>
+
+
+<span class="sd">        :return: List[Async_result]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.starmap_async"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.starmap_async">[docs]</a>    <span class="k">def</span> <span class="nf">starmap_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">AsyncResult</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        iterable: [(1, 2), (3, 4)] -&gt; start = True: func(1, 2), func(3, 4)</span>
+
+
+<span class="sd">        :return: List[Async_result]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.package"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.package">[docs]</a>    <span class="k">def</span> <span class="nf">package</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        将多进程任务打包成一个任务运行，主要适用于我们想要提交远程任务的时候，方便在一个机器上启动一个多进程任务，而不是启动一堆任务</span>
+
+<span class="sd">        实现上调用的是 pool.map/pool.starmap，所以使用 iterable 作为接口名字，不是 inline 模式</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            session.package(demo.func, [0, 1, 2], star=False)</span>
+
+<span class="sd">            # 等同于</span>
+<span class="sd">            # demo_p.py</span>
+<span class="sd">            def package_func():</span>
+<span class="sd">                pool = multiprocessing.Pool(process_limit)</span>
+<span class="sd">                return pool.map(demo.func, [(0, 1), (2, 3)])</span>
+<span class="sd">                # return pool.starmap(demo.func, [(0, 1), (2, 3)])  若 star = True</span>
+<span class="sd">            session.apply(demo_p.package_func(), [0, 1, 2], local=False)</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            func: 需要引用的函数</span>
+<span class="sd">            iterable: [(1, 2), (3, 4)] -&gt; star = True: func(1, 2), func(3, 4) else func((1, 2)), func((3, 4))</span>
+<span class="sd">            local: 本地运行</span>
+<span class="sd">            group: 远程运行到哪个分组的机器上</span>
+<span class="sd">            blocking: 是否放后台运行</span>
+<span class="sd">            stdout: 要不要 stdout 输出内容，默认 False 防止进程太多打爆；outline 会把 stdout pkl 下来方便日后查看</span>
+<span class="sd">            star: 是否使用 starmap 来处理，默认使用 map</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            blocking True 返回对应的输出；False 返回List[AsyncResult]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="n">local</span><span class="p">,</span>
+                          <span class="n">inline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="n">blocking</span><span class="p">,</span>
+                          <span class="n">packaging_func</span><span class="o">=</span><span class="s1">&#39;starmap&#39;</span> <span class="k">if</span> <span class="n">star</span> <span class="k">else</span> <span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.package_async"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.package_async">[docs]</a>    <span class="k">def</span> <span class="nf">package_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        starpackage, 类比 pool.starmap</span>
+
+<span class="sd">        iterable: [(1, 2), (3, 4)] -&gt; func(1, 2), func(3, 4)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="n">local</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.starpackage"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.starpackage">[docs]</a>    <span class="k">def</span> <span class="nf">starpackage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        starpackage 的异步调用，返回 async result</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :param iterable:</span>
+<span class="sd">        :param local:</span>
+<span class="sd">        :param group:</span>
+<span class="sd">        :param stdout:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="n">local</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="GlobalSession.starpackage_async"><a class="viewcode-back" href="../../../../api/client_remote.html#hfai.client.remote.GlobalSession.starpackage_async">[docs]</a>    <span class="k">def</span> <span class="nf">starpackage_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        package 的异步调用，返回 async result</span>
+
+<span class="sd">        :param func:</span>
+<span class="sd">        :param iterable:</span>
+<span class="sd">        :param local:</span>
+<span class="sd">        :param group:</span>
+<span class="sd">        :param stdout:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">package</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">,</span> <span class="n">local</span><span class="o">=</span><span class="n">local</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="n">group</span><span class="p">,</span>
+                            <span class="n">stdout</span><span class="o">=</span><span class="n">stdout</span><span class="p">,</span> <span class="n">blocking</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">star</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">register_auto_reload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">hfai_remote_session_auto_reload</span><span class="p">():</span>  <span class="c1"># 一个长一点的名字，好删除</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reload</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ip</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span>  <span class="c1"># jupyter</span>
+            <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="n">ip</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">callbacks</span><span class="p">[</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;hfai_remote_session_auto_reload&#39;</span><span class="p">:</span>
+                    <span class="n">ip</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">unregister</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+            <span class="n">ip</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">hfai_remote_session_auto_reload</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;not run in jupyter, pass register auto reload&#39;</span><span class="p">)</span></div>
+</pre></div>
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../../"
+    src="../../../../_static/documentation_options.js"></script>
+  <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+  <script src="../../../../_static/jquery.js"></script>
+  <script src="../../../../_static/underscore.js"></script>
+  <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/js/vue.global.prod.js"></script>
+  <script src="../../../../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../../../../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,794 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hfai.client &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="hfai.client.remote" href="client_remote.html" />
+  <link rel="prev" title="hfai" href="hai.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hai.html">hfai</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>hfai.client</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/client.rst.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="hfai-client">
+<h1>hfai.client<a class="headerlink" href="#hfai-client" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="id1">
+<h2>任务类<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.api.Experiment" title="hfai.client.api.Experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Experiment</span></code></a></p></td>
+<td><p>任务类</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h2>创建任务<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.create_experiment_v2" title="hfai.client.create_experiment_v2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_experiment_v2</span></code></a></p></td>
+<td><p>根据 v2 配置文件创建任务</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hfai.client.bind_hf_except_hook" title="hfai.client.bind_hf_except_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind_hf_except_hook</span></code></a></p></td>
+<td><p>该函数用于将 Process 类绑定异常 hook，在子进程发生异常时通知 server 将其强行关闭，并启动自我检查，发现硬件故障重启该任务</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.get_experiment" title="hfai.client.get_experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_experiment</span></code></a></p></td>
+<td><p>通过 name、id 或 chain_id 获取训练任务，不能都为空，只能获取自己的任务</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hfai.client.get_experiments" title="hfai.client.get_experiments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_experiments</span></code></a></p></td>
+<td><p>获取自己最近提交的任务</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.self_health_check" title="hfai.client.self_health_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">self_health_check</span></code></a></p></td>
+<td><p>对当前机器做系统检查，检查通过会退出该任务，检查失败会重启该任务 :param pid: :return:</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h2>任务管理<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.set_watchdog_time" title="hfai.client.set_watchdog_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_watchdog_time</span></code></a></p></td>
+<td><p>设置任务超时时间，规定时间内无 log 该任务会被认为已失败，默认为 1800 秒</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hfai.client.set_whole_life_state" title="hfai.client.set_whole_life_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_whole_life_state</span></code></a></p></td>
+<td><p>设置 whole_life_state</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.get_whole_life_state" title="hfai.client.get_whole_life_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_whole_life_state</span></code></a></p></td>
+<td><p>获取当前 chain_id 的上一个 id 任务留下来的 whole_life_state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hfai.client.receive_suspend_command" title="hfai.client.receive_suspend_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">receive_suspend_command</span></code></a></p></td>
+<td><p>获取该任务是否即将被打断</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.go_suspend" title="hfai.client.go_suspend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">go_suspend</span></code></a></p></td>
+<td><p>通知 server 该任务可以被打断</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#hfai.client.EXP_PRIORITY" title="hfai.client.EXP_PRIORITY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EXP_PRIORITY</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#hfai.client.set_priority" title="hfai.client.set_priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_priority</span></code></a></p></td>
+<td><p>设置当前任务的优先级，注意如果你没有该优先级的权限可能会导致任务被立刻打断</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="hfai.client.api.Experiment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hfai.client.api.</span></span><span class="sig-name descname"><span class="pre">Experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">implement_cls</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/experiment_api.html#Experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.api.Experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>任务类</p>
+<p>包含如下属性：</p>
+<ul class="simple">
+<li><p>id (int): 任务 id</p></li>
+<li><p>nb_name (str): 任务名</p></li>
+<li><p>user_name (str): 用户名</p></li>
+<li><p>code_file (str): 训练任务代码的路径</p></li>
+<li><p>workspace (str): 训练任务代码的 workspace</p></li>
+<li><p>config_json (dict): 任务的配置信息，包括：priority (<cite>int</cite>)，environment (<cite>dict[str, str]</cite>)，whole_life_state (<cite>int</cite>)</p></li>
+<li><p>group (str): 任务所在组</p></li>
+<li><p>nodes (int): 任务占用节点数量</p></li>
+<li><p>assigned_nodes (list[str]): 分配的节点</p></li>
+<li><p>whole_life_state (int): 当前设置的 whole_life_state</p></li>
+<li><p>star(bool): 是否是星标任务</p></li>
+<li><p>first_id (int): 整个 chain_id 中最小的 id</p></li>
+<li><p>backend (str): 任务所在环境</p></li>
+<li><p>task_type (str): 任务类型</p></li>
+<li><p>queue_status (str): 任务当前运行状态</p></li>
+<li><p>priority (int): 任务当前的优先级</p></li>
+<li><p>chain_id (str): 任务 chain_id</p></li>
+<li><p>stop_code (int): 任务退出情况</p></li>
+<li><p>worker_status (str): 任务结束时的状态</p></li>
+<li><p>begin_at (str): 任务开始时间</p></li>
+<li><p>end_at (str): 任务结束时间</p></li>
+<li><p>created_at (str): 任务创建时间</p></li>
+<li><p>id_list (list[int]): 整个 chain_id 的所有 id</p></li>
+<li><p>begin_at_list (list[str]): 整个 chain_id 所有 id 的启动时间</p></li>
+<li><p>end_at_list (list[str]): 整个 chain_id 所有 id 的结束时间</p></li>
+<li><p>stop_code_list (list[int]): 整个 chain_id 所有 id 的退出情况</p></li>
+<li><p>whole_life_state_list (list[int]): 整个 chain_id 所有 id 的最新 whole_life_state</p></li>
+<li><p>_pods_ (list[Pod]): 该任务每个 pod 的各项参数</p></li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">get_experiment</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="n">experiment</span><span class="p">:</span> <span class="n">Experiment</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_experiment</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">log</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">log_ng</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># 获取 rank0 的日志</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">stop</span><span class="p">())</span>  <span class="c1"># 结束该任务</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">async</span> <span class="pre">log_ng(rank,</span> <span class="pre">last_seen=None)</span></span></dt>
+<dd><p>通过rank获取日志，last_seen用于断点续读</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">async</span> <span class="pre">suspend(restart_delay=0)</span></span></dt>
+<dd><p>打断该任务，restart_delay 暂未实现</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">async</span> <span class="pre">stop()</span></span></dt>
+<dd><p>结束该任务</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.create_experiment_v2">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">create_experiment_v2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#hfai.client.create_experiment_v2" title="Permalink to this definition">¶</a></dt>
+<dd><p>根据 v2 配置文件创建任务</p>
+<p>配置文件示例:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test_create_experiment</span>
+<span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span><span class="w"> </span><span class="c1"># 可选，内部用户 50 40 30 20, 外部用户 0, 不填为 -1</span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="c1"># 任务定义，根据定义，将在集群上做下面的运行</span>
+<span class="w">  </span><span class="c1"># cd /xxx/xxx; YOUR_ENV_KEY=YOUR_ENV_KEY python xxx.py --config config</span>
+<span class="w">  </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/xxx/xxx</span><span class="w">               </span><span class="c1"># 必填</span>
+<span class="w">  </span><span class="nt">entrypoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xxx.py</span><span class="w">                </span><span class="c1"># 必填, 若 entrypoint_binary 为 False 或者不填，那么支持 .py 或者 .sh, .sh 则使用 bash xxx.sh 运行；</span>
+<span class="w">                                    </span><span class="c1">#      若 entrypoint_binary 为 True，那么认为 entrypoint 是可执行文件，直接使用 &lt;entrypoint&gt; 运行</span>
+<span class="w">  </span><span class="nt">parameters</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--config config</span><span class="w">       </span><span class="c1"># 可选</span>
+<span class="w">  </span><span class="nt">environments</span><span class="p">:</span><span class="w">                     </span><span class="c1"># 可选</span>
+<span class="w">    </span><span class="nt">YOUR_ENV_KEY</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">YOUR_ENV_VALUE</span>
+<span class="w">  </span><span class="nt">entrypoint_executable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">False</span><span class="w">      </span><span class="c1"># 可选，不填则默认为 False，若为 True，那么认为 entrypoint 是可执行文件</span>
+<span class="nt">resource</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.high-flyer.cn/hfai/docker_ubuntu2004:20220630.2</span><span class="w">   </span><span class="c1"># 可选，不指定，默认 default，通过 hfai 上传的 image，或者集群内建的 template</span>
+<span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jd_a100#heavy</span><span class="w">                                              </span><span class="c1"># 可选, jd_a100, jd_a100#heavy, jd_a100#light, jd_a100#A, jd_a100#B</span>
+<span class="w">  </span><span class="nt">node_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                                                     </span><span class="c1"># 必填</span>
+<span class="nt">options</span><span class="p">:</span><span class="w"> </span><span class="c1"># 可选</span>
+<span class="w">  </span><span class="nt">whole_life_state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">   </span><span class="c1"># hfai.get_whole_life_state() =&gt; 1</span>
+<span class="w">  </span><span class="nt">mount_code</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w">         </span><span class="c1"># use 3fs prod mount</span>
+<span class="w">  </span><span class="nt">py_venv</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">202111</span><span class="w"> </span><span class="c1"># 会在运行脚本前，source 一下 python 环境，根据输入不同选择 hf_env 或 hfai_env。</span>
+<span class="w">                  </span><span class="c1"># 分为两类：1. 202111 =&gt; source haienv 202111; 2.1 hfai_env_name[hfai_env_owner] =&gt; source haienv hfai_env_name -u hfai_env_owner</span>
+<span class="w">                  </span><span class="c1">#                                            2.2 hfai_env_name =&gt; source haienv hfai_env_name</span>
+<span class="w">                  </span><span class="c1"># hf_env 可选: 202105, 202111, 202207, 其中202111会根据镜像选择py3.6或者py3.8</span>
+<span class="w">  </span><span class="nt">override_node_resource</span><span class="p">:</span><span class="w"> </span><span class="c1"># 覆盖默认的resource选项</span>
+<span class="w">    </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="w">    </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<em>str</em><em>, </em><em>StringIO</em><em>, </em><em>munch.Munch</em>) – 配置路径，yaml 的 string，或 Munch</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>生成的任务</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#hfai.client.api.Experiment" title="hfai.client.api.Experiment">Experiment</a></p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">create_experiment</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">create_experiment</span><span class="p">(</span><span class="s1">&#39;config/path&#39;</span><span class="p">))</span>  <span class="c1"># python3.8以下可能不支持asyncio.run的用法，需要用其它异步调用接口</span>
+
+<span class="k">await</span> <span class="n">create_experiment</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        version: 2</span>
+<span class="s1">        name: test_create_experiment</span>
+<span class="s1">        priority: 20</span>
+<span class="s1">        ... yaml file</span>
+<span class="s1">&#39;&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.bind_hf_except_hook">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">bind_hf_except_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/custom.html#bind_hf_except_hook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.bind_hf_except_hook" title="Permalink to this definition">¶</a></dt>
+<dd><p>该函数用于将 Process 类绑定异常 hook，在子进程发生异常时通知 server 将其强行关闭，并启动自我检查，发现硬件故障重启该任务</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f</strong> (<em>class</em>) – 传进来的 Process 类</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">bind_hf_except_hook</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">torch.multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bind_hf_except_hook</span><span class="p">(</span><span class="n">Process</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.get_experiment">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">get_experiment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/experiment_api.html#get_experiment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.get_experiment" title="Permalink to this definition">¶</a></dt>
+<dd><p>通过 name、id 或 chain_id 获取训练任务，不能都为空，只能获取自己的任务</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – 任务名</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – 任务 id</p></li>
+<li><p><strong>chain_id</strong> (<em>str</em>) – 任务 chain_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>返回的任务</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#hfai.client.api.Experiment" title="hfai.client.api.Experiment">Experiment</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">get_experiment</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_experiment</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># python3.8以下可能不支持asyncio.run的用法，需要用其它异步调用接口</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.get_experiments">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">get_experiments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_star</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select_pods</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_name_pattern</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_type_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['training',</span> <span class="pre">'virtual',</span> <span class="pre">'background']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_status_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_status_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/experiment_api.html#get_experiments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.get_experiments" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取自己最近提交的任务</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>page</strong> (<em>int</em>) – 第几页</p></li>
+<li><p><strong>page_size</strong> (<em>int</em>) – 每一页的任务个数</p></li>
+<li><p><strong>only_star</strong> (<em>bool</em>) – 只考虑 <code class="docutils literal notranslate"><span class="pre">star</span></code> 的任务（默认为 <code class="docutils literal notranslate"><span class="pre">False</span></code>）</p></li>
+<li><p><strong>select_pods</strong> (<em>bool</em>) – 是否查询 pod</p></li>
+<li><p><strong>nb_name_pattern</strong> (<em>str</em>) – 查询 nb_name 带有这个字符串的任务</p></li>
+<li><p><strong>task_type_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – 查询 task_type，默认拿 training 和 validation</p></li>
+<li><p><strong>worker_status_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – 查询 worker_status</p></li>
+<li><p><strong>queue_status_list</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – 查询 queue_status</p></li>
+<li><p><strong>tag_list</strong> – 查询 tag</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>符合条件的任务总数，返回的任务列表</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int, list[<a class="reference internal" href="#hfai.client.api.Experiment" title="hfai.client.api.Experiment">Experiment</a>]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">get_experiments</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_experiments</span><span class="p">(</span><span class="n">page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>  <span class="c1"># python3.8以下可能不支持asyncio.run的用法，需要用其它异步调用接口</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.self_health_check">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">self_health_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">221</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/custom.html#self_health_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.self_health_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>对当前机器做系统检查，检查通过会退出该任务，检查失败会重启该任务
+:param pid:
+:return:</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.set_watchdog_time">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">set_watchdog_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/training_api.html#set_watchdog_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.set_watchdog_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置任务超时时间，规定时间内无 log 该任务会被认为已失败，默认为 1800 秒</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seconds</strong> (<em>int</em>) – 超时时间，单位为秒</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">set_watchdog_time</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_watchdog_time</span><span class="p">(</span><span class="mi">1800</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.set_whole_life_state">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">set_whole_life_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/training_api.html#set_whole_life_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.set_whole_life_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置 whole_life_state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<em>int</em>) – 想要设置的 whole_life_state</p></li>
+<li><p><strong>timeout</strong> (<em>int</em>) – 设置请求超时时间，默认为 500 秒</p></li>
+<li><p><strong>raise_exception</strong> (<em>bool</em>) – 调用runtime接口时发生异常是否需要抛出，默认为抛出</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">set_whole_life_state</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_whole_life_state</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.get_whole_life_state">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">get_whole_life_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/training_api.html#get_whole_life_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.get_whole_life_state" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取当前 chain_id 的上一个 id 任务留下来的 whole_life_state</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>whole_life_state</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">get_whole_life_state</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_whole_life_state</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.receive_suspend_command">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">receive_suspend_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/training_api.html#receive_suspend_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.receive_suspend_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>获取该任务是否即将被打断</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeout</strong> (<em>int</em>) – 设置请求超时时间，默认为 500 秒</p></li>
+<li><p><strong>raise_exception</strong> (<em>bool</em>) – 调用runtime接口时发生异常是否需要抛出，默认为不抛出</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>表示是否即将被打断</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">receive_suspend_command</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">receive_suspend_command</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.go_suspend">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">go_suspend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/training_api.html#go_suspend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.go_suspend" title="Permalink to this definition">¶</a></dt>
+<dd><p>通知 server 该任务可以被打断</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeout</strong> (<em>int</em>) – 设置请求超时时间，默认为 500 秒</p></li>
+<li><p><strong>raise_exception</strong> (<em>bool</em>) – 调用runtime接口时发生异常是否需要抛出，默认为不抛出</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">go_suspend</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">go_suspend</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="hfai.client.EXP_PRIORITY">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">EXP_PRIORITY</span></span><a class="reference internal" href="../_modules/hfai/conf/flags.html#EXP_PRIORITY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.EXP_PRIORITY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="hfai.client.set_priority">
+<span class="sig-prename descclassname"><span class="pre">hfai.client.</span></span><span class="sig-name descname"><span class="pre">set_priority</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">priority</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/hfai/client/api/training_api.html#set_priority"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#hfai.client.set_priority" title="Permalink to this definition">¶</a></dt>
+<dd><p>设置当前任务的优先级，注意如果你没有该优先级的权限可能会导致任务被立刻打断</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>priority</strong> (<em>int</em>) – 设置的任务优先级</p></li>
+<li><p><strong>timeout</strong> (<em>int</em>) – 设置请求超时时间，默认为 500 秒</p></li>
+<li><p><strong>raise_exception</strong> (<em>bool</em>) – 调用runtime接口时发生异常是否需要抛出，默认为不抛出</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>是否设置成功</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">hfai.client</span> <span class="kn">import</span> <span class="n">set_priority</span><span class="p">,</span> <span class="n">EXP_PRIORITY</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_priority</span><span class="p">(</span><span class="n">EXP_PRIORITY</span><span class="o">.</span><span class="n">LOW</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="client_remote.html" class="btn btn-neutral float-right" title="hfai.client.remote" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="hai.html" class="btn btn-neutral" title="hfai" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">hfai.client</a><ul>
+<li><a class="reference internal" href="#id1">任务类</a></li>
+<li><a class="reference internal" href="#id2">创建任务</a></li>
+<li><a class="reference internal" href="#id3">任务管理</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

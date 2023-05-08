@@ -1,0 +1,563 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>任务命令 &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="集群命令" href="cluster.html" />
+  <link rel="prev" title="运行命令" href="exec.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exec.html">运行命令</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>任务命令</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cli/task.rst.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="id1">
+<h1>任务命令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<section id="hai-cli-describe">
+<h2>hai-cli describe<a class="headerlink" href="#hai-cli-describe" title="Permalink to this headline">¶</a></h2>
+<p>打印任务的 schema yaml，可以在下次创建任务的时候使用</p>
+<p>sphinx-build describe &lt;task&gt; &gt; /tmp/task.yml; sphinx-build run /tmp/task.yml</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>describe<span class="w"> </span>&lt;experiment&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--exp_type</span> <span class="pre">&lt;exp_type&gt;</span></code></p>
+<blockquote>
+<div><p>配合 &lt;experiment&gt; 使用，默认 auto 会尝试解析</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment</span></code></p>
+<blockquote>
+<div><p>用于检索的任务，可以是任务名、是任务ID，也可以是提交的任务配置文件</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="hai-cli-list">
+<h2>hai-cli list<a class="headerlink" href="#hai-cli-list" title="Permalink to this headline">¶</a></h2>
+<p>列出用户任务列表, 用户要查看第几页的任务列表</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p,</span> <span class="pre">--page</span> <span class="pre">&lt;page&gt;</span></code></p>
+<blockquote>
+<div><p>列出用户任务列表, 用户要查看第几页的任务列表</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ps,</span> <span class="pre">--page_size</span> <span class="pre">&lt;page_size&gt;</span></code></p>
+<blockquote>
+<div><p>用户指定一页的任务列表有多少条任务</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="hai-cli-logs">
+<h2>hai-cli logs<a class="headerlink" href="#hai-cli-logs" title="Permalink to this headline">¶</a></h2>
+<p>查看任务日志</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>logs<span class="w"> </span>&lt;experiment&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f,</span> <span class="pre">--follow</span></code></p>
+<blockquote>
+<div><p>追加查看日志</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r,</span> <span class="pre">--rank</span> <span class="pre">&lt;rank&gt;</span></code></p>
+<blockquote>
+<div><p>指定查看第几个节点的日志</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--exp_type</span> <span class="pre">&lt;exp_type&gt;</span></code></p>
+<blockquote>
+<div><p>配合 &lt;experiment&gt; 使用，默认 auto 会尝试解析</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c,</span> <span class="pre">--container</span></code></p>
+<blockquote>
+<div><p>查看 container 的日志（非任务日志），–follow 会失效</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment</span></code></p>
+<blockquote>
+<div><p>用于检索的任务，可以是任务名、是任务ID，也可以是提交的任务配置文件</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="hai-cli-ssh">
+<h2>hai-cli ssh<a class="headerlink" href="#hai-cli-ssh" title="Permalink to this headline">¶</a></h2>
+<p>登录到哪台机器，只能在开发容器内使用</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>ssh<span class="w"> </span>&lt;experiment&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r,</span> <span class="pre">--rank</span> <span class="pre">&lt;rank&gt;</span></code></p>
+<blockquote>
+<div><p>指定登录到哪台机器</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--exp_type</span> <span class="pre">&lt;exp_type&gt;</span></code></p>
+<blockquote>
+<div><p>配合 &lt;experiment&gt; 使用，默认 auto 会尝试解析</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment</span></code></p>
+<blockquote>
+<div><p>用于检索的任务，可以是任务名、是任务ID，也可以是提交的任务配置文件</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="hai-cli-status">
+<h2>hai-cli status<a class="headerlink" href="#hai-cli-status" title="Permalink to this headline">¶</a></h2>
+<p>查询任务状态</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>status<span class="w"> </span>&lt;experiment&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-j,</span> <span class="pre">--json</span></code></p>
+<blockquote>
+<div><p>将任务状态转换成 json 格式，是否以json形式查看</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--exp_type</span> <span class="pre">&lt;exp_type&gt;</span></code></p>
+<blockquote>
+<div><p>配合 &lt;experiment&gt; 使用，默认 auto 会尝试解析</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment</span></code></p>
+<blockquote>
+<div><p>用于检索的任务，可以是任务名、是任务ID，也可以是提交的任务配置文件</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="hai-cli-stop">
+<h2>hai-cli stop<a class="headerlink" href="#hai-cli-stop" title="Permalink to this headline">¶</a></h2>
+<p>关闭任务状态</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>stop<span class="w"> </span>&lt;experiment&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--exp_type</span> <span class="pre">&lt;exp_type&gt;</span></code></p>
+<blockquote>
+<div><p>配合 &lt;experiment&gt; 使用，默认 auto 会尝试解析</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--succeeded</span></code></p>
+<blockquote>
+<div><p>把任务状态写为 succeeded</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--failed</span></code></p>
+<blockquote>
+<div><p>把任务状态写为 failed</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment</span></code></p>
+<blockquote>
+<div><p>用于检索的任务，可以是任务名、是任务ID，也可以是提交的任务配置文件</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="cluster.html" class="btn btn-neutral float-right" title="集群命令" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="exec.html" class="btn btn-neutral" title="运行命令" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">任务命令</a><ul>
+<li><a class="reference internal" href="#hai-cli-describe">hai-cli describe</a></li>
+<li><a class="reference internal" href="#hai-cli-list">hai-cli list</a></li>
+<li><a class="reference internal" href="#hai-cli-logs">hai-cli logs</a></li>
+<li><a class="reference internal" href="#hai-cli-ssh">hai-cli ssh</a></li>
+<li><a class="reference internal" href="#hai-cli-status">hai-cli status</a></li>
+<li><a class="reference internal" href="#hai-cli-stop">hai-cli stop</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

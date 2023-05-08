@@ -1,0 +1,857 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hfai.client.api.experiment_api &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../../../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../../../../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>hfai.client.api.experiment_api</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <h1>Source code for hfai.client.api.experiment_api</h1><div class="highlight"><pre>
+<span></span><span class="c1"># @Author       :hpp</span>
+<span class="c1"># @CreatedAt    :2020/12/22 17:46</span>
+<span class="c1"># 萤火2号 api</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">import</span> <span class="nn">munch</span>
+<span class="kn">from</span> <span class="nn">hfai.base_model.base_task</span> <span class="kn">import</span> <span class="n">BasePod</span>
+<span class="kn">from</span> <span class="nn">hfai.base_model.training_task</span> <span class="kn">import</span> <span class="n">TrainingTask</span><span class="p">,</span> <span class="n">ITrainingTaskImpl</span>
+<span class="c1"># client</span>
+<span class="kn">from</span> <span class="nn">hfai.conf.flags</span> <span class="kn">import</span> <span class="n">STATUS_COLOR_MAP</span><span class="p">,</span> <span class="n">EXP_PRIORITY</span>
+<span class="kn">from</span> <span class="nn">rich</span> <span class="kn">import</span> <span class="n">box</span>
+<span class="kn">from</span> <span class="nn">rich.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+
+<span class="kn">from</span> <span class="nn">.api_config</span> <span class="kn">import</span> <span class="n">get_mars_token</span> <span class="k">as</span> <span class="n">mars_token</span>
+<span class="kn">from</span> <span class="nn">.api_config</span> <span class="kn">import</span> <span class="n">get_mars_url</span> <span class="k">as</span> <span class="n">mars_url</span>
+<span class="kn">from</span> <span class="nn">.api_utils</span> <span class="kn">import</span> <span class="n">async_requests</span><span class="p">,</span> <span class="n">RequestMethod</span>
+
+
+<span class="c1"># ==============================================================================</span>
+<div class="viewcode-block" id="Experiment"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.api.Experiment">[docs]</a><span class="k">class</span> <span class="nc">Experiment</span><span class="p">(</span><span class="n">TrainingTask</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    任务类</span>
+
+<span class="sd">    包含如下属性：</span>
+
+<span class="sd">    - id (int): 任务 id</span>
+<span class="sd">    - nb_name (str): 任务名</span>
+<span class="sd">    - user_name (str): 用户名</span>
+<span class="sd">    - code_file (str): 训练任务代码的路径</span>
+<span class="sd">    - workspace (str): 训练任务代码的 workspace</span>
+<span class="sd">    - config_json (dict): 任务的配置信息，包括：priority (`int`)，environment (`dict[str, str]`)，whole_life_state (`int`)</span>
+<span class="sd">    - group (str): 任务所在组</span>
+<span class="sd">    - nodes (int): 任务占用节点数量</span>
+<span class="sd">    - assigned_nodes (list[str]): 分配的节点</span>
+<span class="sd">    - whole_life_state (int): 当前设置的 whole_life_state</span>
+<span class="sd">    - star(bool): 是否是星标任务</span>
+<span class="sd">    - first_id (int): 整个 chain_id 中最小的 id</span>
+<span class="sd">    - backend (str): 任务所在环境</span>
+<span class="sd">    - task_type (str): 任务类型</span>
+<span class="sd">    - queue_status (str): 任务当前运行状态</span>
+<span class="sd">    - priority (int): 任务当前的优先级</span>
+<span class="sd">    - chain_id (str): 任务 chain_id</span>
+<span class="sd">    - stop_code (int): 任务退出情况</span>
+<span class="sd">    - worker_status (str): 任务结束时的状态</span>
+<span class="sd">    - begin_at (str): 任务开始时间</span>
+<span class="sd">    - end_at (str): 任务结束时间</span>
+<span class="sd">    - created_at (str): 任务创建时间</span>
+<span class="sd">    - id_list (list[int]): 整个 chain_id 的所有 id</span>
+<span class="sd">    - begin_at_list (list[str]): 整个 chain_id 所有 id 的启动时间</span>
+<span class="sd">    - end_at_list (list[str]): 整个 chain_id 所有 id 的结束时间</span>
+<span class="sd">    - stop_code_list (list[int]): 整个 chain_id 所有 id 的退出情况</span>
+<span class="sd">    - whole_life_state_list (list[int]): 整个 chain_id 所有 id 的最新 whole_life_state</span>
+<span class="sd">    - _pods_ (list[Pod]): 该任务每个 pod 的各项参数</span>
+
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from hfai.client import get_experiment</span>
+<span class="sd">        import asyncio</span>
+<span class="sd">        experiment: Experiment = asyncio.run(get_experiment(id=1))</span>
+<span class="sd">        log = asyncio.run(experiment.log_ng(rank=0))  # 获取 rank0 的日志</span>
+<span class="sd">        asyncio.run(experiment.stop())  # 结束该任务</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">experiment_columns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;nb_name&#39;</span><span class="p">,</span> <span class="s1">&#39;nodes&#39;</span><span class="p">,</span> <span class="s1">&#39;chain_status&#39;</span><span class="p">,</span> <span class="s1">&#39;task_type&#39;</span><span class="p">,</span> <span class="s1">&#39;suspend_count&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">implement_cls</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Experiment</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">implement_cls</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">suspend_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">restart_count</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pods_</span> <span class="o">=</span> <span class="p">[</span><span class="n">BasePod</span><span class="p">(</span><span class="o">**</span><span class="n">pod</span><span class="p">)</span> <span class="k">for</span> <span class="n">pod</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pods_</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">last_seen</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">set_priority</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">((</span><span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="p">),</span> <span class="p">(</span><span class="n">priority</span><span class="p">,</span> <span class="p">))</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">rerun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/rerun_task?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">Experiment</span><span class="p">(</span><span class="n">ExperimentImpl</span><span class="p">,</span> <span class="o">**</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">row</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_columns</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">STATUS_COLOR_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">]</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">[/</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">values</span>
+
+    <span class="k">def</span> <span class="nf">tables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">experiment_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">show_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">ASCII_DOUBLE_HEAD</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">experiment_columns</span><span class="p">:</span>
+            <span class="n">experiment_table</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">experiment_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">row</span><span class="p">())</span>
+
+        <span class="n">job_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">show_header</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">box</span><span class="o">=</span><span class="n">box</span><span class="o">.</span><span class="n">ASCII_DOUBLE_HEAD</span><span class="p">)</span>
+        <span class="n">job_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="s1">&#39;node&#39;</span><span class="p">,</span> <span class="s1">&#39;begin_at&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">job_columns</span><span class="p">:</span>
+            <span class="n">job_table</span><span class="o">.</span><span class="n">add_column</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pods</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">BasePod</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">job_id</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">job_columns</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+                <span class="n">color</span> <span class="o">=</span> <span class="n">STATUS_COLOR_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+                <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">]</span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s1">[/</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+            <span class="n">job_table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="o">*</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">experiment_table</span><span class="p">,</span> <span class="n">job_table</span></div>
+
+
+<span class="k">class</span> <span class="nc">ExperimentImpl</span><span class="p">(</span><span class="n">ITrainingTaskImpl</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">select_pods</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># pods 应该是 server 端直接返回的，所以这里是不需要的</span>
+        <span class="k">pass</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">values</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;priority&#39;</span><span class="p">,</span> <span class="s1">&#39;client 只能更新 priority&#39;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/priority/update?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;priority=</span><span class="si">{</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="o">=</span><span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/stop?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;op=</span><span class="si">{</span><span class="n">op</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">suspend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">restart_delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/suspend?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;restart_delay=</span><span class="si">{</span><span class="n">restart_delay</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">last_seen</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;null&#39;</span><span class="p">,</span> <span class="n">with_code</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        查看日志, 获取日志的时候，同样会返回状态，这样就可以一同刷新掉了</span>
+<span class="sd">        @param rank:</span>
+<span class="sd">        @param last_seen:</span>
+<span class="sd">        @param with_code: True, 返回 (log, exit_code, stop_code) 这个 tuple</span>
+<span class="sd">        @return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task/log?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;rank=</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&amp;last_seen=</span><span class="si">{</span><span class="n">last_seen</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">last_seen</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;last_seen&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">with_code</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;exit_code&quot;</span><span class="p">],</span> <span class="n">res</span><span class="p">[</span><span class="s2">&quot;stop_code&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">log_ng</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">last_seen</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;null&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         查看日志, 获取日志的时候，同样会返回状态，这样就可以一同刷新掉了</span>
+<span class="sd">        @param rank:</span>
+<span class="sd">        @param last_seen:</span>
+<span class="sd">        @return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task/log?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;rank=</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&amp;last_seen=</span><span class="si">{</span><span class="n">last_seen</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">last_seen</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;last_seen&#39;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">res</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">sys_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        查看系统错误日志</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task/sys_log?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">search_in_global</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        全局搜索该任务每个rank包含content的次数</span>
+<span class="sd">        :param content:</span>
+<span class="sd">        :param args:</span>
+<span class="sd">        :param kwargs:</span>
+<span class="sd">        :return: 返回一个list，表示每个rank包含content的次数</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task/log/search?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;</span><span class="si">{</span><span class="n">urllib</span><span class="o">.</span><span class="n">parse</span><span class="o">.</span><span class="n">urlencode</span><span class="p">({</span><span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="n">content</span><span class="p">})</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">tag_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        给当前任务添加标签</span>
+<span class="sd">        :param tag:</span>
+<span class="sd">        :param args:</span>
+<span class="sd">        :param kwargs:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/tag?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;tag=</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">untag_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        给当前任务删除标签</span>
+<span class="sd">        :param tag:</span>
+<span class="sd">        :param args:</span>
+<span class="sd">        :param kwargs:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/untag?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;tag=</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_latest_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>  <span class="c1"># get_experiment_perf_current</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取任务当前的性能监控&quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/monitor_v2/task_perf_api?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_chain_time_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;获取整条chain的时序性能数据&quot;&quot;&quot;</span>
+        <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task</span>
+        <span class="n">data_interval</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;data_interval&#39;</span><span class="p">,</span> <span class="s1">&#39;5min&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">query_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;gpu&#39;</span><span class="p">,</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span> <span class="s1">&#39;mem&#39;</span><span class="p">,</span> <span class="s1">&#39;every_card&#39;</span><span class="p">,</span> <span class="s1">&#39;every_card_mem&#39;</span><span class="p">)</span>
+        <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/monitor/task/chain_perf_series?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;chain_id=</span><span class="si">{</span><span class="n">task</span><span class="o">.</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&amp;typ=</span><span class="si">{</span><span class="n">query_type</span><span class="si">}</span><span class="s1">&amp;rank=</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&amp;data_interval=</span><span class="si">{</span><span class="n">data_interval</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># ==============================================================================</span>
+<div class="viewcode-block" id="get_experiments"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.api.get_experiments">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_experiments</span><span class="p">(</span>
+        <span class="n">page</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">only_star</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">select_pods</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">nb_name_pattern</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">task_type_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;training&#39;</span><span class="p">,</span> <span class="s1">&#39;virtual&#39;</span><span class="p">,</span> <span class="s1">&#39;background&#39;</span><span class="p">],</span>
+        <span class="n">worker_status_list</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">queue_status_list</span><span class="o">=</span><span class="p">[],</span>
+        <span class="n">tag_list</span><span class="o">=</span><span class="p">[],</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取自己最近提交的任务</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        page (int): 第几页</span>
+<span class="sd">        page_size (int): 每一页的任务个数</span>
+<span class="sd">        only_star (bool): 只考虑 ``star`` 的任务（默认为 ``False``）</span>
+<span class="sd">        select_pods(bool): 是否查询 pod</span>
+<span class="sd">        nb_name_pattern (str): 查询 nb_name 带有这个字符串的任务</span>
+<span class="sd">        task_type_list (list[str]): 查询 task_type，默认拿 training 和 validation</span>
+<span class="sd">        worker_status_list (list[str]): 查询 worker_status</span>
+<span class="sd">        queue_status_list (list[str]): 查询 queue_status</span>
+<span class="sd">        tag_list: 查询 tag</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         int, list[Experiment]: 符合条件的任务总数，返回的任务列表</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import get_experiments</span>
+<span class="sd">        &gt;&gt;&gt; import asyncio</span>
+<span class="sd">        &gt;&gt;&gt; asyncio.run(get_experiments(page=1, page_size=10))  # python3.8以下可能不支持asyncio.run的用法，需要用其它异步调用接口</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task/list?page=</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s1">&amp;page_size=</span><span class="si">{</span><span class="n">page_size</span><span class="si">}</span><span class="s1">&amp;token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">task_type</span> <span class="ow">in</span> <span class="n">task_type_list</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&amp;task_type=</span><span class="si">{</span><span class="n">task_type</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">if</span> <span class="n">nb_name_pattern</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&amp;nb_name_pattern=</span><span class="si">{</span><span class="n">nb_name_pattern</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">worker_status</span> <span class="ow">in</span> <span class="n">worker_status_list</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&amp;worker_status=</span><span class="si">{</span><span class="n">worker_status</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">for</span> <span class="n">queue_status</span> <span class="ow">in</span> <span class="n">queue_status_list</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&amp;queue_status=</span><span class="si">{</span><span class="n">queue_status</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">if</span> <span class="n">only_star</span><span class="p">:</span>
+        <span class="n">tag_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tag_list</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&amp;tag=</span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;&amp;select_pods=</span><span class="si">{</span><span class="n">select_pods</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">))[</span><span class="s1">&#39;result&#39;</span><span class="p">]</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;tasks&#39;</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">total</span><span class="p">,</span> <span class="p">[</span><span class="n">Experiment</span><span class="p">(</span><span class="n">ExperimentImpl</span><span class="p">,</span> <span class="o">**</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="get_experiment"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.api.get_experiment">[docs]</a><span class="k">async</span> <span class="k">def</span> <span class="nf">get_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chain_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    通过 name、id 或 chain_id 获取训练任务，不能都为空，只能获取自己的任务</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        name (str): 任务名</span>
+<span class="sd">        id (int): 任务 id</span>
+<span class="sd">        chain_id (str): 任务 chain_id</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         Experiment: 返回的任务</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import get_experiment</span>
+<span class="sd">        &gt;&gt;&gt; import asyncio</span>
+<span class="sd">        &gt;&gt;&gt; asyncio.run(get_experiment(id=1))  # python3.8以下可能不支持asyncio.run的用法，需要用其它异步调用接口</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nb_name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">assert</span> <span class="ow">not</span><span class="p">(</span><span class="n">nb_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">chain_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">),</span> <span class="s1">&#39;必须设置一个 nb_name/id/chain_id&#39;</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;&#39;</span>
+    <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;id=</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">elif</span> <span class="n">nb_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;nb_name=</span><span class="si">{</span><span class="n">nb_name</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># chain_id is not None:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;chain_id=</span><span class="si">{</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Experiment</span><span class="p">(</span><span class="n">ExperimentImpl</span><span class="p">,</span> <span class="o">**</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;task&#39;</span><span class="p">])</span></div>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">create_experiment</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">,</span> <span class="n">munch</span><span class="o">.</span><span class="n">Munch</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Experiment</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    根据 v2 配置文件创建任务</span>
+
+<span class="sd">    配置文件示例:</span>
+
+<span class="sd">    .. code-block:: yaml</span>
+
+<span class="sd">        version: 2</span>
+<span class="sd">        name: test_create_experiment</span>
+<span class="sd">        priority: 20 # 可选，内部用户 50 40 30 20, 外部用户 0, 不填为 -1</span>
+<span class="sd">        spec: # 任务定义，根据定义，将在集群上做下面的运行</span>
+<span class="sd">          # cd /xxx/xxx; YOUR_ENV_KEY=YOUR_ENV_KEY python xxx.py --config config</span>
+<span class="sd">          workspace: /xxx/xxx               # 必填</span>
+<span class="sd">          entrypoint: xxx.py                # 必填, 若 entrypoint_binary 为 False 或者不填，那么支持 .py 或者 .sh, .sh 则使用 bash xxx.sh 运行；</span>
+<span class="sd">                                            #      若 entrypoint_binary 为 True，那么认为 entrypoint 是可执行文件，直接使用 &lt;entrypoint&gt; 运行</span>
+<span class="sd">          parameters: --config config       # 可选</span>
+<span class="sd">          environments:                     # 可选</span>
+<span class="sd">            YOUR_ENV_KEY: YOUR_ENV_VALUE</span>
+<span class="sd">          entrypoint_executable: False      # 可选，不填则默认为 False，若为 True，那么认为 entrypoint 是可执行文件</span>
+<span class="sd">        resource:</span>
+<span class="sd">          image: registry.high-flyer.cn/hfai/docker_ubuntu2004:20220630.2   # 可选，不指定，默认 default，通过 hfai 上传的 image，或者集群内建的 template</span>
+<span class="sd">          group: jd_a100#heavy                                              # 可选, jd_a100, jd_a100#heavy, jd_a100#light, jd_a100#A, jd_a100#B</span>
+<span class="sd">          node_count: 1                                                     # 必填</span>
+<span class="sd">        options: # 可选</span>
+<span class="sd">          whole_life_state: 1   # hfai.get_whole_life_state() =&gt; 1</span>
+<span class="sd">          mount_code: 2         # use 3fs prod mount</span>
+<span class="sd">          py_venv: 202111 # 会在运行脚本前，source 一下 python 环境，根据输入不同选择 hf_env 或 hfai_env。</span>
+<span class="sd">                          # 分为两类：1. 202111 =&gt; source haienv 202111; 2.1 hfai_env_name[hfai_env_owner] =&gt; source haienv hfai_env_name -u hfai_env_owner</span>
+<span class="sd">                          #                                            2.2 hfai_env_name =&gt; source haienv hfai_env_name</span>
+<span class="sd">                          # hf_env 可选: 202105, 202111, 202207, 其中202111会根据镜像选择py3.6或者py3.8</span>
+<span class="sd">          override_node_resource: # 覆盖默认的resource选项</span>
+<span class="sd">            cpu: 0</span>
+<span class="sd">            memory: 0</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        config (str, StringIO, munch.Munch): 配置路径，yaml 的 string，或 Munch</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Experiment: 生成的任务</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from hfai.client import create_experiment</span>
+<span class="sd">        import asyncio</span>
+<span class="sd">        asyncio.run(create_experiment(&#39;config/path&#39;))  # python3.8以下可能不支持asyncio.run的用法，需要用其它异步调用接口</span>
+
+<span class="sd">        await create_experiment(&#39;&#39;&#39;</span>
+<span class="sd">                version: 2</span>
+<span class="sd">                name: test_create_experiment</span>
+<span class="sd">                priority: 20</span>
+<span class="sd">                ... yaml file</span>
+<span class="sd">        &#39;&#39;&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">config_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">config_file</span><span class="p">):</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">munch</span><span class="o">.</span><span class="n">Munch</span><span class="o">.</span><span class="n">fromYAML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="n">munch</span><span class="o">.</span><span class="n">Munch</span><span class="o">.</span><span class="n">fromYAML</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">munch</span><span class="o">.</span><span class="n">Munch</span><span class="o">.</span><span class="n">fromYAML</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">munch</span><span class="o">.</span><span class="n">Munch</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;非法输入&#39;</span>
+
+    <span class="c1"># 校验, 这边就做最简单的检查</span>
+    <span class="k">def</span> <span class="nf">check_exist</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">ks</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_k</span> <span class="ow">in</span> <span class="n">ks</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">_k</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">assert</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;配置项 </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1"> 必须存在&#39;</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;spec.workspace&#39;</span><span class="p">,</span> <span class="s1">&#39;spec.entrypoint&#39;</span><span class="p">,</span> <span class="s1">&#39;resource.node_count&#39;</span><span class="p">]:</span>
+        <span class="n">check_exist</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">int</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">version</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;版本出错，v2 接口需要 v2 配置文件&#39;</span>
+    <span class="n">code_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">workspace</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">entrypoint</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">config</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;parameters&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">code_file</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2047</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;运行命令 [workspace + entrypoint + params] 长度不应超过 2047&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">511</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;name 长度不应超过 511&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">workspace</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">255</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;workspace 长度不应超过 255&#39;</span>
+    <span class="k">assert</span> <span class="s1">&#39; &#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">spec</span><span class="o">.</span><span class="n">workspace</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;workspace 不允许有空格&#39;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">node_count</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">resource</span><span class="o">.</span><span class="n">node_count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;至少需要申请一个节点&#39;</span>
+
+    <span class="c1"># 检查 profile 参数</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;profile&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">profile</span><span class="p">:</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y%m</span><span class="si">%d</span><span class="s2">_%H%M%S&quot;</span><span class="p">)</span>
+        <span class="n">profile</span><span class="p">[</span><span class="s1">&#39;log_dir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;$</span><span class="si">{MARSV2_LOG_DIR}</span><span class="s1">/haiprof/&#39;</span> <span class="o">+</span> <span class="n">now</span>
+        <span class="n">seconds</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">seconds</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;profile 的时间必须是 &gt;= 0 的整数&quot;</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">profile</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;interval&#39;</span><span class="p">,</span> <span class="p">{}):</span>
+            <span class="n">interval</span> <span class="o">=</span> <span class="n">profile</span><span class="p">[</span><span class="s1">&#39;interval&#39;</span><span class="p">][</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">interval</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">interval</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;采样周期必须是 &gt;= 1 的整数&quot;</span>
+
+    <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/create?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                                  <span class="n">assert_success</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">json</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Experiment</span><span class="p">(</span><span class="n">ExperimentImpl</span><span class="p">,</span> <span class="o">**</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">])</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">_post_validate</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;created&#39;</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">，任务编号: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span>
+        <span class="p">}</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">validate_nodes</span><span class="p">(</span><span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/marsv2/scripts/validation/zhw_validate.py&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/node/validate?token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;file=</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">&amp;nodes=</span><span class="si">{</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">job_table</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_post_validate</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">job_table</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">validate_experiment</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">chain_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ranks</span><span class="p">:</span> <span class="n">Tuple</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;/marsv2/scripts/validation/validate.sh&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">nb_name</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="k">assert</span> <span class="ow">not</span><span class="p">(</span><span class="n">nb_name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">id</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">chain_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">),</span> <span class="s1">&#39;必须设置一个 nb_name/id/chain_id&#39;</span>
+    <span class="n">all_rank</span> <span class="o">=</span> <span class="nb">any</span><span class="p">([</span><span class="n">rank</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">])</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">ranks</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">all_rank</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="n">rank</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">(),</span> <span class="s1">&#39;输入的rank必须是个整数&#39;</span>
+        <span class="n">chosen_ranks</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">ranks</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">chosen_ranks</span> <span class="o">=</span> <span class="s1">&#39;all&#39;</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/operating/task/validate?chosen_ranks=</span><span class="si">{</span><span class="n">chosen_ranks</span><span class="si">}</span><span class="s1">&amp;token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;file=</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s1">&amp;&#39;</span>
+    <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;id=</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">elif</span> <span class="n">nb_name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;nb_name=</span><span class="si">{</span><span class="n">nb_name</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># chain_id is not None:</span>
+        <span class="n">url</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;chain_id=</span><span class="si">{</span><span class="n">chain_id</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">job_table</span> <span class="o">=</span> <span class="k">await</span> <span class="n">_post_validate</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">job_table</span>
+
+
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_task_container_log</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">mars_token</span><span class="p">())</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">mars_url</span><span class="p">()</span><span class="si">}</span><span class="s1">/query/task/container_log?id=</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">&amp;token=</span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s1">&amp;rank=</span><span class="si">{</span><span class="n">rank</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">async_requests</span><span class="p">(</span><span class="n">RequestMethod</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">assert_success</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;result&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">]</span>
+</pre></div>
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../../"
+    src="../../../../_static/documentation_options.js"></script>
+  <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+  <script src="../../../../_static/jquery.js"></script>
+  <script src="../../../../_static/underscore.js"></script>
+  <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/js/vue.global.prod.js"></script>
+  <script src="../../../../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../../../../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

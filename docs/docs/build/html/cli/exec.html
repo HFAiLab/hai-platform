@@ -1,0 +1,888 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>运行命令 &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="任务命令" href="task.html" />
+  <link rel="prev" title="用户命令" href="user.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user.html">用户命令</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>运行命令</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cli/exec.rst.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="id1">
+<h1>运行命令<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<section id="hai-cli-python">
+<h2>hai-cli python<a class="headerlink" href="#hai-cli-python" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>python<span class="w"> </span>&lt;experiment.py&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w">                        </span><span class="c1"># 在本地运行，等同 python</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>&lt;experiment.py&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w"> </span>--<span class="w"> </span><span class="o">[</span>CLUSTER_OPTIONS<span class="o">]</span><span class="w">   </span><span class="c1"># 提交任务到萤火二号运行</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>&lt;experiment.py&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w"> </span>++<span class="w"> </span><span class="o">[</span>SIMULATE_OPTIONS<span class="o">]</span><span class="w">  </span><span class="c1"># 在本地模拟运行，会提供萤火二号一致的环境变量和表现</span>
+</pre></div>
+</div>
+<p class="rubric">Cluster Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">&lt;name&gt;</span></code></p>
+<blockquote>
+<div><p>指定任务的名字，不指定的话，不填默认为文件名</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--nodes</span> <span class="pre">&lt;nodes&gt;</span></code></p>
+<blockquote>
+<div><p>用多少个节点跑，必填</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i,</span> <span class="pre">--image</span> <span class="pre">&lt;image&gt;</span></code></p>
+<blockquote>
+<div><p>使用哪个镜像跑任务, 默认采用当前镜像，否则内部用户默认cuda_11，外部用户默认 ubuntu2024-cu113-ext, 也可以通过 hfai images 自定义镜像</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e,</span> <span class="pre">--environments</span> <span class="pre">&lt;environments&gt;</span></code></p>
+<blockquote>
+<div><p>任务运行中需要的环境变量，举例，-e A=X -e B=Y; 则定义了 A, B 两个环境变量</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f,</span> <span class="pre">--follow</span></code></p>
+<blockquote>
+<div><p>是否追加查看日志</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_inherit</span></code></p>
+<blockquote>
+<div><p>上传到集群的任务是否使用当前的hf_env环境</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--options</span> <span class="pre">&lt;options&gt;</span></code></p>
+<blockquote>
+<div><p>指定任务的一些可选项，具体看 Extra Cluster Options</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Simulate Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ss,</span> <span class="pre">--suspend_seconds</span> <span class="pre">&lt;suspend_seconds&gt;</span></code></p>
+<blockquote>
+<div><p>模拟任务在多少秒时候打断</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ls,</span> <span class="pre">--life_state</span> <span class="pre">&lt;life_state&gt;</span></code></p>
+<blockquote>
+<div><p>传入任务的 whole_life_state flag 值</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Environment Variables</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HF_ENV_NAME=&lt;var&gt;</span></code>  用于显示指定在萤火上以什么环境运行, 可选萤火内建的：py38-202111, 或用户自建的虚拟环境</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HF_ENV_OWNER=&lt;var&gt;</span></code>  若使用他人构建的虚拟环境，需要指定该环境的所属者，可以通过 haienv list 查看</p></li>
+</ul>
+<p class="rubric">Workspace Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--force</span></code></p>
+<blockquote>
+<div><p>push时, 是否强制推送并覆盖远端目录</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_checksum</span></code></p>
+<blockquote>
+<div><p>push时, 是否对文件禁用checksum</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_hfignore</span></code></p>
+<blockquote>
+<div><p>push时, 是否忽略.hfignore规则</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_zip</span></code></p>
+<blockquote>
+<div><p>push时, 是否禁用workspace打包上传</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_diff</span></code></p>
+<blockquote>
+<div><p>push时, 是否禁用差量上传, 如是, 本地和远端不一致文件将被强制覆盖, 默认值为False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--list_timeout</span> <span class="pre">&lt;list_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 遍历集群工作区的超时时间, 单位(s)</p>
+<p>默认值: 300</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--sync_timeout</span> <span class="pre">&lt;sync_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从云端同步到集群的连接超时时间, 单位(s)</p>
+<p>默认值: 1800</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cloud_connect_timeout</span> <span class="pre">&lt;cloud_connect_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传分片到云端的超时时间, 单位(s)</p>
+<p>默认值: 120</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--token_expires</span> <span class="pre">&lt;token_expires&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端的sts token有效时间, 单位(s)</p>
+<p>默认值: 1800</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--part_mb_size</span> <span class="pre">&lt;part_mb_size&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端的分片大小, 单位(MB)</p>
+<p>默认值: 100</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--proxy</span> <span class="pre">&lt;proxy&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端时使用的代理url</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment.py</span></code></p>
+<blockquote>
+<div><p>远程运行的脚本</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment_params...</span></code></p>
+<blockquote>
+<div><p>远程运行的脚本脚本需要的一系列参数，可输入多项，与本地运行的时候一致</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>python<span class="w"> </span>bert.py<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1"># 使用萤火十个节点</span>
+<span class="nv">HF_ENV_NAME</span><span class="o">=</span>py38-202111<span class="w"> </span>hai-cli<span class="w"> </span>python<span class="w"> </span>bert.py<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 使用萤火内建的 py38-202111 环境运行</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>bert.py<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w">  </span><span class="c1"># 本地运行</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>bert.py<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>--nodes<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 使用萤火一节点</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>bert.py<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>-i<span class="w"> </span>default<span class="w"> </span>-e<span class="w"> </span><span class="nv">A</span><span class="o">=</span>B<span class="w"> </span>-e<span class="w"> </span><span class="nv">C</span><span class="o">=</span>D<span class="w">  </span><span class="c1"># 使用 default 镜像，配置环境变量</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>bert.py<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>++<span class="w"> </span>--suspend_seconds<span class="w"> </span><span class="m">100</span><span class="w">  </span><span class="c1"># 本地模拟100秒后打断</span>
+</pre></div>
+</div>
+</section>
+<section id="hai-cli-bash">
+<h2>hai-cli bash<a class="headerlink" href="#hai-cli-bash" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>bash<span class="w"> </span>&lt;experiment.sh&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w">                        </span><span class="c1"># 在本地运行，等同 bash</span>
+hai-cli<span class="w"> </span>bash<span class="w"> </span>&lt;experiment.sh&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w"> </span>--<span class="w"> </span><span class="o">[</span>CLUSTER_OPTIONS<span class="o">]</span><span class="w">   </span><span class="c1"># 提交任务到萤火二号运行</span>
+hai-cli<span class="w"> </span>bash<span class="w"> </span>&lt;experiment.sh&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w"> </span>++<span class="w"> </span><span class="o">[</span>SIMULATE_OPTIONS<span class="o">]</span><span class="w">  </span><span class="c1"># 在本地模拟运行，会提供萤火二号一致的环境变量和表现</span>
+</pre></div>
+</div>
+<p class="rubric">Cluster Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">&lt;name&gt;</span></code></p>
+<blockquote>
+<div><p>指定任务的名字，不指定的话，不填默认为文件名</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--nodes</span> <span class="pre">&lt;nodes&gt;</span></code></p>
+<blockquote>
+<div><p>用多少个节点跑，必填</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i,</span> <span class="pre">--image</span> <span class="pre">&lt;image&gt;</span></code></p>
+<blockquote>
+<div><p>使用哪个镜像跑任务, 默认采用当前镜像，否则内部用户默认cuda_11，外部用户默认 ubuntu2024-cu113-ext, 也可以通过 hfai images 自定义镜像</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e,</span> <span class="pre">--environments</span> <span class="pre">&lt;environments&gt;</span></code></p>
+<blockquote>
+<div><p>任务运行中需要的环境变量，举例，-e A=X -e B=Y; 则定义了 A, B 两个环境变量</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f,</span> <span class="pre">--follow</span></code></p>
+<blockquote>
+<div><p>是否追加查看日志</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_inherit</span></code></p>
+<blockquote>
+<div><p>上传到集群的任务是否使用当前的hf_env环境</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--options</span> <span class="pre">&lt;options&gt;</span></code></p>
+<blockquote>
+<div><p>指定任务的一些可选项，具体看 Extra Cluster Options</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Simulate Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ss,</span> <span class="pre">--suspend_seconds</span> <span class="pre">&lt;suspend_seconds&gt;</span></code></p>
+<blockquote>
+<div><p>模拟任务在多少秒时候打断</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ls,</span> <span class="pre">--life_state</span> <span class="pre">&lt;life_state&gt;</span></code></p>
+<blockquote>
+<div><p>传入任务的 whole_life_state flag 值</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Environment Variables</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HF_ENV_NAME=&lt;var&gt;</span></code>  用于显示指定在萤火上以什么环境运行, 可选萤火内建的：py38-202111, 或用户自建的虚拟环境</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HF_ENV_OWNER=&lt;var&gt;</span></code>  若使用他人构建的虚拟环境，需要指定该环境的所属者，可以通过 haienv list 查看</p></li>
+</ul>
+<p class="rubric">Workspace Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--force</span></code></p>
+<blockquote>
+<div><p>push时, 是否强制推送并覆盖远端目录</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_checksum</span></code></p>
+<blockquote>
+<div><p>push时, 是否对文件禁用checksum</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_hfignore</span></code></p>
+<blockquote>
+<div><p>push时, 是否忽略.hfignore规则</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_zip</span></code></p>
+<blockquote>
+<div><p>push时, 是否禁用workspace打包上传</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_diff</span></code></p>
+<blockquote>
+<div><p>push时, 是否禁用差量上传, 如是, 本地和远端不一致文件将被强制覆盖, 默认值为False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--list_timeout</span> <span class="pre">&lt;list_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 遍历集群工作区的超时时间, 单位(s)</p>
+<p>默认值: 300</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--sync_timeout</span> <span class="pre">&lt;sync_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从云端同步到集群的连接超时时间, 单位(s)</p>
+<p>默认值: 1800</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cloud_connect_timeout</span> <span class="pre">&lt;cloud_connect_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传分片到云端的超时时间, 单位(s)</p>
+<p>默认值: 120</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--token_expires</span> <span class="pre">&lt;token_expires&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端的sts token有效时间, 单位(s)</p>
+<p>默认值: 1800</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--part_mb_size</span> <span class="pre">&lt;part_mb_size&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端的分片大小, 单位(MB)</p>
+<p>默认值: 100</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--proxy</span> <span class="pre">&lt;proxy&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端时使用的代理url</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment.sh</span></code></p>
+<blockquote>
+<div><p>远程运行的脚本</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment_params...</span></code></p>
+<blockquote>
+<div><p>远程运行的脚本脚本需要的一系列参数，可输入多项，与本地运行的时候一致</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>bash<span class="w"> </span>bert.sh<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1"># 使用萤火十个节点</span>
+<span class="nv">HF_ENV_NAME</span><span class="o">=</span>py38-202111<span class="w"> </span>hai-cli<span class="w"> </span>bash<span class="w"> </span>bert.sh<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 使用萤火内建的 py38-202111 环境运行</span>
+hai-cli<span class="w"> </span>bash<span class="w"> </span>bert.sh<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w">  </span><span class="c1"># 本地运行</span>
+hai-cli<span class="w"> </span>bash<span class="w"> </span>bert.sh<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>--nodes<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 使用萤火一节点</span>
+hai-cli<span class="w"> </span>bash<span class="w"> </span>bert.sh<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>-i<span class="w"> </span>default<span class="w"> </span>-e<span class="w"> </span><span class="nv">A</span><span class="o">=</span>B<span class="w"> </span>-e<span class="w"> </span><span class="nv">C</span><span class="o">=</span>D<span class="w">  </span><span class="c1"># 使用 default 镜像，配置环境变量</span>
+hai-cli<span class="w"> </span>bash<span class="w"> </span>bert.sh<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>++<span class="w"> </span>--suspend_seconds<span class="w"> </span><span class="m">100</span><span class="w">  </span><span class="c1"># 本地模拟100秒后打断</span>
+</pre></div>
+</div>
+</section>
+<section id="hai-cli-exec">
+<h2>hai-cli exec<a class="headerlink" href="#hai-cli-exec" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>&lt;experiment.exe&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w">                        </span><span class="c1"># 在本地运行，等同 exec</span>
+hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>&lt;experiment.exe&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w"> </span>--<span class="w"> </span><span class="o">[</span>CLUSTER_OPTIONS<span class="o">]</span><span class="w">   </span><span class="c1"># 提交任务到萤火二号运行</span>
+hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>&lt;experiment.exe&gt;<span class="w"> </span><span class="o">[</span>&lt;experiment_params&gt;...<span class="o">]</span><span class="w"> </span>++<span class="w"> </span><span class="o">[</span>SIMULATE_OPTIONS<span class="o">]</span><span class="w">  </span><span class="c1"># 在本地模拟运行，会提供萤火二号一致的环境变量和表现</span>
+</pre></div>
+</div>
+<p class="rubric">Cluster Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--name</span> <span class="pre">&lt;name&gt;</span></code></p>
+<blockquote>
+<div><p>指定任务的名字，不指定的话，不填默认为文件名</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--nodes</span> <span class="pre">&lt;nodes&gt;</span></code></p>
+<blockquote>
+<div><p>用多少个节点跑，必填</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i,</span> <span class="pre">--image</span> <span class="pre">&lt;image&gt;</span></code></p>
+<blockquote>
+<div><p>使用哪个镜像跑任务, 默认采用当前镜像，否则内部用户默认cuda_11，外部用户默认 ubuntu2024-cu113-ext, 也可以通过 hfai images 自定义镜像</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-e,</span> <span class="pre">--environments</span> <span class="pre">&lt;environments&gt;</span></code></p>
+<blockquote>
+<div><p>任务运行中需要的环境变量，举例，-e A=X -e B=Y; 则定义了 A, B 两个环境变量</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f,</span> <span class="pre">--follow</span></code></p>
+<blockquote>
+<div><p>是否追加查看日志</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_inherit</span></code></p>
+<blockquote>
+<div><p>上传到集群的任务是否使用当前的hf_env环境</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--options</span> <span class="pre">&lt;options&gt;</span></code></p>
+<blockquote>
+<div><p>指定任务的一些可选项，具体看 Extra Cluster Options</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Simulate Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ss,</span> <span class="pre">--suspend_seconds</span> <span class="pre">&lt;suspend_seconds&gt;</span></code></p>
+<blockquote>
+<div><p>模拟任务在多少秒时候打断</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-ls,</span> <span class="pre">--life_state</span> <span class="pre">&lt;life_state&gt;</span></code></p>
+<blockquote>
+<div><p>传入任务的 whole_life_state flag 值</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Environment Variables</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">HF_ENV_NAME=&lt;var&gt;</span></code>  用于显示指定在萤火上以什么环境运行, 可选萤火内建的：py38-202111, 或用户自建的虚拟环境</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HF_ENV_OWNER=&lt;var&gt;</span></code>  若使用他人构建的虚拟环境，需要指定该环境的所属者，可以通过 haienv list 查看</p></li>
+</ul>
+<p class="rubric">Workspace Options</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">--force</span></code></p>
+<blockquote>
+<div><p>push时, 是否强制推送并覆盖远端目录</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_checksum</span></code></p>
+<blockquote>
+<div><p>push时, 是否对文件禁用checksum</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_hfignore</span></code></p>
+<blockquote>
+<div><p>push时, 是否忽略.hfignore规则</p>
+<p>默认值: False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_zip</span></code></p>
+<blockquote>
+<div><p>push时, 是否禁用workspace打包上传</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no_diff</span></code></p>
+<blockquote>
+<div><p>push时, 是否禁用差量上传, 如是, 本地和远端不一致文件将被强制覆盖, 默认值为False</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--list_timeout</span> <span class="pre">&lt;list_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 遍历集群工作区的超时时间, 单位(s)</p>
+<p>默认值: 300</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--sync_timeout</span> <span class="pre">&lt;sync_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从云端同步到集群的连接超时时间, 单位(s)</p>
+<p>默认值: 1800</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--cloud_connect_timeout</span> <span class="pre">&lt;cloud_connect_timeout&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传分片到云端的超时时间, 单位(s)</p>
+<p>默认值: 120</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--token_expires</span> <span class="pre">&lt;token_expires&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端的sts token有效时间, 单位(s)</p>
+<p>默认值: 1800</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--part_mb_size</span> <span class="pre">&lt;part_mb_size&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端的分片大小, 单位(MB)</p>
+<p>默认值: 100</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--proxy</span> <span class="pre">&lt;proxy&gt;</span></code></p>
+<blockquote>
+<div><p>push时, 从本地上传到云端时使用的代理url</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment.exe</span></code></p>
+<blockquote>
+<div><p>远程运行的脚本</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment_params...</span></code></p>
+<blockquote>
+<div><p>远程运行的脚本脚本需要的一系列参数，可输入多项，与本地运行的时候一致</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bert.exe<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">10</span><span class="w">  </span><span class="c1"># 使用萤火十个节点</span>
+<span class="nv">HF_ENV_NAME</span><span class="o">=</span>py38-202111<span class="w"> </span>hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bert.exe<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 使用萤火内建的 py38-202111 环境运行</span>
+hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bert.exe<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w">  </span><span class="c1"># 本地运行</span>
+hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bert.exe<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>--nodes<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 使用萤火一节点</span>
+hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bert.exe<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>--<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>-i<span class="w"> </span>default<span class="w"> </span>-e<span class="w"> </span><span class="nv">A</span><span class="o">=</span>B<span class="w"> </span>-e<span class="w"> </span><span class="nv">C</span><span class="o">=</span>D<span class="w">  </span><span class="c1"># 使用 default 镜像，配置环境变量</span>
+hai-cli<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>bert.exe<span class="w"> </span>-c<span class="w"> </span>large.yml<span class="w"> </span>++<span class="w"> </span>--suspend_seconds<span class="w"> </span><span class="m">100</span><span class="w">  </span><span class="c1"># 本地模拟100秒后打断</span>
+</pre></div>
+</div>
+</section>
+<section id="hai-cli-run">
+<h2>hai-cli run<a class="headerlink" href="#hai-cli-run" title="Permalink to this headline">¶</a></h2>
+<p>根据 yaml 文件来运行一个任务，可以通过参数来覆盖配置; nodes、group、priority 参数可以覆盖 yml 里面的配置</p>
+<p class="rubric">Usage:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>run<span class="w"> </span>&lt;experiment.yml&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f,</span> <span class="pre">--follow</span></code></p>
+<blockquote>
+<div><p>追加查看日志</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--nodes</span> <span class="pre">&lt;nodes&gt;</span></code></p>
+<blockquote>
+<div><p>用多少个节点跑</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-g,</span> <span class="pre">--group</span> <span class="pre">&lt;group&gt;</span></code></p>
+<blockquote>
+<div><p>任务跑在哪个分组</p>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p,</span> <span class="pre">--priority</span> <span class="pre">&lt;priority&gt;</span></code></p>
+<blockquote>
+<div><p>任务优先级，从低到高: 20, 30, 40, 50</p>
+</div></blockquote>
+</li>
+</ul>
+<p class="rubric">Arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">experiment.yml</span></code></p>
+<blockquote>
+<div><p>创建任务的任务配置文件</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="task.html" class="btn btn-neutral float-right" title="任务命令" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="user.html" class="btn btn-neutral" title="用户命令" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">运行命令</a><ul>
+<li><a class="reference internal" href="#hai-cli-python">hai-cli python</a></li>
+<li><a class="reference internal" href="#hai-cli-bash">hai-cli bash</a></li>
+<li><a class="reference internal" href="#hai-cli-exec">hai-cli exec</a></li>
+<li><a class="reference internal" href="#hai-cli-run">hai-cli run</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

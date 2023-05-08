@@ -1,0 +1,54 @@
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+  white-space: normal;
+}
+
+.wy-table-responsive table {
+  display: grid;
+}
+
+.wy-table-responsive table tr {
+  display: flex;
+}
+
+.wy-table-responsive table tr th {
+  flex: 1;
+  min-width: 0;
+}
+
+.wy-table-responsive table tr th p {
+  word-break: break-word;
+  font-weight: bold;
+}
+
+.wy-table-responsive table tr td {
+  flex: 1;
+  min-width: 0;
+}
+
+.wy-table-responsive table tr td p {
+  word-break: break-word;
+}
+
+.wy-table-bordered-all,
+.rst-content table.docutils {
+  border: none;
+}
+
+.wy-table-bordered-all td,
+.rst-content table.docutils td {
+  border: none;
+}
+
+.wy-table td,
+.rst-content table.docutils td,
+.rst-content table.field-list td,
+.wy-table th,
+.rst-content table.docutils th,
+.rst-content table.field-list th {
+  padding: 14px;
+}
+
+footer {
+  padding-bottom: 20px;
+}

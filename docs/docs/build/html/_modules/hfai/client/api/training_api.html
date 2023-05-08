@@ -1,0 +1,712 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hfai.client.api.training_api &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../../../../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../../../../genindex.html" />
+  <link rel="search" title="Search" href="../../../../search.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../../../../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../../../../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../../../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../../../../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+          <li><a href="../../../index.html">Module code</a> &gt;</li>
+        
+      <li>hfai.client.api.training_api</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <h1>Source code for hfai.client.api.training_api</h1><div class="highlight"><pre>
+<span></span><span class="c1"># @Author       :hpp</span>
+<span class="c1"># @CreatedAt    :2021/5/7 16:21</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">sysv_ipc</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">from</span> <span class="nn">hfai.base_model.base_task</span> <span class="kn">import</span> <span class="n">BaseTask</span>
+<span class="kn">from</span> <span class="nn">hfai.conf.flags</span> <span class="kn">import</span> <span class="n">EXP_PRIORITY</span><span class="p">,</span> <span class="n">WARN_TYPE</span>
+
+
+<span class="n">WATCHDOG_TIME_SHM_ID</span> <span class="o">=</span> <span class="mi">237965198</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">WATCHDOG_TIME_SHM_ID_SHM</span> <span class="o">=</span> <span class="n">sysv_ipc</span><span class="o">.</span><span class="n">SharedMemory</span><span class="p">(</span><span class="n">WATCHDOG_TIME_SHM_ID</span><span class="p">,</span> <span class="n">sysv_ipc</span><span class="o">.</span><span class="n">IPC_CREX</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mo">0o777</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">sysv_ipc</span><span class="o">.</span><span class="n">ExistentialError</span><span class="p">:</span>
+    <span class="n">WATCHDOG_TIME_SHM_ID_SHM</span> <span class="o">=</span> <span class="n">sysv_ipc</span><span class="o">.</span><span class="n">SharedMemory</span><span class="p">(</span><span class="n">WATCHDOG_TIME_SHM_ID</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">pynvml</span>
+    <span class="n">no_pynvml</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">no_pynvml</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># ================== 以下接口用于训练中调用 ======================================</span>
+<span class="n">IMPORT_TIME</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">SIMULATE_SUSPEND_SEC</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;SIMULATE_SUSPEND&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">IS_SIMULATE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;HFAI_SIMULATE&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">nb_name</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MARSV2_NB_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;NO_CLUSTER&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">task_id</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MARSV2_TASK_ID&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">rank</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MARSV2_RANK&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">node_name</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MARSV2_NODE_NAME&#39;</span><span class="p">,</span> <span class="s1">&#39;NAN_NODE&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">user_name</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MARSV2_USER&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">current_selector_task</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">BaseTask</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; 获取调用 API 时用于选定任务的 task 实例, 仅有 nb_name 和 id 属性 &quot;&quot;&quot;</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">BaseTask</span><span class="p">()</span>
+    <span class="n">task</span><span class="o">.</span><span class="n">nb_name</span> <span class="o">=</span> <span class="n">nb_name</span><span class="p">()</span>
+    <span class="n">task</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">task_id</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">task</span>
+
+
+<span class="k">def</span> <span class="nf">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    把 data 发送给 manager</span>
+<span class="sd">    socket的 backlog 为1024，超过1024的并发请求可能会变得很慢，请注意</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         data (dict):</span>
+<span class="sd">         timeout (int): 设置请求超时时间，默认为 500 秒</span>
+<span class="sd">         raise_exception (bool): 调用runtime接口时发生异常是否需要抛出，默认为不抛出</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         bool: 表示是否通信成功</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">b_data</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">b_data</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&gt;</span> <span class="n">timeout</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">raise_exception</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">超时，请检查程序或联系管理员&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;source&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">超时，请检查程序或联系管理员&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">waiting_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">timeout</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">))</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">user_name</span><span class="p">()</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">task_id</span><span class="p">()</span><span class="si">}</span><span class="s1">-manager-0&#39;</span><span class="p">,</span> <span class="mi">7000</span><span class="p">))</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="n">waiting_time</span><span class="p">)</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">header</span> <span class="o">+</span> <span class="n">b_data</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+                <span class="n">success</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;msg&#39;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">raise_exception</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;解析返回值失败: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">，请联系管理员&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;解析返回值失败: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">，请联系管理员&#39;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">success</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">raise_exception</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+
+<div class="viewcode-block" id="set_watchdog_time"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.set_watchdog_time">[docs]</a><span class="k">def</span> <span class="nf">set_watchdog_time</span><span class="p">(</span><span class="n">seconds</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    设置任务超时时间，规定时间内无 log 该任务会被认为已失败，默认为 1800 秒</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seconds (int): 超时时间，单位为秒</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import set_watchdog_time</span>
+<span class="sd">        &gt;&gt;&gt; set_watchdog_time(1800)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;模拟设置 watchdog time </span><span class="si">{</span><span class="n">seconds</span><span class="si">}</span><span class="s1"> 成功&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seconds</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;传入的seconds应该是一个int型的&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">seconds</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;传入的seconds位数应当小于100位&quot;</span>
+    <span class="n">WATCHDOG_TIME_SHM_ID_SHM</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;success&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;set_watchdog_time </span><span class="si">{</span><span class="n">seconds</span><span class="si">}</span><span class="s1">秒 设置成功&#39;</span>
+    <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="get_whole_life_state"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.get_whole_life_state">[docs]</a><span class="k">def</span> <span class="nf">get_whole_life_state</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取当前 chain_id 的上一个 id 任务留下来的 whole_life_state</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         int: whole_life_state</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import get_whole_life_state</span>
+<span class="sd">        &gt;&gt;&gt; get_whole_life_state()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MARSV2_WHOLE_LIFE_STATE&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MARSV2_WHOLE_LIFE_STATE&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="set_whole_life_state"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.set_whole_life_state">[docs]</a><span class="k">def</span> <span class="nf">set_whole_life_state</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    设置 whole_life_state</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         state (int): 想要设置的 whole_life_state</span>
+<span class="sd">         timeout (int): 设置请求超时时间，默认为 500 秒</span>
+<span class="sd">         raise_exception (bool): 调用runtime接口时发生异常是否需要抛出，默认为抛出</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import set_whole_life_state</span>
+<span class="sd">        &gt;&gt;&gt; set_whole_life_state(100)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;模拟设置 whole_life_state 成功，请下次调用的时候使用 --sls=</span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s1"> 来设置生效&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;MARSV2_WHOLE_LIFE_STATE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">set_whole_life_state</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s1">&#39;whole_life_state&#39;</span><span class="p">:</span> <span class="n">state</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">)</span></div>
+
+
+<span class="c1"># ============== 任务优雅挂起 ===================================================</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sysv_ipc</span>  <span class="c1"># 注意，不兼容 windows</span>
+    <span class="n">has_sys_ipc</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">has_sys_ipc</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">SUSPEND_SHM_ID</span> <span class="o">=</span> <span class="mi">7123378543</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">nb_name</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;NO_CLUSTER&#39;</span> <span class="ow">or</span> <span class="n">IS_SIMULATE</span><span class="p">)</span> <span class="ow">and</span> <span class="n">has_sys_ipc</span><span class="p">:</span>
+    <span class="n">SUSPEND_SHM_ID_SHM</span> <span class="o">=</span> <span class="n">sysv_ipc</span><span class="o">.</span><span class="n">SharedMemory</span><span class="p">(</span><span class="n">SUSPEND_SHM_ID</span><span class="p">,</span>
+                                               <span class="n">sysv_ipc</span><span class="o">.</span><span class="n">IPC_CREAT</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="mo">0o777</span><span class="p">,</span>
+                                               <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">SUSPEND_SHM_ID_SHM</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="receive_suspend_command"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.receive_suspend_command">[docs]</a><span class="k">def</span> <span class="nf">receive_suspend_command</span><span class="p">(</span><span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    获取该任务是否即将被打断</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         timeout (int): 设置请求超时时间，默认为 500 秒</span>
+<span class="sd">         raise_exception (bool): 调用runtime接口时发生异常是否需要抛出，默认为不抛出</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">         bool: 表示是否即将被打断</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import receive_suspend_command</span>
+<span class="sd">        &gt;&gt;&gt; receive_suspend_command()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">SIMULATE_SUSPEND_SEC</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">IMPORT_TIME</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;时间到了，触发模拟打断&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">SUSPEND_SHM_ID_SHM</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">SUSPEND_SHM_ID_SHM</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">==</span> <span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
+        <span class="c1"># 向 server 端报告需要知道我要被打断了</span>
+        <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">receive_suspend_command</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="p">}</span>
+        <span class="n">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">raise_exception</span><span class="o">=</span><span class="n">raise_exception</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="go_suspend"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.go_suspend">[docs]</a><span class="k">def</span> <span class="nf">go_suspend</span><span class="p">(</span><span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    通知 server 该任务可以被打断</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         timeout (int): 设置请求超时时间，默认为 500 秒</span>
+<span class="sd">         raise_exception (bool): 调用runtime接口时发生异常是否需要抛出，默认为不抛出</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import go_suspend</span>
+<span class="sd">        &gt;&gt;&gt; go_suspend()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 防止 jupyter 容器误跑 go_suspend</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MARSV2_TASK_TYPE&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;training&#39;</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="c1"># 向 server 端报告需要知道我要被打断了</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;模拟打断成功，将退出进程&#39;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">go_suspend</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="p">}</span>
+    <span class="n">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">raise_exception</span><span class="o">=</span><span class="n">raise_exception</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;等了</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">10</span><span class="si">}</span><span class="s1">秒还没挂起，继续等待&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="set_priority"><a class="viewcode-back" href="../../../../api/client.html#hfai.client.set_priority">[docs]</a><span class="k">def</span> <span class="nf">set_priority</span><span class="p">(</span><span class="n">priority</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    设置当前任务的优先级，注意如果你没有该优先级的权限可能会导致任务被立刻打断</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">         priority (int): 设置的任务优先级</span>
+<span class="sd">         timeout (int): 设置请求超时时间，默认为 500 秒</span>
+<span class="sd">         raise_exception (bool): 调用runtime接口时发生异常是否需要抛出，默认为不抛出</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: 是否设置成功</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import set_priority, EXP_PRIORITY</span>
+<span class="sd">        &gt;&gt;&gt; set_priority(EXP_PRIORITY.LOW)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 向 server 端报告需要知道我要被打断了</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;模拟环境设置优先级 </span><span class="si">{</span><span class="n">priority</span><span class="si">}</span><span class="s1"> 成功&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">set_priority</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s1">&#39;priority&#39;</span><span class="p">:</span> <span class="n">priority</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">raise_exception</span><span class="o">=</span><span class="n">raise_exception</span><span class="p">)</span></div>
+
+
+<span class="k">def</span> <span class="nf">disable_warn</span><span class="p">(</span><span class="n">warn_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span> <span class="n">raise_exception</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    静默warning报警</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        warn_type (int): 静默的报警类型，可以是WARN_TYPE的复合，0表示不静默任何报警</span>
+<span class="sd">        timeout (int): 设置请求超时时间，默认为 500 秒</span>
+<span class="sd">        raise_exception (bool): 调用runtime接口时发生异常是否需要抛出，默认为不抛出</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: 是否设置成功</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">        &gt;&gt;&gt; from hfai.client import disable_warn, WARN_TYPE</span>
+<span class="sd">        &gt;&gt;&gt; disable_warn(WARN_TYPE.LOG | WARN_TYPE.COMPLETED)  # 日志超时以及completed超时不报警</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">IS_SIMULATE</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;模拟静默warning报警成功&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="n">nb_name</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;NO_CLUSTER&#39;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;非集群环境&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">disable_warn</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="s1">&#39;warn_type&#39;</span><span class="p">:</span> <span class="n">warn_type</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">send_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">raise_exception</span><span class="o">=</span><span class="n">raise_exception</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">print_gpu_info</span><span class="p">(</span><span class="n">pid</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">no_pynvml</span> <span class="ow">or</span> <span class="p">(</span><span class="ow">not</span> <span class="n">node_name</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;dl&#39;</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="n">pynvml</span><span class="o">.</span><span class="n">nvmlInit</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pynvml</span><span class="o">.</span><span class="n">nvmlDeviceGetCount</span><span class="p">()):</span>
+        <span class="n">handle</span> <span class="o">=</span> <span class="n">pynvml</span><span class="o">.</span><span class="n">nvmlDeviceGetHandleByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">pynvml</span><span class="o">.</span><span class="n">nvmlDeviceGetMemoryInfo</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">pid</span><span class="si">}</span><span class="s1">] gpu[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">] memory total </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">total</span><span class="si">}</span><span class="s1">, free </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">free</span><span class="si">}</span><span class="s1">, used </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">used</span><span class="si">}</span><span class="s1">; &#39;</span>
+              <span class="sa">f</span><span class="s1">&#39;Power </span><span class="si">{</span><span class="n">pynvml</span><span class="o">.</span><span class="n">nvmlDeviceGetPowerState</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+              </article>
+              
+            </div>
+            <footer>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../../../"
+    src="../../../../_static/documentation_options.js"></script>
+  <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+  <script src="../../../../_static/jquery.js"></script>
+  <script src="../../../../_static/underscore.js"></script>
+  <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/js/vue.global.prod.js"></script>
+  <script src="../../../../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../../../../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../../../../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

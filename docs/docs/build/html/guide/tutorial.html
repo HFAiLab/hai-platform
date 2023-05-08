@@ -1,0 +1,618 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>命令行工具 (CLI) &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="环境配置" href="environment.html" />
+  <link rel="prev" title="Studio" href="../start/studio.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>命令行工具 (CLI)</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/guide/tutorial.md.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="cli">
+<h1>命令行工具 (CLI)<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h1>
+<p>命令行工具（hai-cli）是用户访问 HAI Platform 进行操作的终端工具，其中包括便捷的调试接口、提交/查看任务的接口、任务操作/查看任务输出的接口等。在网络可访问的条件下，命令行工具可以在集群外的用户终端使用，同步用户指定环境及工作区。</p>
+<p>键入 <code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">--help</span></code> 即可查看所有支持的功能。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>hai-cli<span class="w"> </span>COMMAND<span class="w"> </span>&lt;argument&gt;...<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+
+Options:
+<span class="w">  </span>--version<span class="w">   </span>Show<span class="w"> </span>the<span class="w"> </span>version<span class="w"> </span>and<span class="w"> </span>exit.
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">  </span>Show<span class="w"> </span>this<span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span>exit.
+
+Exec<span class="w"> </span>Commands:
+<span class="w">  </span>bash<span class="w">    </span>在集群上运行<span class="w"> </span>bash<span class="w"> </span>脚本
+<span class="w">  </span><span class="nb">exec</span><span class="w">    </span>在集群上运行<span class="w"> </span>二进制<span class="w"> </span>文件
+<span class="w">  </span>python<span class="w">  </span>在集群上运行<span class="w"> </span>bash<span class="w"> </span>脚本
+<span class="w">  </span>run<span class="w">     </span>根据<span class="w"> </span>yaml<span class="w"> </span>文件来运行一个任务，可以通过参数来覆盖配置<span class="p">;</span>...
+
+Task<span class="w"> </span>Manage<span class="w"> </span>Cmds:
+<span class="w">  </span>describe<span class="w">  </span>打印任务的<span class="w"> </span>schema<span class="w"> </span>yaml，可以在下次创建任务的时候使用
+<span class="w">  </span>list<span class="w">      </span>列出用户任务列表,<span class="w"> </span>用户要查看第几页的任务列表
+<span class="w">  </span>logs<span class="w">      </span>查看任务日志
+<span class="w">  </span>ssh<span class="w">       </span>登录到哪台机器，只能在开发容器内使用
+<span class="w">  </span>status<span class="w">    </span>查询任务状态
+<span class="w">  </span>stop<span class="w">      </span>关闭任务状态
+
+Cluster<span class="w"> </span>Commands:
+<span class="w">  </span>nodes<span class="w">     </span>查看节点信息
+
+User<span class="w"> </span>Commands:
+<span class="w">  </span>init<span class="w">    </span>初始化用户账户
+<span class="w">  </span>whoami<span class="w">  </span>显示用户的个人信息,<span class="w"> </span>包括集群用量、quota<span class="w"> </span>等
+
+UGC<span class="w"> </span>Commands:
+<span class="w">  </span>images<span class="w">     </span>用户自定义镜像的管理接口
+<span class="w">  </span>workspace<span class="w">  </span>haiworkspace
+
+Other<span class="w"> </span>Commands:
+<span class="w">  </span>env<span class="w">     </span>haienv
+</pre></div>
+</div>
+<p>本文给出常见场景下的用法示例。</p>
+<section id="id1">
+<h2>用例1： 使用客户端工具的基本流程<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="id2">
+<h3>场景<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>用户开始使用 HAI Platform 平台，需要搭建个人运行环境、准备实验代码、数据等。通过HAI Platform启动的开发容器默认安装并配置了客户端，用户也可以在个人本地安装。</p>
+</section>
+<section id="id3">
+<h3>说明<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>使用 hai-cli 需要按用户信息初始化本地配置，支持用户创建个人虚拟环境，并且支持环境上传，确保本地和集群上环境一致。</p>
+<p><strong>注意</strong>：<strong>目前仅支持 bash</strong>, 如果要使用其它 shell，需要手动修改 venv 环境下的 activate 脚本。</p>
+</section>
+<section id="id4">
+<h3>步骤<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>在本地首次安装使用，执行 <a class="reference external" href="../cli/user.html#hai-cli-init"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">init</span> <span class="pre">&lt;token&gt;</span> <span class="pre">--url</span> <span class="pre">&lt;address-to-hai-server&gt;</span></code></a> 命令初始化 hai 客户端配置。初始化过程会生成配置文件 <code class="docutils literal notranslate"><span class="pre">~/.hai/conf.yaml</span></code>。HAI Platform开发容器中使用则无需重复初始化。</p></li>
+<li><p>使用 <a class="reference external" href="../cli/user.html#hai-cli-whoami"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">whoami</span></code></a> 查看用户个人信息，包括集群用量、配额等。</p></li>
+<li><p>使用 <a class="reference external" href="../cli/ugc.html#haienv"><code class="docutils literal notranslate"><span class="pre">haienv</span></code></a> 工具创建及管理个人环境：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>haienv<span class="w"> </span>create<span class="w"> </span>&lt;env_name&gt;<span class="w">  </span><span class="c1"># 创建虚拟环境</span>
+<span class="nb">source</span><span class="w"> </span>haienv<span class="w"> </span>&lt;env_name&gt;<span class="w">  </span><span class="c1"># 进入此虚拟环境</span>
+pip<span class="w"> </span>install<span class="w"> </span>&lt;your_package&gt;<span class="w">  </span><span class="c1"># 在此虚拟环境下安装依赖包</span>
+conda<span class="w"> </span>install<span class="w"> </span>&lt;your_package&gt;<span class="w"> </span><span class="c1"># 在此虚拟环境下安装依赖包</span>
+</pre></div>
+</div>
+<p><strong>注意</strong>：在集群开发容器创建虚拟环境，可以选择继承集群基础环境，只做增量安装</p>
+</li>
+</ol>
+</section>
+<section id="id5">
+<h3>示例<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建个人虚拟环境</span>
+haienv<span class="w"> </span>create<span class="w"> </span>extenv<span class="w">  </span><span class="c1">## 在基础环境上扩展，相同包可以覆盖基础环境里的版本</span>
+<span class="c1"># 输出</span>
+<span class="c1">#确认您要构建的虚拟环境版本为：3.8.10；扩展py38-202111环境</span>
+<span class="c1">#Y/N: Y</span>
+<span class="c1">#Collecting package metadata (current_repodata.json): ...working... done</span>
+<span class="c1">#Solving environment: ...working... failed with repodata from current_repodata.json, will retry #with next repodata source.</span>
+<span class="c1">#Collecting package metadata (repodata.json): ...working... done</span>
+<span class="c1">#Solving environment: ...working... done</span>
+<span class="c1">#......</span>
+<span class="c1">#...</span>
+<span class="c1">#...</span>
+<span class="c1">#...</span>
+<span class="c1">#Preparing transaction: ...working... done</span>
+<span class="c1">#Verifying transaction: ...working... done</span>
+<span class="c1">#Executing transaction: ...working... done</span>
+<span class="c1">#创建虚拟环境成功，使用 source haienv extenv 进入</span>
+
+haienv<span class="w"> </span>list<span class="w"> </span><span class="c1">## 列表查看虚拟环境</span>
+<span class="c1"># 输出</span>
+<span class="s2">&quot;</span>
+<span class="s2">当前虚拟环境目录为/root，如需更改请设置环境变量HAIENV_PATH</span>
+<span class="s2">请在bash中使用以下命令加载env：source haienv &lt;haienv_name&gt;</span>
+<span class="s2">其他环境</span>
+<span class="s2">+------+-------------+------+--------+------------+----+</span>
+<span class="s2">| user | haienv_name | path | extend | extend_env | py |</span>
+<span class="s2">+------+-------------+------+--------+------------+----+</span>
+<span class="s2">+------+-------------+------+--------+------------+----+</span>
+<span class="s2">自己创建的环境</span>
+<span class="s2">+---------+-------------+--------------------------------------+--------+-------------+--------+</span>
+<span class="s2">| user    | haienv_name | path                                 | extend | extend_env  | py     |</span>
+<span class="s2">+---------+-------------+--------------------------------------+--------+-------------+--------+</span>
+<span class="s2">| hfadmin | extenv      | /hf_shared/hfai_envs/user/extenv_0   | True   | py38-202111 | 3.8.10 |</span>
+<span class="s2">+---------+-------------+--------------------------------------+--------+-------------+--------+</span>
+<span class="s2">...</span>
+<span class="s2">&quot;</span>
+
+haienv<span class="w"> </span>remove<span class="w"> </span>extenv<span class="w"> </span><span class="c1">## 删除虚拟环境</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>用例2： 训练任务管理<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<section id="id7">
+<h3>场景<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>用户提交、查看、管理个人在集群上的任务。</p>
+</section>
+<section id="id8">
+<h3>说明<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>由于集群以<a class="reference internal" href="schedule.html"><span class="doc std std-doc">分时调度</span></a>的方式分配资源，每个任务实际上都是一个任务链(chain)。任务的 <code class="docutils literal notranslate"><span class="pre">chain_status</span></code> 有如下可能：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">waiting_init</span></code>: 该任务处于排队状态，尚未被调度到；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">running</span></code>: 该任务处于运行状态；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">suspended</span></code>: 该任务被调度器打断了，处于挂起状态；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">finished</span></code>: 该任务执行结束了。</p></li>
+</ol>
+<p>另外，任务信息还包含运行节点信息，节点的状态有如下可能：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">created</span></code>: 该任务节点处于创建过程中；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">building</span></code>: 该任务节点处于初始化过程中；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unschedulable</span></code>: 该任务节点在等待资源施放；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">running</span></code>: 该任务节点处于运行状态；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">succeeded_terminating</span></code> / <code class="docutils literal notranslate"><span class="pre">failed_terminating</span></code> / <code class="docutils literal notranslate"><span class="pre">stopped_terminating</span></code>: 该任务节点处于结束态（正在退出过程中），<code class="docutils literal notranslate"><span class="pre">_</span></code> 之前的描述词为其终态；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">succeeded</span></code> / <code class="docutils literal notranslate"><span class="pre">failed</span></code> / <code class="docutils literal notranslate"><span class="pre">stopped</span></code>: 该任务节点已经完全退出。</p></li>
+</ol>
+</section>
+<section id="id9">
+<h3>步骤<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>执行 <a class="reference external" href="../cli/exec.html#hai-cli-run"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">run</span></code></a> 通过提交yaml文件来运行一个任务，支持运行python文件或shell脚本。yaml格式<a class="reference external" href="../api/client.html#hfai.client.create_experiment_v2">参考API说明</a>。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>run<span class="w"> </span>/path/to/yaml_file
+</pre></div>
+</div>
+<p>另外也可使用 <a class="reference external" href="../cli/exec.html#hai-cli-python"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">python</span></code></a>, <a class="reference external" href="../cli/exec.html#hai-cli-bash"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">bash</span></code></a> 或 <a class="reference external" href="../cli/exec.html#hai-cli-exec"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">exec</span></code></a> 提交任务执行。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>python<span class="w"> </span>&lt;experiment.py&gt;<span class="w"> </span><span class="c1"># 本地运行，等同于运行 python xxx</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>&lt;experiment.py&gt;<span class="w"> </span>--<span class="w"> </span><span class="o">[</span>CLUSTER_OPTIONS<span class="o">]</span><span class="w">  </span><span class="c1"># 提交到集群作为新建任务运行，提交前请先检查工作区是否同步；集群任务参数详见api文档</span>
+hai-cli<span class="w"> </span>python<span class="w"> </span>&lt;experiment.py&gt;<span class="w"> </span>++<span class="w"> </span><span class="o">[</span>SIMULATE_OPTIONS<span class="o">]</span><span class="w"> </span><span class="c1"># 在本地运行，模拟集群任务响应</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用 <a class="reference external" href="../cli/task.html#hai-cli-list"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">list</span></code></a>, <a class="reference external" href="../cli/task.html#hai-cli-status"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">status</span></code></a>, <a class="reference external" href="../cli/task.html#hai-cli-logs"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">logs</span></code></a> 等查看任务状态、日志等。</p></li>
+<li><p>对于运行中或者等待中的任务，可以执行 <a class="reference external" href="../cli/task.html#hai-cli-stop"><code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">stop</span></code></a> 发起停止。用户停止的任务不再进入调度。</p></li>
+</ol>
+</section>
+<section id="id10">
+<h3>示例<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>通过 <code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">status</span> <span class="pre">&lt;experiment&gt;</span></code> 查看任务的状态</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 未特殊指明，&lt;experiment&gt; 均使用 experiment_name</span>
+hai-cli<span class="w"> </span>status<span class="w"> </span>sample_exp
+<span class="c1"># 输出</span>
+<span class="s2">&quot;</span>
+<span class="s2">==================== experiment ====================</span>
+<span class="s2">+--------+------------+-------+--------------+------------+---------------+---------------------+</span>
+<span class="s2">| id     | nb_name    | nodes | chain_status | task_type  | suspend_count | updated_at          |</span>
+<span class="s2">+========+============+=======+==============+============+===============+=====================+</span>
+<span class="s2">| 397246 | sample_exp | 1     | finished     | training   | 0             | 2021-09-23 11:04:20 |</span>
+<span class="s2">+--------+------------+-------+--------------+------------|---------------+---------------------+</span>
+<span class="s2">==================== jobs ====================</span>
+<span class="s2">+------+---------+-------------+---------------------+</span>
+<span class="s2">| rank | status  | node        | started_at          |</span>
+<span class="s2">+======+=========+=============+=====================+</span>
+<span class="s2">| 0    | stopped | hfai-rank-0 | 2021-09-23T10:25:26 |</span>
+<span class="s2">+------+---------+-------------+---------------------+</span>
+<span class="s2">...</span>
+<span class="s2">&quot;</span>
+<span class="c1"># 加 --json 参数可以将任务转换成 json 格式输出</span>
+hai-cli<span class="w"> </span>status<span class="w"> </span>sample_exp<span class="w"> </span>--json
+</pre></div>
+</div>
+<p>通过 <code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">list</span></code> 功能查看个人历史任务。该接口带有分页功能，其中页大小（page_size）不能超过50。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>hai-cli<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>--page<span class="o">=</span>&lt;page&gt;<span class="o">]</span><span class="w"> </span><span class="o">[</span>--page_size<span class="o">=</span>&lt;page_size&gt;<span class="o">]</span>
+<span class="c1"># 可以通过 --page 和 --page_size 参数来拿到指定范围的任务</span>
+<span class="c1"># 获取第7-8个任务</span>
+hai-cli<span class="w"> </span>list<span class="w"> </span>--page<span class="w"> </span><span class="m">4</span><span class="w"> </span>--page_size<span class="w"> </span><span class="m">2</span>
+<span class="c1"># 输出</span>
+<span class="s2">&quot;</span>
+<span class="s2">现在查看的是第 4 页任务，共 5 页, 每页 2 个任务, 共 9 个任务</span>
+<span class="s2">+--------+------------+-------+--------------+------------+---------------+---------------------+</span>
+<span class="s2">| id     | nb_name    | nodes | chain_status | task_type  | suspend_count | updated_at          |</span>
+<span class="s2">+========+============+=======+==============+============+===============+=====================+</span>
+<span class="s2">| 396391 | sample_exp | 2     | finished     | training   | 0             | 2021-09-22 15:29:13 |</span>
+<span class="s2">| 396388 | sample_exp | 1     | finished     | training   | 0             | 2021-09-22 14:31:16 |</span>
+<span class="s2">+--------+------------+-------+--------------+------------+---------------+---------------------+</span>
+<span class="s2">...</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>通过 <code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">logs</span></code> 查看任务日志。输出由“任务信息 + 任务日志”两部分构成。前半部分与 <code class="docutils literal notranslate"><span class="pre">hai-cli</span> <span class="pre">status</span></code> 相同，后半部分为用户任务输出的日志，在每条日志之前，会打印这条日志的时间戳。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 持续打印 sample_exp rank 1 的日志：（rank 从 0 开始）</span>
+hai-cli<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>sample_exp<span class="w"> </span>--rank<span class="w"> </span><span class="m">0</span>
+<span class="c1"># 加上 -f 参数后，会持续追加打印日志，并且 tab 的自动补全只会补全运行中的任务</span>
+<span class="c1"># 另外，大部分 hai-cli 命令均有 tab 自动补全的功能</span>
+<span class="c1"># &lt;experiment&gt; 为 experiment_name 时，会选择同名任务中最后一个，如果想查看历史任务的 log，需要使用 experiment_id</span>
+<span class="c1"># 输出</span>
+<span class="s2">&quot;</span>
+<span class="s2">==================== experiment ====================</span>
+<span class="s2">+---------+----- ------+-------+--------------+------------+---------------+---------------------+</span>
+<span class="s2">| id      | nb_name    | nodes | chain_status | task_type  | suspend_count | created_at          |</span>
+<span class="s2">+=========+============+=======+==============+============+===============+=====================+</span>
+<span class="s2">| 396391  | sample_exp | 2     | finished     | training   | 0             | 2021-09-22 15:34:45 |</span>
+<span class="s2">+---------+-------- ---+-------+--------------+------------+---------------+---------------------+</span>
+<span class="s2">==================== jobs ====================</span>
+<span class="s2">+------+---------+-------------+---------------------+</span>
+<span class="s2">| rank | status  | node        | begin_at          |</span>
+<span class="s2">+======+=========+=============+=====================+</span>
+<span class="s2">| 0    | failed  | hfai-rank-0 | 2021-09-22T15:34:45 |</span>
+<span class="s2">| 1    | stopped | hfai-rank-1 | 2021-09-22T15:34:45 |</span>
+<span class="s2">+------+---------+-------------+---------------------+</span>
+<span class="s2">====================  fetching  log on rank 0... ====================</span>
+<span class="s2">[2021-09-22 15:34:53.282729] [训练前检查] 检查[MARSV2] cpu memory 24.0 &lt; 100G and total gpu memory 0 &lt; 100M 通过</span>
+<span class="s2">...</span>
+<span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="environment.html" class="btn btn-neutral float-right" title="环境配置" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="../start/studio.html" class="btn btn-neutral" title="Studio" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">命令行工具 (CLI)</a><ul>
+<li><a class="reference internal" href="#id1">用例1： 使用客户端工具的基本流程</a><ul>
+<li><a class="reference internal" href="#id2">场景</a></li>
+<li><a class="reference internal" href="#id3">说明</a></li>
+<li><a class="reference internal" href="#id4">步骤</a></li>
+<li><a class="reference internal" href="#id5">示例</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id6">用例2： 训练任务管理</a><ul>
+<li><a class="reference internal" href="#id7">场景</a></li>
+<li><a class="reference internal" href="#id8">说明</a></li>
+<li><a class="reference internal" href="#id9">步骤</a></li>
+<li><a class="reference internal" href="#id10">示例</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

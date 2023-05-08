@@ -1,0 +1,504 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>分时调度 &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="用户命令" href="../cli/user.html" />
+  <link rel="prev" title="环境配置" href="environment.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="environment.html">环境配置</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>分时调度</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/guide/schedule.md.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>分时调度<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<section id="id2">
+<h2>概述<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>HAI Platform 采用<strong>任务级分时调度</strong>的底层设计，给每个任务分配集群运行时间片（类似操作系统的时间片调度）。</p>
+<p>与传统的用户独占方案相比，分时调度大幅提高了集群使用率，以此有效降低单位GPU时的使用成本；同时，分时调度较为弹性的资源占用方式，使得用户无需承担闲置算力成本，并可以根据任务需求实时增减节点配额，轻负担享受全量算力。</p>
+<p>按照分时调度的方案规则，训练任务<strong>会被中断、并自动调起</strong>。因此在 HAI Platform 上运行的代码需要遵循本页下方文档的<a class="reference external" href="#id8"><strong>编码要求</strong></a>。</p>
+<p><img alt="" src="../_images/schedule_01.png" /></p>
+</section>
+<section id="id3">
+<h2>调度规则<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>任务调度按照<strong>优先级从高到低</strong>调度任务</p></li>
+<li><p>同一优先级按照 <strong>“先到先服务”</strong> 原则排队等待被分配时间片</p></li>
+<li><p>对于同一用户、同优先级的任务，不会打断运行中的任务来调度另一个任务</p></li>
+<li><p>一个 <code class="docutils literal notranslate"><span class="pre">ABOVE_NORMAL</span></code> 的任务运行满30分钟后，自动降级为 <code class="docutils literal notranslate"><span class="pre">NORMAL</span></code></p></li>
+<li><p>任何任务恢复运行，都是从头执行任务代码，用户需按照编码要求进行<strong>断点编码</strong>处理</p></li>
+</ul>
+<p><img alt="" src="../_images/schedule_02.png" /></p>
+</section>
+<section id="id4">
+<h2>基本要素<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<section id="id5">
+<h3>任务状态<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>任务状态分为：<strong>等待初始化</strong>、<strong>运行</strong>、<strong>排队挂起</strong>、<strong>结束（运行成功/失败）</strong> 四种状态，流转示意图如下：</p>
+<p><img alt="" src="../_images/schedule_03.png" /></p>
+</section>
+<section id="id6">
+<h3>任务优先级<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="../_images/schedule_04.png" /></p>
+</section>
+<section id="id7">
+<h3>获取优先级配额<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>用户在每个优先级上都有节点配额，该配额数表示最多可以同时使用的节点数，参见下方调度界面样例。配额调整请集群联系管理员。</p>
+<p><img alt="" src="../_images/schedule_05.png" /></p>
+</section>
+</section>
+<section id="id8">
+<h2>编码要求<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<section id="id9">
+<h3>任务优雅挂起<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>所有任务都参与分时调度，因此任务必须支持断点续跑。任务挂起前，主节点会收到一个挂起命令，如果任务没有响应，过5秒会被强制挂起。可以使用以下接口实现优雅挂起：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hfai.client.receive_suspend_command()</span> <span class="pre">-&gt;</span> <span class="pre">bool</span></code>:</p>
+<ul class="simple">
+<li><p>查询是否收到了挂起的命令，返回True表示要挂起</p></li>
+<li><p>只有主节点（Rank 0）才能收到挂起命令，且主节点的所有python子进程都能收到挂起命令，而其他节点收不到</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hfai.client.go_suspend()</span></code>：</p>
+<ul class="simple">
+<li><p>通知调度系统可以打断，最多预留5秒进行断点的保存</p></li>
+<li><p>任一个节点调用本函数都会导致任务被优雅挂起，本函数不返回。</p></li>
+</ul>
+</li>
+</ol>
+<p>下面是一个训练的代码参考：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">hfai</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">gpu_id</span><span class="p">):</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">set_device</span><span class="p">(</span><span class="n">gpu_id</span><span class="p">)</span>
+
+    <span class="c1"># 初始化模型、数据集、迭代器等</span>
+
+    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+        <span class="c1"># 训练一个step</span>
+        <span class="k">if</span> <span class="n">hfai</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">get_rank</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">gpu_id</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># 获取当前节点序号。在0号节点的0号进程上接收集群调度信息</span>
+            <span class="k">if</span> <span class="n">hfai</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">receive_suspend_command</span><span class="p">():</span> 
+
+                <span class="c1"># 保存模型、迭代器等参数到文件</span>
+
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="c1"># 最多预留5秒完成断点保存，之后会被强制打断</span>
+                <span class="n">hfai</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">go_suspend</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">ngpus</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span>
+    <span class="n">hfai</span><span class="o">.</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">main</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">nprocs</span><span class="o">=</span><span class="n">ngpus</span><span class="p">,</span> <span class="n">bind_numa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3>断点续跑<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>任务接受集群的统一调度，每个被打断的任务重新拉起运行时，会从头执行运行命令。因此，为了实现模型不受打断影响持续训练，需要用户在代码中设置好<strong>断点</strong>，即做好现场的保存，实现<strong>断点续跑</strong>功能。</p>
+<p>如下例所示：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">hfai</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">get_rank</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">gpu_id</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">hfai</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">receive_suspend_command</span><span class="p">():</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;model&#39;</span><span class="p">:</span> <span class="n">model</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;optimizer&#39;</span><span class="p">:</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span>
+        <span class="s1">&#39;acc&#39;</span><span class="p">:</span> <span class="n">best_acc</span><span class="p">,</span>
+        <span class="s1">&#39;epoch&#39;</span><span class="p">:</span> <span class="n">epoch</span><span class="p">,</span>
+        <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="n">step</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">save_path</span> <span class="o">/</span> <span class="s1">&#39;latest.pt&#39;</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">hfai</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">go_suspend</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>上述代码保存了模型、迭代器的参数和训练的epoch、step，方便在下次执行时恢复当前现场。</p>
+</section>
+<section id="id11">
+<h3>分布式训练<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>在 HAI Platform 上<strong>每个任务最少使用8张卡</strong>，在启动每个任务时会设置如下环境变量：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MASTER_IP</span></code>： 我们规定 rank 0 为主节点，该环境变量为主节点的 IP；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MASTER_PORT</span></code>：主节点用于通讯的端口，初始值为 2222；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WORLD_SIZE</span></code>：标记当前任务总共有几个节点的环境变量；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RANK</span></code>：标记当前节点是第几号节点的环境变量。</p></li>
+</ul>
+<p>以此发起分布式训练。更多完整训练案例，可以参考<a class="reference external" href="https://github.com/HFAiLab/hfai-models">模型仓库</a></p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="../cli/user.html" class="btn btn-neutral float-right" title="用户命令" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="environment.html" class="btn btn-neutral" title="环境配置" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">分时调度</a><ul>
+<li><a class="reference internal" href="#id2">概述</a></li>
+<li><a class="reference internal" href="#id3">调度规则</a></li>
+<li><a class="reference internal" href="#id4">基本要素</a><ul>
+<li><a class="reference internal" href="#id5">任务状态</a></li>
+<li><a class="reference internal" href="#id6">任务优先级</a></li>
+<li><a class="reference internal" href="#id7">获取优先级配额</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id8">编码要求</a><ul>
+<li><a class="reference internal" href="#id9">任务优雅挂起</a></li>
+<li><a class="reference internal" href="#id10">断点续跑</a></li>
+<li><a class="reference internal" href="#id11">分布式训练</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

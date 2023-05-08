@@ -1,0 +1,580 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Studio &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="命令行工具 (CLI)" href="../guide/tutorial.html" />
+  <link rel="prev" title="安装与设置" href="install.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">安装与设置</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/hai.html">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>Studio</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/start/studio.md.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="studio">
+<h1>Studio<a class="headerlink" href="#studio" title="Permalink to this headline">¶</a></h1>
+<div align="center">
+  <a href="https://github.com/HFAiLab/hai-platform-studio">
+    <img src="../_static/pic/studio_logo.png" alt="Logo" width="271" height="92">
+  </a>
+</div>
+<section id="id1">
+<h2>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio">HAI Platform Studio</a> 是为 <a class="reference external" href="https://github.com/HFAiLab/hai-platform">HAI Platform</a> 提供的用户界面，主要的功能包括但不限于：</p>
+<ul class="simple">
+<li><p>管理和启动基于 JupyterLab 的开发容器，配合 Jupyter 插件，可以进行代码调试或任务提交。</p></li>
+<li><p>管理提交的实验，支持实验的实时监控、日志分析和实验状态管理。</p></li>
+<li><p>另外本项目还集成了讨论区、实验性能监控、实验调度管理等功能。</p></li>
+</ul>
+<p>另外，本项目 <code class="docutils literal notranslate"><span class="pre">/monitor</span></code> 子应用集成了一定的监控和管理能力，包括：</p>
+<ul class="simple">
+<li><p>用户及实验管理：创建用户；修改用户分组、Quota；管理用户开发容器和实验；</p></li>
+<li><p>节点管理：查看分组节点以及各个节点的详细信息。</p></li>
+</ul>
+<p><img alt="studio_screenshot" src="../_images/studio_screenshot2.png" /></p>
+</section>
+<section id="id2">
+<h2>调试与部署<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>在调试前，请先确保已经成功部署了 HAI Platform 后端。</p>
+<section id="id3">
+<h3>项目架构介绍<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>本项目主要包含了一个基于 <a class="reference external" href="https://reactjs.org/">React</a> 的 Studio 前端项目，一个基于 <a class="reference external" href="https://vuejs.org/">Vue.js</a> 的 Monitor 页面和一个基于 <a class="reference external" href="https://nodejs.org/en/">Node.js</a> 的后端接入层。</p>
+<p>目录结构：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>├──<span class="w"> </span>apps
+│<span class="w">   </span>├──<span class="w"> </span>studio：studio<span class="w"> </span>用户实验管理页面
+│<span class="w">   </span>└──<span class="w"> </span>monitor：监控管理页面
+├──<span class="w"> </span>packages
+│<span class="w">   </span>├──<span class="w"> </span>studio-pages：studio<span class="w"> </span>中的实验列表、日志、实验详情等核心组件，这部分在<span class="w"> </span>jupyter<span class="w"> </span>插件中进行了复用。
+│<span class="w">   </span>├──<span class="w"> </span>studio-schemas：studio<span class="w"> </span>中用到的一些<span class="w"> </span>Typescript<span class="w"> </span>Schema
+│<span class="w">   </span>└──<span class="w"> </span>studio-toolkit：studio<span class="w"> </span>中用到的一些工具函数
+├──<span class="w"> </span>servers
+│<span class="w">   </span>└──<span class="w"> </span>ailab-server：基于<span class="w"> </span>Node.js<span class="w"> </span>的接入层
+└──<span class="w"> </span>shared
+<span class="w">    </span>├──<span class="w"> </span>client-ailab-server：接入层<span class="w"> </span>http<span class="w"> </span>请求的管理实例
+<span class="w">    </span>├──<span class="w"> </span>client-api-server：http<span class="w"> </span>请求的管理实例
+<span class="w">    </span>├──<span class="w"> </span>i18n：语言包
+<span class="w">    </span>├──<span class="w"> </span>icons：通用<span class="w"> </span>icons<span class="w"> </span>集合
+<span class="w">    </span>├──<span class="w"> </span>io-frontier：基于<span class="w"> </span>websocket<span class="w"> </span>的长链接管理库
+<span class="w">    </span>├──<span class="w"> </span>shared：全局通用的<span class="w"> </span>schema、工具函数等
+<span class="w">    </span>└──<span class="w"> </span>x-editor：封装了二次开发的<span class="w"> </span>markdown<span class="w"> </span>编辑器<span class="w"> </span>@hai-platform/vditor
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>本地调试<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<section id="devrc">
+<h4>1. 填写 <code class="docutils literal notranslate"><span class="pre">.devrc</span></code> 配置文件<a class="headerlink" href="#devrc" title="Permalink to this headline">¶</a></h4>
+<p>为了方便定义我们调试中的依赖项目，我们定义了一个 <a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/.devrc"><code class="docutils literal notranslate"><span class="pre">.devrc</span></code></a> 文件，它基于 <a class="reference external" href="https://json5.org/">JSON5</a> 规范，我们可以在其中定义本地开发的配置内容。</p>
+<p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/.devrc"><code class="docutils literal notranslate"><span class="pre">.devrc</span></code></a> 文件中定义了我们调试开发中需要用到的后端服务、数据库等配置，其中标注 <strong><code class="docutils literal notranslate"><span class="pre">[必填]</span></code></strong> 的为必须要填写的项目。</p>
+<p>另外，我们项目中默认可以使用一些第三方依赖：</p>
+<ul class="simple">
+<li><p>使用 <a class="reference external" href="https://countly.com/">Countly</a> 进行监控上报，可以通过配置包含 <code class="docutils literal notranslate"><span class="pre">countly</span></code> 的字段进行开启。</p></li>
+<li><p>使用 <a class="reference external" href="https://www.meilisearch.com/">Meilisearch</a> 提供讨论区模块的搜索服务，可以通过配置 <code class="docutils literal notranslate"><span class="pre">MEILI_SEARCH</span></code> 相关字段开启。</p></li>
+</ul>
+<p><strong>注意</strong>：在生产环境中，可以通过环境变量指定相关变量，相关变量的全大写格式即为环境变量的 key</p>
+</section>
+<section id="id5">
+<h4>2. 本地调试<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<p>环境依赖：</p>
+<ul class="simple">
+<li><p>node &gt;= 18</p></li>
+<li><p>pnpm &gt;= 7.24.0</p></li>
+</ul>
+<p>先执行依赖安装等一些初始化操作：</p>
+<p>在终端执行：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnpm<span class="w"> </span>first
+</pre></div>
+</div>
+<p>开启 <code class="docutils literal notranslate"><span class="pre">ailab-server</span></code> 接入层的调试：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>servers/ailab-server/
+pnpm<span class="w"> </span>start
+</pre></div>
+</div>
+<p>开启 <code class="docutils literal notranslate"><span class="pre">studio</span></code> 前端页面的调试：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>apps/studio/
+pnpm<span class="w"> </span>start
+</pre></div>
+</div>
+<p>开启 <code class="docutils literal notranslate"><span class="pre">monitor</span></code> 前端页面的调试：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>apps/monitor/
+pnpm<span class="w"> </span>start
+</pre></div>
+</div>
+<p>此时，应该能够看到提示打开 URL，在浏览器中打开即可调试。</p>
+</section>
+<section id="id6">
+<h4>3. 扩展功能<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>在当前的开源版本中，部分功能我们并未提供完整的自定义实现，这部分功能如果需要，可以进行二次实现，同时为了方便实现，我们对这些功能的入口和 schema 进行了保留。</p>
+<p>模块：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/servers/ailab-server/src/biz/agg-fetion/fetion/public/index.ts">Fetion</a>: Fetion 可以用于处理告警信息，可以通过自定义 <code class="docutils literal notranslate"><span class="pre">CustomFetion</span></code> 的方式覆盖默认行为。</p></li>
+<li><p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/servers/ailab-server/src/biz/custom-statistics/public/index.ts">Statistics</a>: Statistics 文件包含了我们的一些用户统计数据的接口，可以自行实现相关函数完成统计功能。</p></li>
+<li><p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/apps/studio/src/biz-components/Panels/PathGuide/public/index.tsx">PathGuide 组件</a>: 由于使用场景不同，这个组件的展示默认被屏蔽，这里可以罗列一些实际使用中可能有用的路径，并且将其展示给用户。</p></li>
+<li><p>讨论区通知模块：我们在项目中携带了一个讨论区模块，不过要完整地使用其通知能力，还需要自行填入数据库模板，我们在<a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/servers/mainab-server/src/orm/db_log/xtopic_notification_demo.sql">这里</a> 给出了一个示例内容，这部分模板需要插入到 <code class="docutils literal notranslate"><span class="pre">frontend.topic_notification_template</span></code> 中。</p></li>
+</ul>
+<p>通用能力：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/i18n/src/config.ts">i18n 多语言</a>: 我们对部分重点模块支持中文、英文双语，可以在这里补充更多的国际化支持。</p></li>
+<li><p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/i18n/src/brand/public/index.ts">i18n Brand</a>: 这里指定了我们的一些应用名称等内容，可以自行更改。</p></li>
+<li><p><a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/shared/src/public/index.ts">Shared Public</a>: 这里指定了我们通用的配置，包括路径、节点信息等配置以及相关默认值，可以按需完善。</p></li>
+</ul>
+<p><strong>注意</strong>：在训练中，一般我们相同分组的节点需要保证同属 GPU/GPU 类型，所以我们可以简单地通过分组来判断当前分组的节点类型，在 <a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/blob/main/shared/shared/src/public/utils/group/group.ts">Group</a> 这里提供了快速判断的相关函数，这部分需要根据实际情况自行修改。</p>
+</section>
+</section>
+<section id="id7">
+<h3>线上部署<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<section id="id8">
+<h4>运行环境和配置要求<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><strong>最低 1 核 4G 内存的物理机、虚拟机或容器环境</strong></p></li>
+<li><p><strong>Linux/Unix 环境</strong></p></li>
+</ul>
+<p>我们建议两种部署方式：</p>
+<ol class="arabic simple">
+<li><p>通过 k8s 独立部署后端，并通过 nginx 独立部署 studio 和 monitor，比较适合大型使用场景</p></li>
+<li><p>将所有内容打包成一个二进制文件，直接启动，比较适合小型场景</p></li>
+</ol>
+</section>
+<section id="k8s">
+<h4>使用 k8s 部署<a class="headerlink" href="#k8s" title="Permalink to this headline">¶</a></h4>
+<p>部署 ailab-server 接入层：</p>
+<ul class="simple">
+<li><p>使用项目内的示例 <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> 或自行编写，打包成一个镜像推送到内部镜像仓库。</p></li>
+<li><p>编写 <code class="docutils literal notranslate"><span class="pre">deployment.yaml</span></code> 或者使用 <code class="docutils literal notranslate"><span class="pre">helm</span></code> 进行部署。</p></li>
+</ul>
+<p>部署 studio、monitor：</p>
+<ul class="simple">
+<li><p>分别在项目目录下执行 <code class="docutils literal notranslate"><span class="pre">pnpm</span> <span class="pre">build</span></code>，会在 dist 目录下得到项目产物。</p>
+<ul>
+<li><p>需要注意的是，采用独立部署的方案，需要在 <code class="docutils literal notranslate"><span class="pre">apps/studio/vite.config.mjs</span></code> 中按照注释提示更改 <code class="docutils literal notranslate"><span class="pre">createHtmlPlugin</span></code>。</p></li>
+</ul>
+</li>
+<li><p>将 studio 和 monitor 的产物，放入 nginx 的静态目录即可。</p></li>
+</ul>
+<p><strong>注意</strong>：由于这部分内容过于定制化，我们无法给出通用代码，这部分如果有相关需求，可以联系我们获取更多帮助。</p>
+</section>
+<section id="id9">
+<h4>使用二进制运行<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<p>二进制打包命令：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnpm<span class="w"> </span>first
+pnpm<span class="w"> </span>run<span class="w"> </span>bundle:hai
+</pre></div>
+</div>
+<p>脚本执行完成后，会在 <code class="docutils literal notranslate"><span class="pre">ailab-server-dist/binary</span></code> 目录下生成我们的目标二进制文件。</p>
+<p><strong>注意</strong>：默认仅打包 <code class="docutils literal notranslate"><span class="pre">node18-linux-x64</span></code> 平台产物，如果需要其他平台产物，请在 <code class="docutils literal notranslate"><span class="pre">servers/ailab-server/package.json</span></code> 中进行修改。</p>
+<p>之后可以在 linux 环境下启动我们的二进制打包文件，示例：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">BFF_ADMIN_TOKEN</span><span class="o">=</span>xxxxxxxx
+<span class="c1"># ... 这里请将配置补充完成</span>
+
+./hai-studio<span class="w"> </span>--log-dir<span class="w"> </span>./logs
+</pre></div>
+</div>
+<p>在二进制文件中，studio 前端页面的路径为根路径 <code class="docutils literal notranslate"><span class="pre">/</span></code>，monitor 的路径为 <code class="docutils literal notranslate"><span class="pre">/monitor</span></code>。</p>
+</section>
+</section>
+</section>
+<section id="id10">
+<h2>更多支持<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<p>在当前地开源的版本中，出于去除敏感信息考虑，我们对一些功能进行了裁剪，HAI Platform 包含了更多的监控、报表以及各类高级运维功能尚未开源。</p>
+<p>你可以自行二次开发，或者<a class="reference external" href="https://mp.weixin.qq.com/s/1orFQWkCzxH1sGZa8twleQ">联系我们</a>获取更多支持：包括但不限于完整版本的试用、私有部署等。</p>
+</section>
+<section id="id11">
+<h2>贡献代码<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<p>在二次开发或者提交代码前，请先阅读上文调试与部署部分。</p>
+<p>另外，本项目并未开源所有可用功能，如果你有大范围的定制或二次开发需求，可以<a class="reference external" href="https://github.com/HFAiLab/hai-platform-studio/issues">在这里</a>确认是否能够获取更多帮助。</p>
+<section id="id12">
+<h3>提交代码<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>我们针对部分模块，设置了一些测试用例，请保证提交的代码测试用例运行正常：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pnpm<span class="w"> </span><span class="nb">test</span>
+</pre></div>
+</div>
+<p>您可以通过提交 Pull Request 的方式提交新的代码合并请求。</p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="../guide/tutorial.html" class="btn btn-neutral float-right" title="命令行工具 (CLI)" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="install.html" class="btn btn-neutral" title="安装与设置" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">Studio</a><ul>
+<li><a class="reference internal" href="#id1">介绍</a></li>
+<li><a class="reference internal" href="#id2">调试与部署</a><ul>
+<li><a class="reference internal" href="#id3">项目架构介绍</a></li>
+<li><a class="reference internal" href="#id4">本地调试</a><ul>
+<li><a class="reference internal" href="#devrc">1. 填写 <code class="docutils literal notranslate"><span class="pre">.devrc</span></code> 配置文件</a></li>
+<li><a class="reference internal" href="#id5">2. 本地调试</a></li>
+<li><a class="reference internal" href="#id6">3. 扩展功能</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id7">线上部署</a><ul>
+<li><a class="reference internal" href="#id8">运行环境和配置要求</a></li>
+<li><a class="reference internal" href="#k8s">使用 k8s 部署</a></li>
+<li><a class="reference internal" href="#id9">使用二进制运行</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id10">更多支持</a></li>
+<li><a class="reference internal" href="#id11">贡献代码</a><ul>
+<li><a class="reference internal" href="#id12">提交代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>

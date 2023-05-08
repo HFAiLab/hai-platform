@@ -1,0 +1,460 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>hfai &mdash; HAI Platform  documentation</title>
+  
+
+  <link rel="shortcut icon" href="../_static/images/logo192.png" />
+  
+  
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="../_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/element-plus.css" type="text/css" />
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="hfai.client" href="client.html" />
+  <link rel="prev" title="UGC 命令" href="../cli/ugc.html" />
+  <!-- Google Analytics -->
+  <script type="text/javascript">
+    var collapsedSections = [];
+  </script>
+  
+  <!-- End Google Analytics -->
+  
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+  <script>
+    MathJax = {
+        chtml: {
+            scale: 1,
+            minScale: 1,
+        },
+        svg: {
+            scale: 1,
+            minScale: 1,
+        }
+    }
+</script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="../_static/external/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="../_static/external/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="../_static/external/all.css"
+    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href=""
+        aria-label="OpenMMLab"></a>
+
+      <div class="main-menu">
+        <ul>
+        </ul>
+      </div>
+
+      <!-- <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a> -->
+    </div>
+  </div>
+</div>
+
+<body class="pytorch-body">
+
+   
+
+  
+
+  <div class="table-of-contents-link-wrapper">
+    <span>Table of Contents</span>
+    <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+  </div>
+
+  <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+    <div class="pytorch-side-scroll">
+      <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <div class="pytorch-left-menu-search">
+          
+
+          
+          
+          
+          
+
+          
+
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        
+        
+        
+        
+        
+        <p class="caption" role="heading"><span class="caption-text">开始使用</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../start/hai_intro.html">基本介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/install.html">安装与设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start/studio.html">Studio</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">用户须知</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/tutorial.html">命令行工具 (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/environment.html">环境配置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/schedule.html">分时调度</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CLI 说明</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cli/user.html">用户命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/exec.html">运行命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/task.html">任务命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/cluster.html">集群命令</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cli/ugc.html">UGC 命令</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API 说明</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">hfai</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">hfai.client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client_remote.html">hfai.client.remote</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">其他</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/env_var.html">环境变量</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/resources.html">外部资源</a></li>
+</ul>
+
+        
+        
+      </div>
+    </div>
+  </nav>
+
+  <div class="pytorch-container">
+    <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+      <div class="pytorch-breadcrumbs-wrapper">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="../index.html">
+            Docs
+        </a> &gt;
+      </li>
+
+        
+      <li>hfai</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/hai.rst.txt" rel="nofollow"><img src="../_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+      </div>
+
+      <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+        Shortcuts
+      </div>
+    </div>
+
+    <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+      <div class="pytorch-content-left">
+        
+          <div class="rst-content">
+            
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+                
+  <section id="hfai">
+<h1>hfai<a class="headerlink" href="#hfai" title="Permalink to this headline">¶</a></h1>
+<p>HAI Platform 提供了任务级分时调度的深度学习训练模式，极大利用智算集群算力。您可以通过 <cite>import hfai</cite> 开启全新训练体验。</p>
+<div class="toctree-wrapper compound">
+</div>
+<section id="hfai-client">
+<h2>hfai.client<a class="headerlink" href="#hfai-client" title="Permalink to this headline">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.set_watchdog_time" title="hfai.client.set_watchdog_time"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_watchdog_time</span></code></a></p></td>
+<td><p>设置任务超时时间，规定时间内无 log 该任务会被认为已失败，默认为 1800 秒</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client.html#hfai.client.set_whole_life_state" title="hfai.client.set_whole_life_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_whole_life_state</span></code></a></p></td>
+<td><p>设置 whole_life_state</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.get_whole_life_state" title="hfai.client.get_whole_life_state"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_whole_life_state</span></code></a></p></td>
+<td><p>获取当前 chain_id 的上一个 id 任务留下来的 whole_life_state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client.html#hfai.client.receive_suspend_command" title="hfai.client.receive_suspend_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">receive_suspend_command</span></code></a></p></td>
+<td><p>获取该任务是否即将被打断</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.go_suspend" title="hfai.client.go_suspend"><code class="xref py py-obj docutils literal notranslate"><span class="pre">go_suspend</span></code></a></p></td>
+<td><p>通知 server 该任务可以被打断</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client.html#hfai.client.EXP_PRIORITY" title="hfai.client.EXP_PRIORITY"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EXP_PRIORITY</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.set_priority" title="hfai.client.set_priority"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_priority</span></code></a></p></td>
+<td><p>设置当前任务的优先级，注意如果你没有该优先级的权限可能会导致任务被立刻打断</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client.html#hfai.client.create_experiment_v2" title="hfai.client.create_experiment_v2"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_experiment_v2</span></code></a></p></td>
+<td><p>根据 v2 配置文件创建任务</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.bind_hf_except_hook" title="hfai.client.bind_hf_except_hook"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bind_hf_except_hook</span></code></a></p></td>
+<td><p>该函数用于将 Process 类绑定异常 hook，在子进程发生异常时通知 server 将其强行关闭，并启动自我检查，发现硬件故障重启该任务</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client.html#hfai.client.get_experiment" title="hfai.client.get_experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_experiment</span></code></a></p></td>
+<td><p>通过 name、id 或 chain_id 获取训练任务，不能都为空，只能获取自己的任务</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.get_experiments" title="hfai.client.get_experiments"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_experiments</span></code></a></p></td>
+<td><p>获取自己最近提交的任务</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client.html#hfai.client.self_health_check" title="hfai.client.self_health_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">self_health_check</span></code></a></p></td>
+<td><p>对当前机器做系统检查，检查通过会退出该任务，检查失败会重启该任务 :param pid: :return:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="client.html#hfai.client.api.Experiment" title="hfai.client.api.Experiment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Experiment</span></code></a></p></td>
+<td><p>任务类</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hfai-client-remote">
+<h2>hfai.client.remote<a class="headerlink" href="#hfai-client-remote" title="Permalink to this headline">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="client_remote.html#hfai.client.remote.GlobalSession" title="hfai.client.remote.GlobalSession"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GlobalSession</span></code></a></p></td>
+<td><p>远程运行的Session</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="client_remote.html#hfai.client.remote.SessionConfig" title="hfai.client.remote.SessionConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SessionConfig</span></code></a></p></td>
+<td><p>配置Session，本地还是远程，远程用哪个分组</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+              </article>
+              
+            </div>
+            <footer>
+  
+  <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    
+    <a href="client.html" class="btn btn-neutral float-right" title="hfai.client" accesskey="n"
+      rel="next">Next <img src="../_static/images/chevron-right-blue.svg"
+        class="next-page"></a>
+    
+    
+    <a href="../cli/ugc.html" class="btn btn-neutral" title="UGC 命令" accesskey="p"
+      rel="prev"><img src="../_static/images/chevron-right-blue.svg" class="previous-page"> Previous</a>
+    
+  </div>
+  
+
+  <hr>
+
+  <div role="contentinfo">
+    <p>
+      &copy; Copyright 2023, High-Flyer.
+
+    </p>
+  </div>
+  
+  <div>
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a
+      href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the
+      Docs</a>.
+  </div>
+   
+
+</footer>
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">hfai</a><ul>
+<li><a class="reference internal" href="#hfai-client">hfai.client</a></li>
+<li><a class="reference internal" href="#hfai-client-remote">hfai.client.remote</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+    </section>
+  </div>
+
+  
+
+
+  
+
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../"
+    src="../_static/documentation_options.js"></script>
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/js/vue.global.prod.js"></script>
+  <script src="../_static/js/element-plus.full.js"></script>
+  
+
+  
+
+  <script type="text/javascript" src="../_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="../_static/js/vendor/bootstrap.min.js"></script>
+  <script src="../_static/external/list.min.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+    jQuery(function () {
+      SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <!-- <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+  </div> -->
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="" aria-label="OpenMMLab"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="../_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+      mainMenuDropdown.bind();
+      filterTags.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function (e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+
+</html>
