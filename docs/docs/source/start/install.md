@@ -40,4 +40,4 @@
 
 6. 使用 `hai-cli`　初始化和提交任务。
 
-<br />更详细的配置指引可以阅读[容器化搭建指南](https://github.com/HFAiLab/hai-platform/blob/main/README.md)。
+<br />更详细的配置指引可以阅读[ HAI Platform 开源仓库](https://github.com/HFAiLab/hai-platform/blob/main/README.md)。
