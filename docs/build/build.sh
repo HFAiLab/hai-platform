@@ -1,9 +1,9 @@
 # sphinx-quickstart
-rm -rf ../docs/*
+rm -rf ../!"(build)"
 rm -rf docs/build
 
 cd docs
 make clean && make html
 
-mv build/html/* ../../docs/
+mv build/html/* ../../
 rm -rf build
