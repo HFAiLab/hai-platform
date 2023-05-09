@@ -65,19 +65,23 @@ async def change_node_state_api(node_name: str, state: str, user: User = Depends
 
 class HostInfo(BaseModel):
     node: str
-    gpu_num: int
-    type: str
-    use: str
-    origin_group: str
-    room: str
-    schedule_zone: str
+    gpu_num: int = None
+    type: str = None
+    use: str = None
+    origin_group: str = None
+    room: str = None
+    schedule_zone: str = None
 
 
-async def update_host_info_api(node: str, origin_group: str, user: User = Depends(
+async def update_host_info_api(node: HostInfo, user: User = Depends(
         get_api_user_with_token(allowed_groups=['cluster_manager', 'ops']))):
-    sql = 'update "host" set "origin_group" = %s where "node" = %s'
-    if (await MarsDB().a_execute(sql, (origin_group, node))).rowcount == 0:
-        raise HTTPException(404, detail=f'未找到指定的节点 [{node}]')
+    update_attrs = {k: v for k, v in node.dict().items() if v is not None and k != 'node'}
+    if len(update_attrs) == 0:
+        raise HTTPException(status_code=400, detail=f'必须至少指定一个要更新的属性')
+    assigns = ','.join(f'"{k}"=%s' for k in update_attrs)
+    sql = f'update "host" set {assigns} where "node" = %s'
+    if (await MarsDB().a_execute(sql, (*update_attrs.values(), node.node))).rowcount == 0:
+        raise HTTPException(404, detail=f'未找到指定的节点 [{node.node}]')
     return {
         'success': 1,
         'msg': '更新成功'
@@ -95,10 +99,13 @@ async def delete_host_info_api(node: str, user: User = Depends(
     }
 
 
-async def create_host_info_api(nodes: Union[HostInfo, List[HostInfo]], user: User = Depends(
+async def create_host_info_api(node: HostInfo, user: User = Depends(
         get_api_user_with_token(allowed_groups=['cluster_manager', 'ops']))):
-    if not isinstance(nodes, list):
-        nodes = [nodes]
+    nodes = [node]  # 暂时只支持单条处理
+    for node in nodes:
+        if any([v is None for v in node.dict().values()]):
+            raise HTTPException(status_code=400, detail=f'创建 host info 时必须指定全部属性')
+
     sql = 'select node from "host" where "node" in (' + ','.join(['%s'] * len(nodes)) + ')'
     if len(dups := (await MarsDB().a_execute(sql=sql, params=tuple(node.node for node in nodes))).fetchall()) > 0:
         return {'success': 0, 'msg': f'以下节点已经存在: {[dup.node for dup in dups]}'}

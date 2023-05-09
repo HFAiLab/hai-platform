@@ -301,7 +301,10 @@ async def create_task_base_queue_v2(user: User, task_schema: TaskSchema = None, 
         'override_node_resource': override_node_resource,
         'schema': raw_task_schema,  # 保存提交时候的样子
     }
-    task = await process_create_task(task_schema=task_schema, task=task)
+    result = await process_create_task(task_schema=task_schema, task=task)
+    if result.get('success', 0) != 1:
+        return result
+    task = result['task']
     tags = task_schema.options.get('tags', [])
     if isinstance(tags, str):
         tags = tags.split(',')

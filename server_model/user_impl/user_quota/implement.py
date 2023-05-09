@@ -157,7 +157,6 @@ class UserQuota(UserQuotaExtras, IUserQuota):
     def df_to_jupyter_quota(cls, df: pd.DataFrame):
         res = {}
         for k, v in df.quota.to_dict().items():
-            # FIXME: 这里需要显式区分下quota类别
             res[k.replace('jupyter:', '')] = {
                 'cpu': int(str(v)[-5:-2]),
                 'memory': int(str(v)[-9:-5]),

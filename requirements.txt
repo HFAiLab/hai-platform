@@ -82,3 +82,4 @@ openpyxl==3.0.9
 envsubst==0.1.5
 pylint==2.16.2
 astunparse==1.6.3
+posix-ipc==1.1.1

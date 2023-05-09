@@ -3,8 +3,7 @@ re_signal = 60
 send_fetion = 120
 default_group = 'jd_test_a100'
 error_node_meta_group = "err_nodes"
-rotate_num = 3
-shm_size = 1048576
+rotate_num = 5
 
 # 基础的组件
 [scheduler.beater.ticks]

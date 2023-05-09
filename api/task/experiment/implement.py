@@ -15,7 +15,7 @@ from fastapi import Depends, Request, Query, HTTPException
 from logm import logger
 from api.depends import get_api_user_with_token, get_api_task, JUPYTER_ADMIN_GROUP, check_user_access_to_task
 from api.task_schema import TaskSchema
-from api.task.service_task import create_service_task
+from api.task.service_task import create_service_task, VISIBLE_TASK_TAG
 from api.operation import operate_task_base, create_task_base_queue_v2
 from base_model.training_task import TrainingTask
 from conf.flags import TASK_OP_CODE, TASK_PRIORITY, QUE_STATUS, STOP_CODE, EXP_STATUS, TASK_TYPE
@@ -148,7 +148,12 @@ async def chain_perf_series_api(task: TrainingTask = Depends(get_api_task()),
         }
 
 
+INTERNAL_TAGS = {VISIBLE_TASK_TAG}
+
+
 async def tag_task(tag: str, task: TrainingTask = Depends(get_api_task())):
+    if tag in INTERNAL_TAGS:
+        return {'success': 0, 'msg': f'[{tag}] 是内部保留 tag, 请使用其他命名'}
     await task.re_impl(AioDbOperationImpl).tag_task(tag, remote_apply=True)
     return {
         'success': 1,
@@ -157,6 +162,8 @@ async def tag_task(tag: str, task: TrainingTask = Depends(get_api_task())):
 
 
 async def untag_task(tag: str, task: TrainingTask = Depends(get_api_task())):
+    if tag in INTERNAL_TAGS:
+        return {'success': 0, 'msg': f'[{tag}] 是内部保留 tag, 无法删除'}
     await task.re_impl(AioDbOperationImpl).untag_task(tag, remote_apply=True)
     return {
         'success': 1,
@@ -170,6 +177,8 @@ async def delete_tags(tag: List[str] = Query(default=None), user: User = Depends
             'success': 0,
             'msg': '请指定要删除的 tag'
         }
+    if any(t in INTERNAL_TAGS for t in tag):
+        return {'success': 0, 'msg': f'不能删除内部保留的 tag: {[t for t in tag if t in INTERNAL_TAGS]}'}
     await MarsDB().a_execute(f"""
     delete from "task_tag" where "user_name" = '{user.user_name}' and tag in ('{"','".join(tag)}')
     """)
@@ -184,6 +193,7 @@ async def get_task_tags(user: User = Depends(get_api_user_with_token())):
         r.tag for r in
         await MarsDB().a_execute(f"""select distinct "tag" from "task_tag" where user_name = '{user.user_name}' """)
     ]
+    tags = list(set(tags) - set(INTERNAL_TAGS))
     return {
         'success': 1,
         'result': tags

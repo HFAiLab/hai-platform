@@ -81,6 +81,7 @@ def insert_pods(task: TrainingTask):
                     ).insert(db_conn=conn)
         except Exception as e:
             if 'duplicate' in str(e):
+                logger.exception(e)
                 raise DuplicatedPods('有 launcher 已经插入任务了')
             raise Exception(f'task_id: {task.id} 插入 pod 失败, args: {(task_memory, task_cpu, task_assigned_gpus)} exception: {e}')
 
@@ -343,6 +344,7 @@ if __name__ == '__main__':
                     add_archive_for_senators(trigger_name='TrainingTaskTrigger', data=[task.id])
                 except DuplicatedPods as de:
                     # 有别的 launcher 启动了这个任务，就不管了
+                    logger.info('有其他 launcher 启动了这个任务, 跳过')
                     pass
                 except Exception as e:
                     logger.exception(e)

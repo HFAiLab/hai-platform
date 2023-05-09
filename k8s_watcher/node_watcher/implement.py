@@ -128,7 +128,9 @@ class NodeListWatcher(ListWatcher):
         df = df[NODES_DF_COLUMNS]
         df = df.sort_values(by=['name'], ignore_index=True)
         self.count += 1
-        return df.where(df.notnull(), None)
+        df = df.where(df.notnull(), None)
+        df = df[df.name.apply(lambda n: n is not None).astype(bool)].copy()
+        return df
 
     def process(self):
         nodes_df = self._get_nodes_df()

@@ -40,7 +40,7 @@ class BaseProcessor(object):
     resource_df: pd.DataFrame = TickDataDescriptor()
     task_df: pd.DataFrame = TickDataDescriptor()
     user_df: pd.DataFrame = TickDataDescriptor()
-    metrics: pd.DataFrame = TickDataDescriptor()
+    metrics: dict = TickDataDescriptor()
 
     def __init__(self, *, name: str, conn: ProcessConnection, global_config_conn: ProcessConnection):
         self.name = name
@@ -55,6 +55,7 @@ class BaseProcessor(object):
         self.__global_config_conn = global_config_conn
         self.__last_perf_counter = -1
         self.__last_perf_counter_list = defaultdict(list)
+        self.__last_write_result = -1
 
     def _log(self, log_func, *args, **kwargs):
         with logger.contextualize(uuid=f'{self.name}#{self.seq}'):
@@ -106,6 +107,7 @@ class BaseProcessor(object):
         把自己的 tick_data 设置成传入的 tick_data
         """
         self.tick_data = TickData() if tick_data is None else tick_data
+        self.metrics = {}  # 这里有上游的 metrics
 
     def start(self):
         while True:
@@ -144,9 +146,11 @@ class BaseProcessor(object):
         写入数据
         """
         self.tick_data.extra_data['registered_global_config'] = self.__registered_global_config
+        if self.__last_write_result > 0:
+            self.update_metric('write_result', self.__last_write_result)
         self.perf_counter()
         self.__conn.put(self.tick_data, seq=self.seq)
-        self.update_metric('write_result', self.perf_counter())
+        self.__last_write_result = self.perf_counter()
 
     def __load_global_config(self):
         """

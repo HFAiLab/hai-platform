@@ -13,6 +13,8 @@ from hfai.client import get_experiment
 
 
 CLI_NAME = os.path.basename(sys.argv[0])
+if 'sphinx' in CLI_NAME:
+    CLI_NAME = 'hai-cli'
 is_hai = 'hai' in CLI_NAME
 
 # ~/.hfai/plugins 为 plugins配置文件，每行可为plugin执行文件路径，或者plugin名(将在python bin目录寻找对应文件)
