@@ -1,5 +1,4 @@
 
-# 为了安全期间，external 的操作和 internal admin 对 quota 的操作，我拆分成了两个接口
 from fastapi import HTTPException
 from conf.flags import TASK_PRIORITY
 from server_model.user import User

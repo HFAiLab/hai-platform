@@ -1,4 +1,5 @@
 import pickle
+import time
 import uuid
 from threading import Thread
 from typing import TYPE_CHECKING
@@ -52,8 +53,11 @@ class WatchThread(Thread):
             self.user_data.respond_in_mem_table_request(**data)
 
     def run(self):
-        for msg in MessageQueue.listen():
+        while True:
+            msg = None
             try:
-                self.process(msg)
+                for msg in MessageQueue.listen():
+                    self.process(msg)
             except Exception as e:
-                log_error(f'处理 msg 失败: {msg}')
+                log_error(f'获取或处理 msg 失败: {msg}', e)
+                time.sleep(1)

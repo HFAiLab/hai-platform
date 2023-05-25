@@ -3,7 +3,7 @@ import ujson
 from sqlalchemy.engine import Connection
 
 from conf import CONF
-from conf.flags import STOP_CODE, QUE_STATUS
+from conf.flags import STOP_CODE, QUE_STATUS, EXP_STATUS
 from db import redis_conn, MarsDB
 from .base_processor import BaseProcessor
 from .base_types import ASSIGN_RESULT, MATCH_RESULT
@@ -84,7 +84,7 @@ class Matcher(BaseProcessor):
         for _, row in self.tasks_to_start_df.sort_index().iterrows():
             sql, params = f"""
                 update "unfinished_task_ng" 
-                set  "queue_status" = %s, "assigned_nodes" = %s, "config_json" = "config_json" || %s
+                set  "queue_status" = %s, "assigned_nodes" = %s, "config_json" = "config_json" || %s, "worker_status" = %s
                 where "id" = %s and "queue_status" = %s
                 returning "unfinished_task_ng"."id"
             """, (
@@ -98,6 +98,7 @@ class Matcher(BaseProcessor):
                         'assigned_numa': row.assigned_numa
                     }
                 }),
+                EXP_STATUS.CREATED,
                 row.id,
                 QUE_STATUS.QUEUED
             )

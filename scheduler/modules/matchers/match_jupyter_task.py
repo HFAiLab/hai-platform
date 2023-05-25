@@ -17,6 +17,7 @@ def match_task(resource_df: pd.DataFrame, task_df: pd.DataFrame, extra_data: Dic
         (resource_df.nodes == 1) &
         (resource_df.working.apply(lambda w: w is None).astype(bool) | (resource_df.working == 'jupyter'))
         ].copy()
+    resource_df['n_running_tasks'] = 0
     # note: 先只支持单节点任务
     # 选出能继续运行的任务
     task_df.loc[(task_df.assign_result == ASSIGN_RESULT.CAN_RUN) & (task_df.queue_status == QUE_STATUS.SCHEDULED), 'match_result'] = MATCH_RESULT.KEEP_RUNNING
@@ -28,6 +29,7 @@ def match_task(resource_df: pd.DataFrame, task_df: pd.DataFrame, extra_data: Dic
         else:
             resource_df.loc[resource_df.name.isin(task.assigned_nodes), 'nodes'] = 0
             resource_df.loc[resource_df.name.isin(task.assigned_nodes), 'memory'] -= memory << 30
+            resource_df.loc[resource_df.name.isin(task.assigned_nodes), 'n_running_tasks'] += 1
     running_nodes = set(keep_running_df.assigned_nodes.explode())
     error_nodes = running_nodes - set(resource_df.name)
     exploded_nodes_series = task_df.assigned_nodes.explode()
@@ -42,11 +44,8 @@ def match_task(resource_df: pd.DataFrame, task_df: pd.DataFrame, extra_data: Dic
     # 共享逻辑
     for ind, task in shared_task_df.sort_index().iterrows():
         cpu, memory = (task.config_json['schema'].get('resource', {}).get(key, 0) for key in ['cpu', 'memory'])
-        if task.user_role == 'internal':
-            # 暂时只支持单节点任务，用 max 空数组会报错
-            nodes_df = resource_df[(resource_df.group == task.group) & (resource_df.memory >= (memory << 30))].sort_values('name', ascending=True)
-        else:
-            nodes_df = resource_df[(resource_df.group == task.group) & (resource_df.memory >= (memory << 30))].sort_values('name', ascending=False)
+        # 暂时只支持单节点任务，用 max 空数组会报错
+        nodes_df = resource_df[(resource_df.group == task.group) & (resource_df.memory >= (memory << 30))].sort_values('n_running_tasks', ascending=True)
         if len(nodes_df):
             nodes_df = nodes_df[0:1]
             if task.group.startswith(CONF.jupyter.mig_node_group_prefix):
@@ -62,6 +61,7 @@ def match_task(resource_df: pd.DataFrame, task_df: pd.DataFrame, extra_data: Dic
                 assigned_gpus=assigned_gpus_list
             )
             resource_df.loc[resource_df.index.isin(nodes_df.index), 'memory'] -= memory << 30
+            resource_df.loc[resource_df.index.isin(nodes_df.index), 'n_running_tasks'] += 1
         else:
             task_df.loc[task_df.index == ind, 'match_result'] = MATCH_RESULT.DO_NOTHING
     # 独占逻辑

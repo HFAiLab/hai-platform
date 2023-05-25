@@ -8,7 +8,6 @@ import api.task.experiment as at_exp
 import api.task.port as at_port
 import api.task.service_task as at_service_task
 import api.user.admin as au_admin
-import api.user.external as au_ext
 import api.user.user as au_user
 import api.resource.cluster as ar_cluster
 import api.training as a_train
@@ -55,6 +54,8 @@ if 'operating' in REG_SERVERS:
     app.post('/operating/mount_point/create')(ar_storage.create_mount_point)
     app.post('/operating/mount_point/delete')(ar_storage.delete_mount_point)
 
+    app.post('/operating/storage/add_monitor_dir')(ar_storage.add_monitor_dir)
+
 
 if 'ugc' in REG_SERVERS:
     app.post('/ugc/user/nodeport/create')(at_port.node_port_svc)
@@ -86,8 +87,11 @@ if 'query' in REG_SERVERS:
     app.post('/query/user/training_quota')(aq_optimized_user.get_user_node_quota_api)
     app.post('/query/user/training_quota/get_used')(aq_optimized_user.get_quota_used_api)
     app.post('/query/user/training_quota/list_all')(aq_optimized_user.get_all_user_node_quota_api)
+    app.post('/query/user/training_quota/list')(au_admin.get_all_user_priority_quota)
+    ##### 兼容接口, 保留几个版本
     app.post('/query/user/training_quota/internal_list_all')(au_admin.get_internal_user_priority_quota)
-    app.post('/query/user/training_quota/external_list_all')(au_ext.get_external_user_priority_quota)
+    app.post('/query/user/training_quota/external_list_all')(au_admin.get_external_user_priority_quota)
+    #####
     app.post('/query/user/access_token/list')(au_access.list_access_token)
     app.post('/query/user/tag/list')(at_exp.get_task_tags)
     app.post('/query/user/nodeport/list')(at_port.get_node_port_svc_list)

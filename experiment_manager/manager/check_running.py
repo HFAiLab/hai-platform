@@ -31,6 +31,7 @@ with logger.contextualize(uuid=f'{log_id}.init'):
     set_mass_info(key_list=[generate_key(class_name=TrainingTask.__name__, sign='id', value=task_id)], mass_name=f'{task_id}_{module}')
     register_parliament()
     task = TrainingTaskSelector.find_one_by_id(AutoTaskSchemaImpl, id=task_id)
+    k8s_namespace = task.user.config.task_namespace
     bind_logger_task(task)
     register_archive(task, sign='id')
     total_num = len(task.assigned_nodes)
@@ -71,7 +72,7 @@ def check_pod_disappeared(finished_pod_ids):
     """
     is_failed_or_stopped = False
     pod_ids = {f'{task.user_name.replace("_", "-")}-{task_id}-{i}' for i in range(total_num)}
-    k8s_pods = custom_k8s_api.list_namespaced_pod_with_retry(namespace=CONF.launcher.task_namespace,
+    k8s_pods = custom_k8s_api.list_namespaced_pod_with_retry(namespace=k8s_namespace,
                                                              label_selector=f'task_id={task_id},type!=manager',
                                                              resource_version='0')
     resource_version = k8s_pods['metadata']['resourceVersion']
@@ -157,7 +158,7 @@ with logger.contextualize(uuid=f'{log_id}.monitor_loop'):
             }
             logger.info(f'开始watch状态变化，params: {params}')
             for event in w.stream(k8s_api.list_namespaced_pod,
-                                  namespace=CONF.launcher.task_namespace,
+                                  namespace=k8s_namespace,
                                   label_selector=f'task_id={task_id},type!=manager',
                                   **params):
                 event_object = event['object']

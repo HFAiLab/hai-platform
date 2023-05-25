@@ -27,7 +27,7 @@ pushd hfai
   mkdir -p conf
   pushd conf
     touch __init__.py
-    ln -s ${current_path}/conf/flags.py
+    ln -s ${current_path}/conf/flags
     ln -s ${current_path}/conf/utils.py
   popd
 popd

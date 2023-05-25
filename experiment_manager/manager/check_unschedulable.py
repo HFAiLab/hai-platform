@@ -27,6 +27,7 @@ with logger.contextualize(uuid=f'{log_id}.init'):
     set_mass_info(key_list=[generate_key(class_name=TrainingTask.__name__, sign='id', value=task_id)], mass_name=f'{task_id}_{module}')
     register_parliament()
     task = TrainingTaskSelector.find_one_by_id(AutoTaskSchemaImpl, id=task_id)
+    k8s_namespace = task.user.config.task_namespace
     bind_logger_task(task)
     register_archive(task, sign='id')
     custom_k8s_api = get_custom_corev1_api()
@@ -37,7 +38,7 @@ def check_unschedulable():
     try:
         logger.info('检查是否unschedulable')
         try:
-            k8s_pods = custom_k8s_api.list_namespaced_pod_with_retry(namespace=CONF.launcher.task_namespace,
+            k8s_pods = custom_k8s_api.list_namespaced_pod_with_retry(namespace=k8s_namespace,
                                                           label_selector='task_id={}'.format(task_id),
                                                           resource_version='0')
         except Exception as e:

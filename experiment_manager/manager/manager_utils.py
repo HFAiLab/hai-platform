@@ -13,7 +13,6 @@ from db import redis_conn
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 
-k8s_namespace = CONF.launcher.task_namespace
 task_id = int(os.environ['TASK_ID'])
 task = BaseTaskSelector.find_one(AutoTaskSchemaImpl, id=task_id)
 bind_logger_task(task)

@@ -13,7 +13,7 @@ from api.depends import get_api_user_with_token
 from api.user.priority_utils import get_priority_str
 from base_model.base_user import BaseUser
 from conf import CONF
-from conf.flags import USER_ROLE, TASK_PRIORITY
+from conf.flags import USER_ROLE, TASK_PRIORITY, ALL_USER_ROLES
 from db import MarsDB
 from logm import logger
 from server_model.user_data import SchedulerUserTable, UserAllGroupsTable
@@ -22,47 +22,61 @@ from server_model.user import User
 from server_model.user_impl import AioUserDb
 
 
-async def get_internal_user_priority_quota(user: User = Depends(get_api_user_with_token(allowed_groups=['internal_quota_limit_editor']))):
+async def get_all_user_priority_quota(role: str, user: User = Depends(get_api_user_with_token())):
     """
-    用于获取外部用户的 quota 列表，和获取内部用的列表，两个接口
+    用于获取指定 role 全部用户的 quota 列表，供管理页面使用
     :return:
     """
+    if role not in ALL_USER_ROLES + ['all']:
+        raise HTTPException(400, detail=f'role 参数仅支持 {ALL_USER_ROLES + ["all"]}')
+    if not verify_quota_permission(role, user):
+        raise HTTPException(403, detail='无权操作')
     user_df = await SchedulerUserTable.async_df
     user_group_df = await UserAllGroupsTable.async_df
     user_df = pd.merge(user_df, user_group_df, on='user_name')
-    user_df = user_df[user_df.resource.str.startswith('node') & (user_df.role == USER_ROLE.INTERNAL)
-                      & (user_df.group != '') & user_df.group]
+    mask = user_df.resource.str.startswith('node') & (user_df.group != '') & user_df.group
+    if role != 'all':
+        mask = mask & (user_df.role == role)
     return {
         'success': 1,
-        'data': user_df.to_dict('records')
+        'data': user_df[mask].to_dict('records')
     }
 
 
+# 兼容旧接口, 过几个版本删除
+async def get_internal_user_priority_quota(user: User = Depends(get_api_user_with_token())):
+    return await get_all_user_priority_quota(role=USER_ROLE.INTERNAL, user=user)
+
+async def get_external_user_priority_quota(user: User = Depends(get_api_user_with_token())):
+    return await get_all_user_priority_quota(role=USER_ROLE.EXTERNAL, user=user)
+
+
 async def set_user_gpu_quota_limit(
-        internal_username: str,
         priority: int,
         group: str,
         quota: int,
+        internal_username: str = None,  # 兼容
+        user_name: str = None,
         user: User = Depends(get_api_user_with_token(allowed_groups=['internal_quota_limit_editor'])),
 ):
-    if priority < TASK_PRIORITY.BELOW_NORMAL.value:
+    # 兼容逻辑, 待删除
+    user_name = internal_username if user_name is None else user_name
+    print(internal_username, user_name)
+    if user_name is None:
+        raise HTTPException(status_code=400, detail='必须指定 user_name')
+
+    priority_str = get_priority_str(priority)
+    resource = f'node_limit-{group}-{priority_str}'
+    target_user = await AioUserSelector.find_one(user_name=user_name)
+
+    if not target_user.is_external and priority < TASK_PRIORITY.BELOW_NORMAL.value:
         raise HTTPException(status_code=403, detail={
             'success': 0,
             'msg': '不能设置更低优先级'
         })
 
-    priority_str = get_priority_str(priority)
-    internal_user = await AioUserSelector.find_one(user_name=internal_username)
-    if internal_user.role != USER_ROLE.INTERNAL:
-        raise HTTPException(status_code=403, detail={
-            'success': 0,
-            'msg': '只能修改内部用户的 quota_limit'
-        })
-
-    resource = f'node_limit-{group}-{priority_str}'
-
     # 修改 quota_limit
-    await internal_user.aio_db.insert_quota(resource, quota, remote_apply=False)
+    await target_user.aio_db.insert_quota(resource, quota, remote_apply=False)
 
     return {
         'success': 1,

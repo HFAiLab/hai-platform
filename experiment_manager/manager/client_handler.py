@@ -1,4 +1,5 @@
 import os
+import time
 
 import ujson
 
@@ -58,7 +59,7 @@ def go_suspend(**kwargs):
 
 def set_priority(priority: int = None, custom_rank: float = None, **kwargs):
     if priority:
-        if not user.is_internal:
+        if user.is_external:
             priority = -1
         try:
             priority = int(priority)
@@ -94,10 +95,13 @@ def disable_warn(warn_type, **kwargs):
     }
 
 
-def waiting_memory_free_failed(error_msg, **kwargs):
-    logger.f_error(f'[{task.user_name}][{task.nb_name}][{task.id}] 训练前检查资源释放失败（{error_msg}），请系统组检查')
+def waiting_memory_free_failed(error_msg, node, **kwargs):
+    msg = f'[{task.user_name}][{task.nb_name}][{task.id}] 训练前检查资源释放失败（{error_msg}），请系统组检查'
+    logger.f_error(msg)
     task.update(('suspend_code',), (SUSPEND_CODE.CAN_SUSPEND,))
     redis_conn.lpush(f'{CONF.manager.stop_channel}:{task.id}', ujson.dumps({'action': 'stop', 'flag': STOP_CODE.INTERRUPT}))
+    redis_conn.lpush(CONF.manager.node_memory_leak_channel, ujson.dumps({'node': node, 'msg': msg, 'time': int(time.time())}))
+    redis_conn.expire(CONF.manager.node_memory_leak_channel, 3600)
     return {
         'success': 1,
         'msg': '发送报警成功'

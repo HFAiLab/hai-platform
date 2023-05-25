@@ -23,11 +23,11 @@ with logger.contextualize(uuid=f'{log_id}.init'):
     if redis_conn.get(f'manager_ban:{task_id}') == b'1':
         waiting_exit()
     custom_k8s_api = get_custom_corev1_api()
-    k8s_namespace = CONF.launcher.task_namespace
     initialize_user_data_roaming(overwrite_enable_roaming=False)
     set_mass_info(key_list=[generate_key(class_name=TrainingTask.__name__, sign='id', value=task_id)], mass_name=f'{task_id}_{module}')
     register_parliament()
     task = TrainingTaskSelector.find_one_by_id(AutoTaskSchemaImpl, id=task_id)
+    k8s_namespace = task.user.config.task_namespace
     bind_logger_task(task)
     register_archive(task, sign='id')
 

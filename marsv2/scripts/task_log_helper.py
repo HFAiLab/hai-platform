@@ -61,7 +61,7 @@ def update_time():
 
 
 def check_timeout_jupyter():
-    if os.environ['MARSV2_USER_ROLE'] == 'internal':
+    if os.environ['MARSV2_USER_ROLE'] != 'external':
         # 内部用户的 service task 不超时
         return
     is_shared_group = os.environ.get('MARSV2_SHARED_JUPYTER', '1') == '1'

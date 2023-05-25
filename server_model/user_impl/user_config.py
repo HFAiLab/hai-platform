@@ -42,3 +42,9 @@ class UserConfig:
         @return:
         """
         return CONF.experiment.log.number_of_files
+
+    @property
+    def task_namespace(self) -> str:
+        if self.user.role not in (config := CONF.launcher.task_namespaces_by_role):
+            raise Exception(f'未配置 {self.user.role} 的 namespace')
+        return config[self.user.role]

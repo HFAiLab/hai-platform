@@ -7,7 +7,7 @@ import datetime
 from typing import List
 from fastapi import Depends, Query
 
-from api.depends import get_api_user_with_token
+from api.depends import get_api_user_with_token, get_internal_api_user_with_token
 from base_model.training_task import TrainingTask
 from conf import CONF
 from conf.flags import QUE_STATUS, CHAIN_STATUS, TASK_TYPE
@@ -94,7 +94,7 @@ async def get_chain_tasks_in_query_db(
         task = TrainingTask(AutoTaskApiImpl, **{**r})
         if select_pods:
             await task.aio_select_pods()
-        if user is not None and not user.is_internal:
+        if user is not None and user.is_external:
             task = convert_to_external_task(task)
         res.append(task.trait_dict())
     return res, total_count
@@ -237,27 +237,27 @@ async def get_task_api(
 
 
 async def get_time_range_schedule_info_api(start_time: str, end_time: str, user: User = Depends(get_api_user_with_token())):
-    extra_join = '' if user.is_internal else """
+    extra_join = '' if not user.is_external else """
     inner join "user" on "user"."user_name" = "task_ng"."user_name" and "user"."role" = 'external'
     """
     sql = f"""
     select
-       count(*) as "count", {'"group"' if user.is_internal else ''' 'training' as "group"'''}, 'created' as "tag"
+       count(*) as "count", {'"group"' if not user.is_external else ''' 'training' as "group"'''}, 'created' as "tag"
     from "task_ng"
     {extra_join}
     where
         "created_at" >= '{start_time}' and "created_at" < '{end_time}' and
-        "id" = "first_id" and "task_type" = '{TASK_TYPE.TRAINING_TASK}' {'' if user.is_internal else f''' and "group" = '{CONF.scheduler.default_group}' '''}
+        "id" = "first_id" and "task_type" = '{TASK_TYPE.TRAINING_TASK}' {'' if not user.is_external else f''' and "group" = '{CONF.scheduler.default_group}' '''}
     group by "group"
     union all
     select
-           count(*) as "count", {'"group"' if user.is_internal else ''' 'training' as "group"'''}, 'finished' as "tag"
+           count(*) as "count", {'"group"' if not user.is_external else ''' 'training' as "group"'''}, 'finished' as "tag"
     from "task_ng"
     {extra_join}
     where
         "created_at" >= '{start_time}' and "created_at" < '{end_time}' and
         "queue_status" = '{QUE_STATUS.FINISHED}' and task_type = '{TASK_TYPE.TRAINING_TASK}' and
-        "chain_id" not in (select "chain_id" from "task_ng" where "queue_status" = '{QUE_STATUS.QUEUED}' or "queue_status" = '{QUE_STATUS.SCHEDULED}') {'' if user.is_internal else f''' and "group" = '{CONF.scheduler.default_group}' '''}
+        "chain_id" not in (select "chain_id" from "task_ng" where "queue_status" = '{QUE_STATUS.QUEUED}' or "queue_status" = '{QUE_STATUS.SCHEDULED}') {'' if not user.is_external else f''' and "group" = '{CONF.scheduler.default_group}' '''}
     group by "group"
     """
     results = await MarsDB().a_execute(sql)
@@ -291,13 +291,8 @@ async def get_time_range_schedule_info_api(start_time: str, end_time: str, user:
 
 async def get_running_tasks_api(
         task_type: List[str] = Query(default=None),
-        user: User = Depends(get_api_user_with_token())
+        user: User = Depends(get_internal_api_user_with_token())
 ):
-    if not user.is_internal:
-        return {
-            'success': 0,
-            'msg': '无权访问'
-        }
     if task_type is None:
         task_type = TASK_TYPE.all_task_types()
     results = await MarsDB().a_execute(f"""

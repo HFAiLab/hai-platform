@@ -30,11 +30,11 @@ class EventListWatcher(ListWatcher):
                 except:
                     continue
                 if pod_name not in self.reported_pods:
-                    logger.info(f"pod_name: {pod_name}, event: {item['message']}")
+                    self.log_info(f"pod_name: {pod_name}, event: {item['message']}")
                     self.reported_pods.add(pod_name)
                     resp = v1.read_namespaced_pod_with_retry(pod_name, self.namespace, _preload_content=False, _request_timeout=5)
                     if resp is None:
-                        logger.info(f"{pod_name} already deleted")
+                        self.log_info(f"{pod_name} already deleted")
                         continue
                     pod = ujson.loads(resp.data)
                     # 过滤非任务容器
@@ -48,5 +48,5 @@ class EventListWatcher(ListWatcher):
                         else:
                             task_messages[task_id] += f"\n{item['message']}"
         for task_id, msg in task_messages.items():
-            logger.info(f'reported {task_id} error event: {msg}')
+            self.log_info(f'reported {task_id} error event: {msg}')
             redis_conn.set(f'lifecycle:{task_id}:task_event', f'有任务容器遇到错误，请及时联系管理员\n{msg}')

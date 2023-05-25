@@ -39,11 +39,11 @@ class UserNodePort(IUserNodePort):
 
     async def async_create(self, task: TrainingTask, alias: str, dist_port: int, rank: int = 0):
         async_func = asyncwrap(self.create)
-        return await async_func(task, CONF.launcher.task_namespace, alias, dist_port, rank)
+        return await async_func(task, self.user.config.task_namespace, alias, dist_port, rank)
 
     async def async_delete(self, task: TrainingTask, dist_port: int, rank: int = 0):
         async_func = asyncwrap(self.delete)
-        await async_func(task, CONF.launcher.task_namespace, dist_port, rank)
+        await async_func(task, self.user.config.task_namespace, dist_port, rank)
 
     def find_all(self, alias=None, nb_name=None, rank=None, dist_port=None):
         any_str, any_str_or_empty, any_num = ".+?", ".*?", "\\d+?"

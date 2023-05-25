@@ -210,7 +210,7 @@ async def data_api(user: User = Depends(get_api_user_with_token())):
         'can_suspend': user.in_group('can_suspend'),
     }
     result.update(await extra_data(user))
-    if not user.is_internal:
+    if user.is_external:
         result.update({
             'spot_jupyter_quota': int(user.quota.quota(QUOTA_SPOT_JUPYTER)),
             'spot_jupyter_status': await get_spot_jupyter_status(),

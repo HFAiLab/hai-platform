@@ -1,4 +1,7 @@
 
+from .default import *
+from .custom import *
+
 from itertools import chain
 from typing import Optional, List, Union
 
@@ -22,9 +25,7 @@ async def cluster_df(monitor: bool = True, user: User = Depends(get_api_user_wit
     """
     df = await async_get_nodes_df(monitor=monitor)
     await user.quota.create_quota_df()
-    if not user.is_internal:
-        df = pd.DataFrame.copy(df, deep=True)
-        df = df[df.name.apply(lambda n: False)]
+    df = post_process_cluster_df(df, user)
     return dict(
         success=1,
         cluster_df=df.to_dict('records'),

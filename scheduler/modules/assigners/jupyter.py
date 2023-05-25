@@ -92,7 +92,7 @@ class JupyterAssigner(Assigner):
             ])
             big_task_queued = (
                     (all_task_df.queue_status == QUE_STATUS.QUEUED) &
-                    (all_task_df.user_role == USER_ROLE.INTERNAL) &
+                    (all_task_df.user_role != USER_ROLE.EXTERNAL) &
                     (all_task_df.created_seconds > 10) &
                     (all_task_df.nodes > self.cluster_busy_threshold)
             ).any()

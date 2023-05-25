@@ -23,7 +23,7 @@ class UserQuota(UserQuotaExtras, IUserQuota):
     async def async_get(self):
         await self.prefetch_quota_df()
         basic_quota = self.basic_quota()
-        if self.user.is_internal:
+        if not self.user.is_external:
             basic_quota.update({
                 'node_quota': self.node_quota,
                 'node_quota_limit': self.node_quota_limit,
@@ -38,7 +38,7 @@ class UserQuota(UserQuotaExtras, IUserQuota):
         if priority_label not in TASK_PRIORITY.keys():      raise ExceptionWithoutErrorLog('priority label 不正确')
 
         resource = f'node-{group_label}-{priority_label}'
-        if not self.user.is_internal:
+        if self.user.is_external:
             # 外部用户需要记录操作日志
             await self.prefetch_quota_df()
             original_quota = self.quota(resource)
@@ -173,7 +173,7 @@ class UserQuota(UserQuotaExtras, IUserQuota):
         res_priority_dict = {
             TASK_PRIORITY.AUTO.name: TASK_PRIORITY.AUTO.value
         }
-        if not self.user.is_internal:
+        if self.user.is_external:
             # 外部用户只允许使用 auto
             return res_priority_dict
         priority_mapping = {k: v for k, v in TASK_PRIORITY.items()}

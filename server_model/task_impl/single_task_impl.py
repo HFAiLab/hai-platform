@@ -15,7 +15,7 @@ from logm import logger
 from .code import parse_code_cmd
 from .runtime_mounts import add_runtime_mounts
 from .runtime_envs import add_runtime_envs
-from .runtime_sidecars import get_runtime_sidecars
+from .runtime_sidecars import add_runtime_sidecars
 from roman_parliament.attr_hooks import generate_parliament_attr_value
 from server_model.pod import Pod
 from server_model.selector import UserSelector
@@ -50,7 +50,7 @@ class SingleTaskImpl(ITaskImpl, ABC):
         return {
             'MARSV2_TASK_TYPE': self.task.task_type,
             'MARSV2_TASK_ID': str(self.task.id),
-            'FULL_HFAI_COMMANDS': '1' if self.task.user.is_internal else '0',
+            'FULL_HFAI_COMMANDS': '1' if not self.task.user.is_external else '0',
             'MARSV2_TASK_ENTRYPOINT_EXECUTABLE': '1' if self.task.schema.get('spec', {}).get('entrypoint_executable', False) else '0',
             'MARSV2_TASK_BACKEND': self.task.backend,
             'MARSV2_NB_NAME': self.task.nb_name,
@@ -210,7 +210,7 @@ class SingleTaskImpl(ITaskImpl, ABC):
         return all_service
 
     def get_pod_namespace(self):
-        return CONF.launcher.task_namespace
+        return self.user.config.task_namespace
 
     def get_pod_labels(self, rank):
         return {
@@ -228,30 +228,28 @@ class SingleTaskImpl(ITaskImpl, ABC):
         return self.user.quota.user_linux_capabilities
 
     def enable_privileged_pod(self):
-        if self.task.user.is_internal and self.task.user.quota.quota('privileged'):
+        if not self.task.user.is_external and self.task.user.quota.quota('privileged'):
             return True
         return False
 
     def enable_pod_host_ipc(self):
-        if self.task.user.is_internal and self.task.user.quota.quota('host_ipc'):
+        if not self.task.user.is_external and self.task.user.quota.quota('host_ipc'):
             return True
         return False
 
     def enable_pod_host_pid(self):
-        if self.task.user.is_internal and self.task.user.quota.quota('host_pid'):
+        if not self.task.user.is_external and self.task.user.quota.quota('host_pid'):
             return True
         return False
 
     def enable_pod_host_network(self):
-        if self.task.user.is_internal and self.task.user.quota.quota('host_network'):
+        if not self.task.user.is_external and self.task.user.quota.quota('host_network'):
             return True
         return False
 
     def enable_share_process_namespace(self):
         return False
 
-    def get_sidecars(self, rank, schema):
-        return get_runtime_sidecars(self, rank=rank, schema=schema)
 
     def build_schemas(self, *args, **kwargs):
         """
@@ -331,8 +329,10 @@ class SingleTaskImpl(ITaskImpl, ABC):
                     }
                 }
             }
-            # sidecar 有可能要改原有的 schema
-            schemas.append(self.get_sidecars(rank=rank, schema=schema))
+            # 在原来的 schema 中，注入sidecar，同样的因为 schema 的传入，我们也有修改 schema 的能力
+            add_runtime_sidecars(task_impl=self, rank=rank, schema=schema)
+
+            schemas.append(schema)
         return schemas
 
     def update_pod_status(self, rank, status, *args, **kwargs):

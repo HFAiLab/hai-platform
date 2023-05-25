@@ -104,7 +104,7 @@ async def create_service_task(
         if task_schema.resource.is_spot and task_schema.resource.group.startswith(SHARED_NODE_GROUP):
             return failed_response('spot 容器不能创建在共享分组中')
         # 外部独占开发机申请前的检查
-        if not user.is_internal and not task_schema.resource.group.startswith(SHARED_NODE_GROUP):
+        if user.is_external and not task_schema.resource.group.startswith(SHARED_NODE_GROUP):
             success, msg = await check_external_dedicated_jupyter(user, task_schema)
             if not success:
                 return failed_response(msg)

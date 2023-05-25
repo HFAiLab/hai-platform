@@ -111,6 +111,7 @@ class UserData(UserDataBase):
         self._last_sync_signal_ts = defaultdict(lambda: 0)
         self._throttling_cnt = defaultdict(lambda : 0)
         self._max_throttling_time = CONF.user_data_roaming.get('max_num_throttling', 5)
+        self._pending_reload = None
         while len(self._tables) != len(TABLES):
             log_warning('未成功订阅所有表, 阻塞等待并重试订阅.')     # 可能 DB 还没起来, sync point 必须订阅全部的表才能启动
             self.subscribe_tables(list(TABLES.keys()))
@@ -126,14 +127,24 @@ class UserData(UserDataBase):
             time.sleep(CONF.user_data_roaming.get('sync_interval', 1.0))
             try:
                 self.sync_from_db()
+                if self._pending_reload is not None:
+                    self.signal_reload(self._pending_reload)
+                    self._pending_reload = None
             except Exception as e:  # 兜底, 这个线程不能挂, 否则议会可能丢数据
-                log_error('Sync from db 出错: 发送 sync singal 出错', e)
+                log_error('Sync from db 出错', e, fetion_interval=60)
+                time.sleep(1)
 
     def _last_activity_modifier(self):
         while True:
-            data = redis_conn.brpop('user_data_last_activity_update')
-            data = pickle.loads(data[1])
-            self.user_last_activity_in_ns[data['user_name']] = time.time_ns()
+            try:
+                data = redis_conn.brpop('user_data_last_activity_update')
+                data = pickle.loads(data[1])
+                self.user_last_activity_in_ns[data['user_name']] = time.time_ns()
+            except Exception as e:
+                log_error(f'处理 last activity 更新请求失败  {e}', e, fetion_interval=60)
+                # 可能是 redis down, 会丢消息, 主动刷新全部用户的时间戳
+                self.user_last_activity_in_ns = {k: time.time_ns() for k in self.user_last_activity_in_ns}
+                time.sleep(1)
 
     def _redis_dumper(self):
         """ 仅在 sync point 进程中开线程执行 """
@@ -147,12 +158,12 @@ class UserData(UserDataBase):
                 ]
                 result.sort(key=lambda x: x['ts'], reverse=True)
                 redis_conn.set('user_last_activity_in_ns', ujson.dumps(result))
+                # 主动更新一下 computed tables, 以便内容有更新时触发其注册的 update_hook, 目前用于 `UserWithAllGroupsTable` 的 update 时间戳更新
+                for table in self._tables.values():
+                    if table.is_computed:
+                        self._get_df(table.table_name)
             except Exception as e:
-                log_error(f'dump user last activity failed: {e}', exception=e)
-            # 主动更新一下 computed tables, 以便内容有更新时触发其注册的 update_hook, 目前用于 `UserWithAllGroupsTable` 的 update 时间戳更新
-            for table in self._tables.values():
-                if table.is_computed:
-                    self._get_df(table.table_name)
+                log_error(f'dump user last activity failed: {e}', exception=e, fetion_interval=60)
 
     def _get_df(self, table_name):
         self._tables[table_name].before_get_df_hook()
@@ -222,7 +233,11 @@ class UserData(UserDataBase):
                     TABLES[patch["table_name"]].patch(patch)
             # 通过议会广播变动
             if broadcast:
-                MessageQueue.send(MessageType.PATCH, patches)
+                try:
+                    MessageQueue.send(MessageType.PATCH, patches)
+                except Exception as e:
+                    log_error('发送 patch 消息失败', e)
+                    self._pending_reload = '有 patch 消息发送失败'
 
     def reload_dfs(self, table_names=None):
         table_names = self._subscribed_tables if table_names is None else table_names

@@ -6,6 +6,7 @@ import itertools
 from itertools import chain
 
 from base_model.base_user import BaseUser
+from conf.flags import ALL_USER_ROLES
 from db import MarsDB
 from server_model.user_data import async_sync_from_db_afterwards
 
@@ -124,7 +125,7 @@ class AioUserDb(AioUserDbExtras):
 
     @async_sync_from_db_afterwards(changed_tables=['user_group'])
     async def update_groups(self, groups):
-        groups = list(set(groups) - {'public', 'external', 'internal'}) # remove built-in groups
+        groups = list(set(groups) - {'public'} - set(ALL_USER_ROLES)) # remove built-in groups
         async with MarsDB() as conn:
             await conn.execute('delete from "user_group" where "user_name" = %s', (self.user.user_name,))
             if groups:

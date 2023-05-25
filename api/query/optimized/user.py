@@ -1,13 +1,14 @@
 
 
 import pandas as pd
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 
-from api.depends import get_api_user_with_token
+from api.depends import get_api_user_with_token, get_internal_api_user_with_token
 from api.user.priority_utils import check_permission
+from api.user.admin import verify_quota_permission
 from server_model.user import User
 from server_model.user_data import UserWithAllGroupsTable, SchedulerUserTable, UserAllGroupsTable, UserAllQuotaTable
-from conf.flags import USER_ROLE
+from conf.flags import ALL_USER_ROLES
 
 
 async def get_user_api(user: User = Depends(get_api_user_with_token())):
@@ -17,12 +18,7 @@ async def get_user_api(user: User = Depends(get_api_user_with_token())):
     }
 
 
-async def get_all_user_api(user: User = Depends(get_api_user_with_token())):
-    if not user.is_internal:
-        return {
-            'success': 0,
-            'msg': '无权使用该接口'
-        }
+async def get_all_user_api(user: User = Depends(get_internal_api_user_with_token())):
     user_df = await UserWithAllGroupsTable.async_df
     users = user_df.to_dict('records')
     for user in users:
@@ -35,15 +31,10 @@ async def get_all_user_api(user: User = Depends(get_api_user_with_token())):
 
 async def get_user_node_quota_api(role: str , user: User = Depends(get_api_user_with_token())):
     """ 获取配置到用户账号名下的节点 quota 和 node limit, 不包括从 group/shared_group 中继承的数据 """
-    if role == USER_ROLE.EXTERNAL:
-        check_permission(user, 'external_quota_editor')
-    elif role == USER_ROLE.INTERNAL:
-        check_permission(user, 'internal_quota_limit_editor')
-    else:
-        return {
-            'success': 0,
-            'msg': f'不存在的 role: {role}'
-        }
+    if role not in ALL_USER_ROLES:
+        return {'success': 0, 'msg': f'不存在的 role {role}'}
+    if not verify_quota_permission(role, user):
+        raise HTTPException(403, detail='无权操作')
     quota_df = await SchedulerUserTable.async_df
     quota_df = quota_df[(quota_df.user_name == quota_df.hit_group) & (quota_df.role == role)]
     json_agg = lambda k, v: lambda df: pd.DataFrame([[df[[k, v]].set_index(k).to_dict()[v]]], columns=[v])
@@ -63,7 +54,7 @@ async def get_user_node_quota_api(role: str , user: User = Depends(get_api_user_
     }
 
 
-async def get_all_user_node_quota_api(user: User=Depends(get_api_user_with_token(allowed_groups=['internal']))):
+async def get_all_user_node_quota_api(user: User=Depends(get_internal_api_user_with_token(allowed_groups=['internal_quota_limit_editor']))):
     """ 获取全部用户的所有节点 quota 和 node limit """
     def process_df(df, prefix):
         df = df[df.resource.str.startswith(prefix)].copy()

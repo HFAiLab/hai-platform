@@ -39,10 +39,12 @@ backend = 'redis'
 
 [launcher]
 api_server = 'http://127.0.0.1'
-task_namespace = 'poly-hpp'
 manager_nodes = ["jd-a1006-dl","jd-a1007-dl","jd-a1008-dl","jd-a1101-dl"]
 image_pull_policy = 'Always'
 manager_image = 'registry.high-flyer.cn/platform/hai_platform:d372d093'
+[launcher.task_namespaces_by_role]
+internal = 'poly-hpp'
+external = 'poly-hpp'
 [launcher.manager_envs]
 # KEY = VALUE
 [launcher.manager_mounts]
@@ -54,6 +56,7 @@ delete_pod.grace_period_seconds = 0
 redis_message_channel = 'DEV_manager_channel'
 stop_channel = 'DEV_manager_stop_channel'
 update_status_channel = 'DEV_manager_update_status_channel'
+node_memory_leak_channel = 'DEV_whistle_node_memory_leak_channel'
 suspend_waiting_seconds.final = 5
 suspend_waiting_seconds.recieved = 5
 unschedulable_timeout_Ms = 1

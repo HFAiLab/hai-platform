@@ -157,8 +157,9 @@ def create_master_network(rank, node, is_internal):
     create_tcp_service_nodeport(rank, node)
     if rank == 0:  # 只有 master 才会创建
         create_headless_services(node)
-        create_http_service_ingress(node, 'hfhub')
-        if not is_internal:
+        if is_internal:
+            create_http_service_ingress(node, 'hfhub')
+        else:
             create_http_service_ingress(node, 'yinghuo')
 
 
@@ -175,13 +176,14 @@ def create_node_in_k8s(rank, node_schema):
     nvidia_visible_devices = ','.join(
         f'{int(str(gpu)[1:3])}:{int(str(gpu)[3:5])}' if len(str(gpu)) == 5 else str(gpu)  # mig
         for gpu in task.pods[rank].assigned_gpus)
+    schedule_zone = os.environ.get('MARSV2_SCHEDULE_ZONES', 'A').split(',')[rank]
     k8s_envs = {
         'MASTER_ADDR': master_addr,
         'MASTER_PORT': 2222,
         'NVIDIA_VISIBLE_DEVICES': nvidia_visible_devices,
         'MOUNT_LIST': ','.join(mount_item.mount_path for mount_item in node_schema.mounts),
-        'MARSV2_SCHEDULE_ZONE': os.environ.get('MARSV2_SCHEDULE_ZONE', 'A'),
-        'ROOM': os.environ.get('MARSV2_SCHEDULE_ZONE', 'A'),
+        'MARSV2_SCHEDULE_ZONE': schedule_zone,
+        'ROOM': schedule_zone,
     }
     # 目前只支持两个 NUMA 半节点调度
     if task.config_json.get('assigned_resource', {}).get('assigned_numa') in {'0', '1'}:
@@ -441,9 +443,11 @@ def create_node():
     with ThreadPoolExecutor(max_workers=10) as thread_pool:
         futures = [thread_pool.submit(_create_node_impl, rank, node_schema) for rank, node_schema in enumerate(schema)]
         wait(futures)
-        err_msg = [str(future.exception()) for future in futures if future.exception()]
-        if err_msg:
-            raise Exception(';'.join(err_msg))
+        exceptions = [future.exception() for future in futures if future.exception()]
+        if exceptions:
+            for e in exceptions:
+                logger.opt(exception=e).error(f'创建节点失败: {e}')
+            raise Exception(';'.join([str(e) for e in exceptions]))
 
 
 @log_stage(log_id)

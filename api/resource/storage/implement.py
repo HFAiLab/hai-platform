@@ -8,7 +8,7 @@ from pydantic import BaseModel, validator
 from typing import List, Optional
 
 from api.depends import get_api_user_with_token
-from conf.flags import USER_ROLE
+from conf.flags import ALL_USER_ROLES
 from db import MarsDB
 from server_model.user import User
 from server_model.user_data import UserWithAllGroupsTable
@@ -147,7 +147,7 @@ async def create_mount_point(mount_point: MountPoint, force: bool = False,
         user_or_group = mount_point.owners[0]
         user = await AioUserSelector.find_one(user_name=user_or_group)
         group = await MarsDB().a_execute('select 1 from "user_group" where "group" = %s', (user_or_group,))
-        if user is None and len(group.fetchall()) == 0 and user_or_group not in {'public', USER_ROLE.INTERNAL, USER_ROLE.EXTERNAL}:
+        if user is None and len(group.fetchall()) == 0 and user_or_group not in (['public'] + ALL_USER_ROLES):
             return {'success': 0, 'msg': f'Warning: 指定的 owner [{user_or_group}] 不是现有的用户名或用户组. ' + WARNING_NOTE}
         if user is not None:
             # 指定用户时, 检查是否已经通过用户组获得了挂载
@@ -212,3 +212,28 @@ async def delete_mount_point(mount_point: MountPoint, force: bool = False,
         logger.exception(e)
         return {'success': 0, 'msg': f'添加 action=remove 的挂载记录失败 {e}'}
     return {'success': 1, 'msg': '添加 action=remove 的挂载记录成功'}
+
+
+class MonitorDirectory(BaseModel):
+    type: str
+    host_path: str
+    tag: str = ''
+    user_name: str = ''
+    inode_id: int = None
+
+
+async def add_monitor_dir(monitor_dir: MonitorDirectory,
+                          user: User = Depends(get_api_user_with_token(allowed_groups=['ops', 'cluster_manager']))):
+    if monitor_dir.type not in ['weka', 'ceph', '3fs', '3fs-cpu']:
+        raise HTTPException(400, detail=f'不支持的 type {monitor_dir.type}')
+    sql = '''
+        insert into storage_monitor_dir("type", "host_path", "tag", "user_name", "inode_id")
+        values (%s, %s, %s, %s, %s)
+    '''
+    try:
+        await MarsDB().a_execute(sql, params=(
+            monitor_dir.type, monitor_dir.host_path, monitor_dir.tag, monitor_dir.user_name, monitor_dir.inode_id))
+    except Exception as e:
+        logger.exception(e)
+        return {'success': 0, 'msg': f'添加 monitor dir 失败: {e}'}
+    return {'success': 1, 'msg': '添加成功'}

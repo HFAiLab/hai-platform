@@ -19,7 +19,8 @@ cp -r base_model/ client/ ${HFAI_PATH}
 mkdir -p ${HFAI_PATH}/conf
 touch ${HFAI_PATH}/conf/__init__.py
 
-cp conf/flags.py ${HFAI_PATH}/conf/flags.py
+cp -r conf/flags ${HFAI_PATH}/conf/flags
+[[ $external == true ]] && echo "" > ${HFAI_PATH}/conf/flags/custom.py
 
 python client/patch_client.py --hfai_path ${HFAI_PATH}
 

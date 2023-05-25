@@ -27,6 +27,11 @@ class ListWatcher(ABC):
         self.last_update = None
         self._stop = False
 
+    def log_info(self, info):
+        if self.namespace is not None:
+            info = f'[ns={self.namespace}] ' + info
+        logger.info(info)
+
     @log_stage(module)
     def list_watch(self):
         kwargs = {
@@ -41,7 +46,7 @@ class ListWatcher(ABC):
         kwargs['_request_timeout'] = 300
         while True:
             try:
-                logger.info(f'start {self.object_type} list with args {kwargs}')
+                self.log_info(f'start {self.object_type} list with args {kwargs}')
                 raw = self.list_func(**kwargs)
                 latest_resource_version = raw['metadata']['resourceVersion']
                 self._data = {item['metadata']['name']: item for item in raw['items']}
@@ -50,7 +55,7 @@ class ListWatcher(ABC):
                 # 为了保证stream重试，不需要添加timeout_seconds参数，且需指定resource_version
                 kwargs['resource_version'] = latest_resource_version
 
-                logger.info(f'start {self.object_type} watcher with args {kwargs}')
+                self.log_info(f'start {self.object_type} watcher with args {kwargs}')
                 for event in self.watcher.stream(self.watch_func, **kwargs):
                     try:
                         name = event['object']['metadata']['name']
@@ -66,7 +71,8 @@ class ListWatcher(ABC):
                     except:
                         logger.debug(f'{self.object_type} bookmark event: {event}')
             except Exception as e:
-                logger.error(f'{self.object_type} watcher exception: {str(e)}, last update time: {self.last_update.strftime("%Y-%m-%d %H:%M:%S")}!')
+                logger.error(f'{self.object_type} watcher exception: {str(e)}, '
+                             f'last update time: {self.last_update.strftime("%Y-%m-%d %H:%M:%S") if self.last_update else "None"}!')
             time.sleep(5)
 
     @abstractmethod
@@ -108,14 +114,14 @@ class ListWatcher(ABC):
         # 运行listwatch
         self.list_watch_thread = threading.Thread(target=self.list_watch, name='list_watch', daemon=True)
         self.list_watch_thread.start()
-        logger.info(f'started {self.object_type} listwatch thread')
+        self.log_info(f'started {self.object_type} listwatch thread')
         # 等待list cache ready
         while not self._ready:
             time.sleep(1)
 
         self.schdule_thread = threading.Thread(target=self._schedule, name='schedule', daemon=True)
         self.schdule_thread.start()
-        logger.info(f'started {self.object_type} schedule thread')
+        self.log_info(f'started {self.object_type} schedule thread')
 
         self.monitor_thread = threading.Thread(target=self._monitor, name='monitor', daemon=True)
         self.monitor_thread.start()

@@ -375,9 +375,12 @@ password = '${REDIS_PASSWORD}'
 default_group = '${TRAINING_GROUP}'  # 提交任务时候的调度默认分组
 [launcher]
 api_server = '${HAI_SERVER_ADDR}' # 设定 server 地址
-task_namespace = '${TASK_NAMESPACE}'     # 任务运行的namespace
 manager_nodes = [${MANAGER_NODES_FORMATTED}] # manager 所在节点, 格式为['node1','node2']
 manager_image = '${BASE_IMAGE}'  # manager 使用的镜像，和 hai image 一致即可
+[launcher.task_namespaces_by_role]
+# 任务运行的namespace
+internal = '${TASK_NAMESPACE}'
+external = '${TASK_NAMESPACE}'-external
 # 下面配置 manager 使用的 kube config
 [launcher.manager_envs]
 KUBECONFIG = '/root/.kube/config'

@@ -21,7 +21,7 @@ from roman_parliament import register_parliament, add_archive_trigger, archive_d
 from roman_parliament.archive_triggers.launcher_task_trigger import LauncherTaskTrigger
 from server_model.auto_task_impl import AutoTaskSchemaWithDbImpl
 from server_model.pod import Pod
-from server_model.selector import TrainingTaskSelector, TrainImageSelector
+from server_model.selector import TrainingTaskSelector, TrainImageSelector, UserSelector
 
 register_parliament()
 k8s_corev1_api = get_corev1_api()
@@ -58,10 +58,15 @@ def get_image_info(image_name):
     return TrainImageSelector.find_one(os.path.basename(image_name))
 
 
-@cached(cache=Cache(maxsize=1024))
-def get_node_zone(node):
-    schedule_zone = MarsDB().execute(f'''select "schedule_zone" from "host" where "node" = '{node}' ''').fetchall()[0][0]
-    return schedule_zone
+node_zone_cache = {}
+def get_node_zones(nodes):
+    query_nodes = [node for node in nodes if node not in node_zone_cache]
+    if query_nodes:
+        result = MarsDB().execute('select "node", "schedule_zone" from "host" where "node" = any(%s)', params=(query_nodes,)).fetchall()
+        node_zone_cache.update({r.node: r.schedule_zone for r in result})
+        if any(missing_node := set(query_nodes) - set(r.node for r in result)):
+            raise Exception(f'任务起到的节点没有设置 host info: {missing_node}')
+    return [node_zone_cache[node] for node in nodes]
 
 
 @log_stage(module)
@@ -89,17 +94,18 @@ def insert_pods(task: TrainingTask):
 @log_stage(module)
 def create_manager(task: TrainingTask, user_name):
     task_id = task.id
+    namespace = task.user.config.task_namespace
     # 先创建 configmap
     manager_name = f'{user_name.replace("_", "-")}-{task_id}-manager'
     env = [
         get_env_var(key='TASK_ID', value=task_id),
         get_env_var(key='MANAGER_NAME', value=manager_name),
-        get_env_var(key='NAMESPACE', value=CONF.launcher.task_namespace),
+        get_env_var(key='NAMESPACE', value=namespace),
         get_env_var(key='TZ', value='Asia/Shanghai'),
         get_env_var(key='MARSV2_SERVER', value=os.environ.get('MARSV2_SERVER', CONF.try_get('launcher.api_server'))),
         get_env_var(key='DEBUG', value=os.environ.get('DEBUG', '0')),
         get_env_var(key='MODULE_NAME', value='manager'),
-        get_env_var(key='MARSV2_SCHEDULE_ZONE', value=get_node_zone(task.assigned_nodes[0])),
+        get_env_var(key='MARSV2_SCHEDULE_ZONES', value=','.join(get_node_zones(task.assigned_nodes))),
         get_env_var(key='MARSV2_TASK_SIDECARS', value=ujson.dumps(task.schema.get('options', {}).get('sidecar', [])))
     ]
     if 'CUSTOM_FILE_NAME' in os.environ:
@@ -212,7 +218,7 @@ def create_manager(task: TrainingTask, user_name):
                 )
             )
         ))
-    metadata = client.V1ObjectMeta(name=manager_name, namespace=CONF.launcher.task_namespace, labels=labels)
+    metadata = client.V1ObjectMeta(name=manager_name, namespace=namespace, labels=labels)
     podtemplatespec = client.V1PodTemplateSpec(metadata=metadata,
                                                spec=podspec)
     stspec = client.V1StatefulSetSpec(
@@ -222,34 +228,34 @@ def create_manager(task: TrainingTask, user_name):
         service_name=f'{user_name.replace("_", "-")}-{task_id}-manager'
     )
     st = client.V1StatefulSet(metadata=metadata, spec=stspec)
-    st_resp = k8s_appsv1_api.create_namespaced_stateful_set_with_retry(namespace=CONF.launcher.task_namespace, body=st)
+    st_resp = k8s_appsv1_api.create_namespaced_stateful_set_with_retry(namespace=namespace, body=st)
     # 接下来所有的资源 owner_ref 都指向 manager
     owner_ref = client.V1OwnerReference(api_version='apps/v1', kind='StatefulSet', name=st_resp.metadata.name, uid=st_resp.metadata.uid, controller=False, block_owner_deletion=True)
 
     # 创建 headless service
     metadata = client.V1ObjectMeta(
         name=f'{user_name.replace("_", "-")}-{task_id}-manager-0',
-        namespace=CONF.launcher.task_namespace,
+        namespace=namespace,
         owner_references=[owner_ref]
     )
     spec = client.V1ServiceSpec(selector={'statefulset.kubernetes.io/pod-name': f'{user_name.replace("_", "-")}-{task_id}-manager-0'}, cluster_ip='None')
     service = client.V1Service(api_version='v1', kind='Service', metadata=metadata, spec=spec)
-    k8s_corev1_api.create_namespaced_service_with_retry(namespace=CONF.launcher.task_namespace, body=service)
+    k8s_corev1_api.create_namespaced_service_with_retry(namespace=namespace, body=service)
     # 创建任务所需的 configmap，实际上可以先创建 manager 再创建 manager 需要的 configmap，这样所有资源的 ref 都能指向 manager
     k8s_corev1_api.create_namespaced_config_map_with_retry(
-        namespace=CONF.launcher.task_namespace,
+        namespace=namespace,
         body=client.V1ConfigMap(
             immutable=True,
             data={'override.toml': toml.dumps(CONF)},
             metadata=client.V1ObjectMeta(
                 name=f'etc-configmap-{task_id}',
-                namespace=CONF.launcher.task_namespace,
+                namespace=namespace,
                 owner_references=[owner_ref]
             )
         )
     )
     k8s_corev1_api.create_namespaced_config_map_with_retry(
-        namespace=CONF.launcher.task_namespace,
+        namespace=namespace,
         body=client.V1ConfigMap(
             immutable=True,
             data={
@@ -258,13 +264,13 @@ def create_manager(task: TrainingTask, user_name):
             },
             metadata=client.V1ObjectMeta(
                 name=f'marsv2-scripts-{task_id}', # 这里不像别的资源一样，加上用户名，因为 storage 表不支持 replace 字符串
-                namespace=CONF.launcher.task_namespace,
+                namespace=namespace,
                 owner_references=[owner_ref]
             )
         )
     )
     k8s_corev1_api.create_namespaced_config_map_with_retry(
-        namespace=CONF.launcher.task_namespace,
+        namespace=namespace,
         body=client.V1ConfigMap(
             immutable=True,
             data={
@@ -273,7 +279,7 @@ def create_manager(task: TrainingTask, user_name):
             },
             metadata=client.V1ObjectMeta(
                 name=f'marsv2-entrypoints-{task_id}',
-                namespace=CONF.launcher.task_namespace,
+                namespace=namespace,
                 owner_references=[owner_ref]
             )
         )
@@ -293,6 +299,7 @@ def start_exp(task: TrainingTask):
     # 对于validation任务，如果最开始的虚拟任务停止，则对应的所有validation任务停止
     main_task = TrainingTaskSelector.find_one(None, chain_id=task.chain_id.split('_main')[0]) if task.task_type == TASK_TYPE.VALIDATION_TASK else task
     ban_name = f'ban:{main_task.user_name}:{main_task.nb_name}:{main_task.chain_id}'
+    task.user = UserSelector.from_user_name(user_name=task.user_name)
     if redis_conn.get(ban_name):
         logger.info(f'{task.id}由于前置任务被停止，不启动')
         manual_make_task_finished(task)

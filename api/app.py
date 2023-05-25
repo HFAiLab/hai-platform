@@ -127,7 +127,7 @@ async def log_requests(request: Request, call_next):
         exc = e
     end_time = datetime.now()
     seconds = (end_time - start_time).total_seconds()
-    if url not in warning_ignore_api:
+    if request.url.path not in warning_ignore_api:
         if seconds > 5:
             log = logger.warning
         if seconds > 10:

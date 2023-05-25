@@ -92,6 +92,10 @@ class User(UserExtras, BaseUser):
         return self.role == USER_ROLE.INTERNAL
 
     @property
+    def is_external(self):
+        return self.role == USER_ROLE.EXTERNAL
+
+    @property
     def uid(self):
         return self.user_id
 

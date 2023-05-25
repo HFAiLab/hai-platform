@@ -145,7 +145,7 @@ def check_services_config_get_err(services, user):
         service.port = CONF.jupyter.builtin_services.get(service.name).get('port', None)
     # 检查自定义服务的参数
     for service in filter(lambda svc: svc.name not in CONF.jupyter.builtin_services, services):
-        if not user.is_internal:
+        if not user.is_internal: # TODO(role): 自定义服务
             return '无权使用自定义服务'
         if (err_msg := get_service_config_error(service, services)) is not None:
             return err_msg
@@ -236,7 +236,7 @@ async def create_task_base_queue_v2(user: User, task_schema: TaskSchema = None, 
     override_node_resource = task_schema.options.get('override_node_resource', None)
 
     # 用户相关
-    if not user.is_internal:
+    if user.is_external:
         task_schema.priority = TASK_PRIORITY.AUTO.value
 
     # 对 image 进行处理, template 表示系统内建镜像；train_image 表示用户自定义镜像

@@ -133,7 +133,7 @@ async def chain_perf_series_api(task: TrainingTask = Depends(get_api_task()),
         data_interval = '5min'
     try:
         data = await task.re_impl(DashboardApiImpl).get_chain_time_series(typ, rank, data_interval=data_interval)
-        if not user.is_internal:
+        if user.is_external:
             for item in data:
                 if 'node' in item:
                     item['node'] = convert_to_external_node(item['node'], 'rank', item['rank'])
@@ -244,7 +244,7 @@ async def update_priority(
             'msg': f'该任务在{waiting_seconds}秒内已经更新过优先级'
         }
     if priority:
-        if not user.is_internal:
+        if user.is_external:
             priority = -1
         try:
             priority = int(priority)

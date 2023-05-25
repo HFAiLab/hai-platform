@@ -6,6 +6,7 @@ from collections import defaultdict
 from fastapi import Depends
 
 from api.depends import get_api_user_with_token
+from conf.flags import USER_ROLE, ALL_USER_ROLES
 from k8s.async_v1_api import async_get_nodes_df
 from server_model.user import User
 
@@ -41,8 +42,7 @@ def get_node_type_template():
                 'total': 0,
                 'free': 0,
                 'working': 0,
-                'internal_working': 0,
-                'external_working': 0,
+                **{f'{role}_working': 0 for role in ALL_USER_ROLES}
             },
             'unschedulable': 0,
         },
@@ -57,10 +57,7 @@ def get_node_type_template():
             'service': defaultdict(int),
             'exclusive': defaultdict(int),
             'train': {
-                'working': {
-                    'internal': defaultdict(int),
-                    'external': defaultdict(int),
-                },
+                'working': {role: defaultdict(int) for role in ALL_USER_ROLES},
                 'free': defaultdict(int),
                 'unschedulable': defaultdict(int),
             }
@@ -100,14 +97,10 @@ def get_nodes_overview_impl(nodes: list, for_monitor: bool):
                 else:
                     overview[node['type']]['count']['train']['schedulable']['working'] += 1
                     overview[node['type']]['count_schedule_zone'][node['schedule_zone']]['train']['schedulable']['working'] += 1
-                    if node['working_user_role'] == 'internal':
-                        overview[node['type']]['count']['train']['schedulable']['internal_working'] += 1
-                        overview[node['type']]['count_schedule_zone'][node['schedule_zone']]['train']['schedulable']['internal_working'] += 1
-                        overview[node['type']]['detail']['train']['working']['internal'][node['working_user']] += 1
-                    else:
-                        overview[node['type']]['count']['train']['schedulable']['external_working'] += 1
-                        overview[node['type']]['count_schedule_zone'][node['schedule_zone']]['train']['schedulable']['external_working'] += 1
-                        overview[node['type']]['detail']['train']['working']['external'][node['working_user']] += 1
+                    if (role := node['working_user_role']) in ALL_USER_ROLES:
+                        overview[node['type']]['count']['train']['schedulable'][f'{role}_working'] += 1
+                        overview[node['type']]['count_schedule_zone'][node['schedule_zone']]['train']['schedulable'][f'{role}_working'] += 1
+                        overview[node['type']]['detail']['train']['working'][role][node['working_user']] += 1
             else:
                 overview[node['type']]['count']['train']['unschedulable'] += 1
                 overview[node['type']]['count_schedule_zone'][node['schedule_zone']]['train']['unschedulable'] += 1
@@ -123,8 +116,8 @@ def get_nodes_overview_impl(nodes: list, for_monitor: bool):
     if not for_monitor:
         to_ret = overview['gpu']['count']
         # 公开的展示接口，隐藏调度细节
-        del to_ret['train']['schedulable']['internal_working']
-        del to_ret['train']['schedulable']['external_working']
+        for role in ALL_USER_ROLES:
+            del to_ret['train']['schedulable'][f'{role}_working']
         return to_ret
     return overview
 
@@ -165,7 +158,7 @@ async def get_cluster_overview_for_client_api(user: User = Depends(get_api_user_
             'result': ret['gpu'].copy()
         }
         resp['result']['gpu_detail'] = ret['gpu']
-        if user.is_internal:
+        if not user.is_external:
             resp['result']['cpu_detail'] = ret['cpu']
         return resp
     except Exception as e:

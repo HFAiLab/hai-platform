@@ -32,7 +32,7 @@ class PodListWatcher(ListWatcher):
     def _update_pods(self):
         keys = list(filter(lambda x: TrainingTask.__name__ in x, archive_dict.keys()))
         if self.count % 1000 == 0:
-            logger.info(f'运行了 [{self.count + 1}] 次 当前存活id长度: [{len(keys)}]')
+            self.log_info(f'运行了 [{self.count + 1}] 次 当前存活id长度: [{len(keys)}]')
 
         all_task_info = []
         removed_pod_ids = []
@@ -52,11 +52,11 @@ class PodListWatcher(ListWatcher):
         remove_task_set = self.last_task_set - task_set
         for sk, info in zip([add_task_set, remove_task_set], ['新增', '删除']):
             if (lsk := len(sk)) > 0:
-                logger.info(f'当前 {info} id: 长度 [{lsk}]，详情 {sk}')
+                self.log_info(f'当前 {info} id: 长度 [{lsk}]，详情 {sk}')
         self.last_task_set = task_set
         # 打印删除的细节
         if (len_rm_keys := len(removed_pod_ids)) > 0:
-            logger.info(f'本次通知删除id len: [{len_rm_keys}], ids: {sorted(removed_pod_ids)}')
+            self.log_info(f'本次通知删除id len: [{len_rm_keys}], ids: {sorted(removed_pod_ids)}')
         self.count += 1
 
     def process(self):
@@ -109,6 +109,6 @@ class PodListWatcher(ListWatcher):
                     exit_code = v['status']['containerStatuses'][0]['state']['terminated']['exitCode']
                     Pod.find_pods_by_pod_id(k)[0].update(('exit_code',), (str(exit_code),))
                     self.recorded_exit_pod.add(k)
-                    logger.info(f'更新pod {k} 退出码 {exit_code}')
+                    self.log_info(f'更新pod {k} 退出码 {exit_code}')
                 except:
                     pass

@@ -31,6 +31,7 @@ with logger.contextualize(uuid=f'{log_id}.init'):
     set_mass_info(key_list=[generate_key(class_name=TrainingTask.__name__, sign='id', value=task_id)], mass_name=f'{task_id}_{key}')
     register_parliament()
     task = TrainingTaskSelector.find_one_by_id(AutoTaskSchemaWithDbImpl, id=task_id)
+    k8s_namespace = task.user.config.task_namespace
     bind_logger_task(task)
     register_archive(task, sign='id')
     corev1_api = get_corev1_api()
@@ -76,7 +77,7 @@ def get_stop_code():
 def delete_pod(pod_id):
     try:
         corev1_api.delete_namespaced_pod_with_retry(
-            name=pod_id, namespace=CONF.launcher.task_namespace,
+            name=pod_id, namespace=k8s_namespace,
             body=pod_delete_option,
         )
         logger.info(f'删除pod {pod_id} grace_period_seconds={CONF.manager.delete_pod.grace_period_seconds}')  # 加到日志大盘里
@@ -131,7 +132,7 @@ def stop_manager():
     try:
         appsv1_api.delete_namespaced_stateful_set_with_retry(
             name=manager_id,
-            namespace=CONF.launcher.task_namespace
+            namespace=k8s_namespace
         )
     except ApiException as e:
         if e.status == 404:
@@ -161,7 +162,7 @@ def restart_exp():
         redis_conn.append(f'lifecycle:{task.id}:stop_code', f'{STOP_CODE.MANUAL_STOP}\n')
         return
 
-    if task.task_type == TASK_TYPE.JUPYTER_TASK and not task.user.is_internal and not task.group.startswith(CONF.jupyter.shared_node_group_prefix):
+    if task.task_type == TASK_TYPE.JUPYTER_TASK and task.user.is_external and not task.group.startswith(CONF.jupyter.shared_node_group_prefix):
         logger.info('外部用户独占节点，不重启, 并刷新 stop_code 为 manual stop')
         redis_conn.append(f'lifecycle:{task.id}:stop_code', f'{STOP_CODE.MANUAL_STOP}\n')
         return

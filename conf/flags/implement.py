@@ -1,14 +1,14 @@
+
+from .default import *
+from .custom import *
+
 try:
-    from .server_flags import *
-except Exception:
+    from ..server_flags import *
+except Exception as e:
+    print(e)
     pass
 import collections
 import os
-
-
-class USER_ROLE:
-    INTERNAL = 'internal'
-    EXTERNAL = 'external'
 
 
 class EXP_STATUS:

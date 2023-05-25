@@ -6,10 +6,11 @@ from .base import BaseMQ
 
 class RedisMulticastMQ(BaseMQ):
     @classmethod
-    def send_channel(cls, data, channel, index_key=None, expire=3600):
+    def send_channel(cls, data, channel, index_key=None, expire=3600, retry_times=1000):
         index_key = index_key or f'{channel}_index'
+        n_retry = 0
         with redis_conn.pipeline() as pipe:
-            while True:  # 过程中被打断则继续重试
+            while n_retry <= retry_times:  # 过程中被打断则继续重试
                 try:
                     pipe.watch(index_key)
                     index = pipe.get(index_key)
@@ -23,6 +24,7 @@ class RedisMulticastMQ(BaseMQ):
                     break
                 except:
                     time.sleep(0.1)
+                n_retry += 1
 
     @classmethod
     def listen_channel(cls, channel, index_key=None):
