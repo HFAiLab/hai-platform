@@ -1,9 +1,12 @@
 # Studio
 
 <div align="center">
-  <a href="https://github.com/HFAiLab/hai-platform-studio">
-    <img src="../_static/pic/studio_logo.png" alt="Logo" width="271" height="92">
-  </a>
+  <img src="../_static/pic/studio_logo.png" alt="Logo" width="271" height="92">
+
+  <p align="center">
+      <img alt="hai-platform-studio" src="https://img.shields.io/github/last-commit/HFAiLab/hai-platform-studio/main?style=plastic">
+      <a href="https://github.com/HFAiLab/hai-platform-studio"><img alt="hai-platform-studio" src="https://img.shields.io/github/stars/HFAiLab/hai-platform-studio?style=social"></a>
+  </p>
 </div>
 
 ## 介绍

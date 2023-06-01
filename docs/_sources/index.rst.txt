@@ -64,21 +64,32 @@
 
 .. raw:: html
 
-    <embed>
-        <div align="center">
-        <br/>
-         <a href="https://github.com/HFAiLab/hai-platform">
-         <img src="./_static/pic/hai_logo.png" alt="Logo" width="450">
-         </a>
+    
+   <div align="center">
 
-         <p align="center"><b>大规模高性能深度学习训练平台</b></p>
-         <br/>
+      <img src="./_static/pic/studio_screenshot3.png" alt="hai-platform" width=600><br>
 
-         <img src="./_static/pic/studio_screenshot3.png" alt="Logo" width="600">
-        </div>
-        <br />
-        <br />
-    </embed>
+
+      <h3 align="center">
+         <b>HAI-Platform</b>：大规模高性能深度学习训练平台
+      </h3>
+
+      <p align="center">
+         <img alt="hai-platform" src="https://img.shields.io/github/last-commit/HFAiLab/hai-platform/main?style=plastic">
+         <a href="https://github.com/HFAiLab/hai-platform"><img alt="hai-platform" src="https://img.shields.io/github/stars/HFAiLab/hai-platform?style=social"></a>
+      </p>
+
+      <p align="center">
+         <a href="https://hfailab.github.io/hai-platform/start/hai_intro.html" rel="nofollow">基本介绍</a> |
+         <a href="https://hfailab.github.io/hai-platform/start/install.html" rel="nofollow">操作指引</a> |
+         <a href="https://hfailab.github.io/hai-platform/guide/schedule.html" rel="nofollow">分时调度</a> |
+         <a href="https://hfailab.github.io/hai-platform/api/hai.html" rel="nofollow">接口文档</a> |
+         <a href="https://www.high-flyer.cn/blog/">技术博客</a>
+      </p>
+
+   </div>
+   <br />
+    
 
 
 HAI Platform 是幻方 AI 团队开源的 **大规模高性能深度学习训练平台**，其以 **任务级分时调度共享 AI 算力的理念** 将集群零散资源进行整合，统一分配算力，最大化集群整体的利用效率。
