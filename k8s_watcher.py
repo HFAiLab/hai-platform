@@ -13,7 +13,7 @@ from server_model.auto_task_impl import AutoTaskSchemaImpl
 from server_model.selector import TrainingTaskSelector
 from k8s import LeaderElection, LeaderElectionConfig
 from logm import logger, log_stage
-from k8s_watcher.utils import module
+from k8s_watcher.utils import module, corev1
 from k8s_watcher import PodListWatcher, NodeListWatcher, EventListWatcher
 
 
@@ -34,10 +34,9 @@ def init_parliament():
 
 
 node_list_watcher = NodeListWatcher(process_interval=10)
-pod_list_watchers, event_list_watchers = {}, {}
-for namespace in CONF.launcher.task_namespaces_by_role.values():
-    pod_list_watchers[namespace] = PodListWatcher(namespace, process_interval=1)
-    event_list_watchers[namespace] = EventListWatcher(namespace, field_selector='type=Warning', process_interval=10)
+namespaces = list(CONF.launcher.task_namespaces_by_role.values())
+pod_list_watcher = PodListWatcher(namespaces, process_interval=1)
+event_list_watcher = EventListWatcher(namespaces, field_selector='type=Warning', process_interval=10)
 
 
 healthy = True
@@ -55,20 +54,16 @@ def run():
     logger.info("Start leading")
     init_parliament()
     threading.Thread(name='node_list_watcher', target=node_list_watcher.run).start()
-    for key, pod_list_watcher in pod_list_watchers.items():
-        threading.Thread(name=f'pod_list_watcher_{key}', target=pod_list_watcher.run).start()
-    for key, event_list_watcher in event_list_watchers.items():
-        threading.Thread(name=f'event_list_watcher_{key}', target=event_list_watcher.run).start()
+    threading.Thread(name=f'pod_list_watcher', target=pod_list_watcher.run).start()
+    threading.Thread(name=f'event_list_watcher', target=event_list_watcher.run).start()
 
 
 @log_stage(module)
 def stop_and_die():
     logger.error("Stop leading")
     node_list_watcher.stop()
-    for watcher in pod_list_watchers.values():
-        watcher.stop()
-    for watcher in event_list_watchers.values():
-        watcher.stop()
+    pod_list_watcher.stop()
+    event_list_watcher.stop()
     os._exit(1)
 
 
@@ -78,7 +73,9 @@ if __name__ == '__main__':
     lock_name = CONF.k8swatcher.configmap_lock
     logger.info(f'leader identity: {identity}, lock: {lock_name}')
     default_namespace = CONF.launcher.task_namespaces_by_role['internal']
-    config = LeaderElectionConfig(ConfigMapLock(lock_name, os.environ.get('NAMESPACE', default_namespace), identity),
+    lock = ConfigMapLock(lock_name, os.environ.get('NAMESPACE', default_namespace), identity)
+    lock.api_instance = corev1
+    config = LeaderElectionConfig(lock,
                                   lease_duration=15,
                                   renew_deadline=10,
                                   retry_period=5,

@@ -11,7 +11,7 @@ class TickData(object):
             valid=False,
             resource_df: pd.DataFrame = pd.DataFrame(columns=[
                 'cpu', 'nodes', 'name', 'gpu_num', 'status', 'mars_group', 'memory', 'group', 'working', 'leaf',
-                'spine', 'active', 'schedule_zone', 'working_user_role', 'origin_group', 'allocated'
+                'spine', 'active', 'schedule_zone', 'working_user_role', 'origin_group', 'allocated', 'flag'
             ]),
             user_df: pd.DataFrame = pd.DataFrame(columns=[
                 'user_name', 'resource', 'group', 'quota', 'role', 'priority', 'active'

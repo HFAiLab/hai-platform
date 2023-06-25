@@ -2,6 +2,8 @@
 
 from typing import Tuple
 
+from cached_property import cached_property
+
 from base_model.base_task import BasePod
 from server_model.user_data import update_user_last_activity
 from conf.flags import EXP_STATUS
@@ -125,6 +127,24 @@ class Pod(BasePod):
             task_id=0, pod_id='', job_id=0, status='waiting-init', node=node, role='None', assigned_gpus=[]
         )
 
+    @cached_property
+    def possible_user_names(self):
+        # 创建 pod 时会把 user name 中的下划线转换为横线, 只能还原出可能的用户名
+        res = ['-'.join(self.pod_id.split('-')[:-2])]
+        if '-' in res[0]:
+            res.append(res[0].replace('-', '_'))
+        return res
+
+    @property
+    def from_shared_task(self):
+        sql = """
+            select 1 from "task_ng" left join "task_tag" on "task_ng"."chain_id" = "task_tag"."chain_id"
+            where id = %s and "task_tag"."tag" like '_shared_in_%'
+        """
+        res = MarsDB().execute(sql, (self.task_id, ))
+        return len(res.fetchall()) > 0
+
     def update_user_last_activity(self):
-        user_name = '-'.join(self.pod_id.split('-')[:-2])
-        update_user_last_activity(user_name)
+        # 从 pod name 还原不出准确的 user name, 把两种可能都更新一下, 开销比查数据库拿准确的 user name 要小很多
+        for user_name in self.possible_user_names:
+            update_user_last_activity(user_name, from_shared_task=self.from_shared_task)

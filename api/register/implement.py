@@ -27,11 +27,16 @@ if 'operating' in REG_SERVERS:
     app.post('/operating/task/suspend')(at_exp.suspend_task_by_name)
     app.post('/operating/task/tag')(at_exp.tag_task)
     app.post('/operating/task/untag')(at_exp.untag_task)
+    app.post('/operating/task/share')(at_exp.share_task)
+    app.post('/operating/task/unshare')(at_exp.unshare_task)
     app.post('/operating/task/fail')(a_train.fail_task)
     app.post('/operating/task/priority/update')(at_exp.update_priority)
     app.post('/operating/task/group/update')(at_exp.switch_group)
     app.post('/operating/task/service_control')(at_exp.service_control_api)
     app.post('/operating/task/restart_log/set')(at_exp.set_task_restart_log_api)
+
+    app.post('/operating/task/artifact/map')(at_exp.map_task_artifact)
+    app.post('/operating/task/artifact/unmap')(at_exp.unmap_task_artifact)
 
     app.post('/operating/user/tag/delete')(at_exp.delete_tags)
     app.post('/operating/user/training_quota/update')(au_user.set_user_gpu_quota)
@@ -41,6 +46,8 @@ if 'operating' in REG_SERVERS:
     app.post('/operating/user/active/update')(au_admin.set_user_active_state_api)
     app.post('/operating/user/create')(au_admin.create_user_api)
     app.post('/operating/user/group/update')(au_admin.update_user_group)
+    app.post('/operating/user/artifact/createupdate')(au_user.create_update_user_artifact)
+    app.post('/operating/user/artifact/delete')(au_user.delete_user_artifact)
 
     app.post('/operating/service_task/delete')(at_service_task.delete_task_api)
     app.post('/operating/service_task/move_node')(at_service_task.move_node_api)
@@ -60,6 +67,7 @@ if 'operating' in REG_SERVERS:
 if 'ugc' in REG_SERVERS:
     app.post('/ugc/user/nodeport/create')(at_port.node_port_svc)
     app.post('/ugc/user/nodeport/delete')(at_port.delete_node_port_svc)
+    app.post('/ugc/user/nodeport/bind')(at_port.bind_node_port_svc)
     app.post('/ugc/user/train_image/list')(aq_optimized_resource.get_train_images)
 
     app.post('/ugc/cloud/cluster_files/list')(ar_cloud_storage.list_cluster_files)
@@ -77,6 +85,10 @@ if 'query' in REG_SERVERS:
     app.post('/query/task/container_monitor_stats/list')(aq_optimized_task.get_task_container_monitor_stats_api)
     app.post('/query/task/time_range_overview')(aq_optimized_task.get_time_range_schedule_info_api)
     app.post('/query/task/get_task_on_node')(at_exp.get_task_on_node_api)
+
+    app.post('/query/task/artifact/get')(at_exp.get_task_artifact_mapping)
+    app.post('/query/task/artifact/list')(at_exp.get_all_task_artifact_mapping)
+    app.post('/query/user/artifact/get')(au_user.get_user_artifact)
 
     app.post('/query/service_task/list')(aq_optimized_service_task.data_api)
     app.post('/query/service_task/list_all')(aq_optimized_service_task.all_tasks_api)
@@ -100,6 +112,8 @@ if 'query' in REG_SERVERS:
     app.post('/query/node/host_info')(ar_cluster.get_host_info_api)
     app.post('/query/node/overview')(aq_optimized_resource.get_nodes_overview_api)
     app.post('/query/node/client_overview')(aq_optimized_resource.get_cluster_overview_for_client_api)
+
+    app.post('/query/storage/get_by_task')(ar_storage.get_storage_by_task)
 
 
 if 'monitor' in REG_SERVERS:

@@ -63,6 +63,10 @@ unschedulable_timeout_Ms = 1
 not_stop_node_for_test = 0
 image_pull_policy = 'Always'
 
+[k8s]
+[[k8s.config]]
+config_file = '' # empty means in-cluster config
+
 [k8swatcher]
 configmap_lock = 'one-k8swatcher-leader-lock'
 

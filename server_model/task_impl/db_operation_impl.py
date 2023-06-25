@@ -101,7 +101,8 @@ class DbOperationImpl(ITaskImpl, ABC):
         self.update_user_last_activity()
 
     def update_user_last_activity(self):
-        update_user_last_activity(self.task.user_name)
+        from_shared_task = any(tag.startswith('_shared_in') for tag in self.task.tags)
+        update_user_last_activity(self.task.user_name, from_shared_task=from_shared_task)
 
     def resume(self, *args, **kwargs) -> Optional[BaseTask]:
         task = self.task

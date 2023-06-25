@@ -14,3 +14,4 @@ from ..user_access import UserAccess
 from ..user_node_port import UserNodePort
 from ..user_monitor import UserMonitor
 from ..user_image import UserImage
+from ..user_artifact import UserArtifact

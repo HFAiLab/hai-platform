@@ -60,6 +60,11 @@ class SingleTaskImpl(ITaskImpl, ABC):
             'MARSV2_VENV_PATH': f'/hf_shared/hfai_envs/{self.task.user_name}',  # 环境变量暂时保留
             'HAIENV_PATH': f'/hf_shared/hfai_envs/{self.task.user_name}',
             'MARSV2_BFF_URL': CONF.try_get(f'server_url.bff.{self.task.user.role}'),
+            # git 相关 env
+            'MARSV2_GIT_REMOTE_REPO': self.task.config_json.get('git_remote_repo', ''),
+            'MARSV2_GIT_TARGET_REVISION': self.task.config_json.get('git_commit_sha', '') or self.task.schema.get('spec', {}).get('git_target_revision', ''),
+            'MARSV2_GIT_COMMIT_SHA': self.task.config_json.get('git_commit_sha', ''),
+            'MARSV2_GIT_REPO_AS_WORKSPACE': int(self.task.schema.get('spec', {}).get('git_remote_repo', '') != ''),
         }
 
     @cached_property
@@ -202,7 +207,8 @@ class SingleTaskImpl(ITaskImpl, ABC):
                     all_service['headless_services'].append({'name': service['name'], 'port': service['port']})
                     all_service['ingress_rules'].append({
                         'path': f'/{self.task.user_name}/{self.task.nb_name}' + f'{transform_service_name(service["name"])}',
-                        'port': service['port']
+                        'port': service['port'],
+                        'rewrite_uri': service.get('rewrite_uri', False),
                     })
             # 需要创建至少一个 headless service 实现 DNS 解析
             if len(all_service['headless_services']) == 0:
@@ -284,6 +290,12 @@ class SingleTaskImpl(ITaskImpl, ABC):
             'MARSV2_TASK_WORKSPACE': code_dir,
             'MARSV2_TASK_ENTRYPOINT': os.path.join(code_dir, code_file),
         })
+        # 添加数据库中配置的额外环境变量
+        extra_envs = MarsDB().execute("""
+            select value from multi_server_config where key = 'extra_training_env' and module = 'launcher'
+        """).fetchone()
+        if extra_envs is not None:
+            self._runtime_envs.update(extra_envs.value)
         for rank, pod in enumerate(self.task.pods):
             if self.task.nb_name == 't_unschedulable_ZpRm4tEQpY3XXHkA':
                 cpu_requests = 100000

@@ -53,12 +53,14 @@ MOUNT_CODE = {
 
 
 # 任务的优先级对应关系，这里step为10，防止之后有新增优先级
+# 注意这里的顺序必须严格递减
 class TASK_PRIORITY(int, Enum):
     EXTREME_HIGH = 50
     VERY_HIGH = 40
     HIGH = 30
     ABOVE_NORMAL = 20
     NORMAL = 10
+    UNDER_NORMAL = 8
     BELOW_NORMAL = 5
     LOW = 0
     AUTO = -1
@@ -79,6 +81,35 @@ class TASK_PRIORITY(int, Enum):
     def value_key_map(cls):
         return {i.value: i.name for i in cls}
 
+    @classmethod
+    def max_external_priority(cls):
+        return cls.BELOW_NORMAL
+
+    @classmethod
+    def min_internal_priority(cls):
+        return cls.UNDER_NORMAL
+
+    @classmethod
+    def external_priorities(cls, with_auto=False):
+        if with_auto:
+            return [p for p in cls if p <= cls.max_external_priority() or p == cls.AUTO]
+        else:
+            return [p for p in cls if p <= cls.max_external_priority() and p != cls.AUTO]
+
+    @classmethod
+    def internal_priorities(cls, with_auto=False):
+        if with_auto:
+            return [p for p in cls if p >= cls.min_internal_priority() or p == cls.AUTO]
+        else:
+            return [p for p in cls if p >= cls.min_internal_priority() and p != cls.AUTO]
+
+    @classmethod
+    def all_priorities(cls, with_auto=False):
+        if with_auto:
+            return [p for p in cls]
+        else:
+            return [p for p in cls if p != cls.AUTO]
+
 
 # 调度的分界时间（分钟数）
 SCHEDULE_RUNNING_MIN_TIME = 15
@@ -97,3 +128,6 @@ class TASK_OP_CODE(str, Enum):
     SUSPEND = 'suspend'
     SUCCEED = 'succeed'
     FAIL = 'fail'
+
+
+NODE_FLAG = {}

@@ -103,7 +103,7 @@ async def async_requests(method: RequestMethod, url: str, assert_success: list =
                     if result.get('proxyError', None) == 'Timeout':
                         raise Exception(f'服务端超时, {result}')
                     # 先assert拿到正确的返回，再assert success字段
-                    assert result.get('success', None), result
+                    assert 'success' in result, result
                     if not allow_unsuccess:
                         assert result['success'] in assert_success, result['msg']
                     elif result['success'] not in assert_success:

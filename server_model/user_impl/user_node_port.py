@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from kubernetes.client import ApiException
+from munch import Munch
 
 from base_model.training_task import TrainingTask
 from base_model.base_user_modules import IUserNodePort
@@ -43,13 +44,46 @@ class UserNodePort(IUserNodePort):
 
     async def async_delete(self, task: TrainingTask, dist_port: int, rank: int = 0):
         async_func = asyncwrap(self.delete)
-        await async_func(task, self.user.config.task_namespace, dist_port, rank)
+        return await async_func(task, self.user.config.task_namespace, dist_port, rank)
+
+    async def async_bind(self, alias: str, dist_port: int, src_port: int, nb_name: str, rank: int = 0, random_on_conflict=False):
+        async_func = asyncwrap(self.bind)
+        return await async_func(alias, dist_port, src_port, nb_name, rank, random_on_conflict)
 
     def find_all(self, alias=None, nb_name=None, rank=None, dist_port=None):
         any_str, any_str_or_empty, any_num = ".+?", ".*?", "\\d+?"
         pattern = f'port:{alias or any_str_or_empty}:{nb_name or any_str}:{rank or any_num}:{dist_port or any_num}'
         quota_df = self.user.quota.quota_df
         return quota_df[quota_df.index.str.fullmatch(pattern)]
+
+    def bind(self, alias: str, dist_port: int, src_port: int, nb_name: str, rank: int = 0, random_on_conflict=False):
+        if ':' in alias or len(alias) > 32:
+            raise ExceptionWithoutErrorLog(f'alias(即usage) 不能包含 ":" 且长度不能超过32')
+        if len(self.find_all()) >= self.user.quota.port_quota:
+            raise Exception('nodeport quota 超限')
+        task_key = convert_task_job_to_key(Munch(nb_name=nb_name, user_name=self.user.user_name), rank)
+        service_name = f's{task_key}-{dist_port}'
+        create = lambda port: create_nodeport_service(service_name=service_name,
+                                                      namespace=self.user.config.task_namespace,
+                                                      dist_port=dist_port,
+                                                      selector={'task_key': task_key},
+                                                      src_port=port)
+        try:
+            res = create(port=src_port)
+            if res['existed'] and res['port'] != src_port:
+                raise Exception(f'该配置的 nodeport 已被创建 ({res["port"]}), 与指定的端口号 {src_port} 不一致')
+        except ApiException as e:
+            if 'already allocated' in e.body:
+                if not random_on_conflict:
+                    raise Exception(f'端口 {src_port} 已被占用')
+                else:
+                    res = create(port=None)
+                    src_port = res['port']
+            else:
+                raise e
+        port_name = f'port:{alias}:{nb_name}:{rank}:{dist_port}'
+        self.user.db.insert_quota(port_name, src_port)
+        return res
 
     def create(self, task: TrainingTask, namespace: str, alias: str, dist_port: int, rank: int = 0):
         if ':' in alias or len(alias) > 32:

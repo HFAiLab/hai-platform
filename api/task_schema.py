@@ -1,3 +1,4 @@
+
 from typing import Dict, Any, List, Optional
 
 from pydantic import BaseModel  # 和 py36 不兼容
@@ -6,8 +7,10 @@ from conf.flags import TASK_TYPE
 
 
 class TaskSpec(BaseModel):
-    workspace: str
     entrypoint: str
+    workspace: str = ''
+    git_remote_repo: str = ''
+    git_target_revision: str = ''
     parameters: str = ''
     environments: Dict[str, str] = {}
     entrypoint_executable: bool = False
@@ -29,6 +32,7 @@ class TaskService(BaseModel):
     type: str = None
     rank: List[int] = [0]
     startup_script: str = None
+    rewrite_uri: Optional[bool] = False  # 仅type=http需要配置, 重写请求uri /{user_name}/{nb_name}/{svc_name} => /
 
 
 class TaskSchema(BaseModel):

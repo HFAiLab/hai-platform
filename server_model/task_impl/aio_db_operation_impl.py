@@ -96,10 +96,79 @@ class AioDbOperationImpl(ITaskImpl, ABC):
             where "chain_id" = %s and "tag" = %s
         '''
         await MarsDB().a_execute(sql, (self.task.chain_id, tag), remote_apply=kwargs.get('remote_apply', False))
+        # 如果是删除共享标记 tag, 主动指定更新共享任务时间戳, 否则删除了 tag 会被判定为非共享任务而不去更新时间戳
+        await self.update_user_last_activity(from_shared_task=True if tag.startswith('_shared_in') else None)
+
+    async def update_tags(self):
+        sql = f'''
+            select array_agg(tag) from "task_tag"
+            where "chain_id" = %s and "user_name" = %s
+        '''
+        result = await MarsDB().a_execute(sql, (self.task.chain_id, self.task.user_name))
+        result = result.fetchone()[0]
+        self.task.tags = list(result) if result is not None else []
+
+    async def map_task_artifact(self, artifact_name: str, artifact_version: str, direction: str, *args, **kwargs):
+        if artifact_name == '':
+            return 'artifact_name 不能为空'
+        if direction not in ['input', 'output']:
+            return 'direction 必须为input/output'
+        # shared task只能map shared artifact，私有task只能map 私有artifact
+        is_shared_task = any(tag.startswith('_shared_in') for tag in self.task.tags)
+        shared_group = self.task.user.shared_group if is_shared_task else self.task.user_name
+        artifacts_info = (await MarsDB().a_execute("""
+        select "shared_group" from "user_artifact"
+        where "name" = %s and "version" = %s and ("user_name" = %s or "shared_group" = %s)
+        """, (artifact_name, artifact_version, self.task.user_name, shared_group))).fetchall()
+        if len(artifacts_info) < 1:
+            return f'找不到artifact {artifact_name}:{artifact_version}, 任务{self.task.job_info}类型：{"共享" if is_shared_task else "私有"}'
+        # 记录artifact shared_group:name:version
+        artifact_info = f'{artifacts_info[0].shared_group}:{artifact_name}:{artifact_version}'
+        artifact_info_field = 'in_artifact' if direction == 'input' else 'out_artifact'
+        task_ids = {self.task.id, self.task.first_id}
+        sql = f'''
+            insert into "task_artifact_mapping" ("user_name", "chain_id", "nb_name", "task_ids", "{artifact_info_field}", "shared_group")
+            values ('{self.task.user_name}', '{self.task.chain_id}', '{self.task.nb_name}', array {list(task_ids)}, '{artifact_info}', '{shared_group}')
+            on conflict ("chain_id") do update set "{artifact_info_field}" = excluded."{artifact_info_field}",
+                                                   "task_ids" = excluded."task_ids"
+        '''
+        await MarsDB().a_execute(sql, remote_apply=kwargs.get('remote_apply', False))
         await self.update_user_last_activity()
 
-    async def update_user_last_activity(self):
-        update_user_last_activity(self.task.user_name)
+    async def unmap_task_artifact(self, direction: str, *args, **kwargs):
+        if direction not in ['input', 'output', 'all']:
+            return 'direction 必须为input/output/all'
+        if direction == 'all':
+            _sql = f'''
+                delete from "task_artifact_mapping"
+                where "user_name" = '{self.task.user_name}' and "chain_id" = '{self.task.chain_id}'
+            '''
+        else:
+            _sql = f'''
+                update "task_artifact_mapping"
+                set "{'in_artifact' if direction == 'input' else 'out_artifact'}" = ''
+                where "user_name" = '{self.task.user_name}' and "chain_id" = '{self.task.chain_id}'
+            '''
+        await MarsDB().a_execute(_sql, remote_apply=kwargs.get('remote_apply', False))
+        await self.update_user_last_activity()
+
+    async def get_task_artifact(self, *args, **kwargs):
+        result = (await MarsDB().a_execute(f"""
+            select "user_name", "chain_id", "nb_name", "task_ids", "in_artifact", "out_artifact" from "task_artifact_mapping"
+            where "chain_id" = '{self.task.chain_id}' """)).fetchall()
+        if len(result) == 0:
+            return f'no artifact mapped for task {self.task.job_info}'
+        row = result[0]._asdict()
+        for index in ['in_artifact', 'out_artifact']:
+            if row[index]:
+                row[index] = ':'.join(row[index].split(':')[1:])
+        return row
+
+    async def update_user_last_activity(self, from_shared_task=None):
+        if from_shared_task is None:
+            await self.update_tags()
+            from_shared_task = any(tag.startswith('_shared_in') for tag in self.task.tags)
+        update_user_last_activity(self.task.user_name, from_shared_task=from_shared_task)
 
     async def aio_update_config_json_by_path(self, path, value, *args, **kwargs):
         path = ','.join(path)
@@ -111,7 +180,6 @@ class AioDbOperationImpl(ITaskImpl, ABC):
 
     async def resume(self, *args, **kwargs) -> Optional[BaseTask]:
         task = self.task
-        db_conn = kwargs.get('db_conn', MarsDB())
         sql = f'''
                     insert into "unfinished_task_ng" (
                         "nb_name", "user_name", "code_file", "workspace", "group", "nodes", "assigned_nodes", "restart_count", 

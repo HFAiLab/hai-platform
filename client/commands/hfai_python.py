@@ -151,7 +151,7 @@ def func_python_local(experiment_py, experiment_args, suspend_seconds, life_stat
 
 
 async def func_python_cluster(experiment_py: str, experiment_args, name, nodes, priority, group, image, environments, no_inherit, follow,
-    force, no_checksum, no_hfignore, no_zip, no_diff, list_timeout, sync_timeout, cloud_connect_timeout, token_expires, part_mb_size, proxy, options):
+    force, no_checksum, no_hfignore, no_zip, no_diff, list_timeout, sync_timeout, cloud_connect_timeout, token_expires, part_mb_size, proxy, options, input, output):
     experiment_args = eval(experiment_args) if type(experiment_args) is str else experiment_args
     # note: 为了处理 python a.py --test="(a > b)" 的情况
     #              将上者转换成 python a.py '--test=(a > b)'，应该是等价的
@@ -252,7 +252,7 @@ resource:
     print('-' * 80)
     print(yaml.dump(config.toDict()))
     print('-' * 80)
-    await hfai_experiment.run.callback(config, follow, None, None, None)
+    await hfai_experiment.run.callback(config, follow, None, None, None, input, output)
 
 
 @click.command(cls=HandleHfaiPythonArgs, context_settings=dict(ignore_unknown_options=True))
@@ -281,10 +281,12 @@ resource:
 @click.option('--part_mb_size', required=False, is_flag=False, type=click.IntRange(10, 10240), default=100, show_default=True, help='push时, 从本地上传到云端的分片大小, 单位(MB)')
 @click.option('--proxy', required=False, is_flag=False, default='', help='push时, 从本地上传到云端时使用的代理url')
 @click.option('--options', type=str, multiple=True, help='指定任务的一些可选项，具体看 Extra Cluster Options')
+@click.option('--input', required=False, default='', help='任务输入artifact，格式为name:version')
+@click.option('--output', required=False, default='', help='任务输出artifact, 格式为name:version')
 async def python(experiment_type, experiment_py, experiment_args, name, nodes, priority,
                  group, image, environments, suspend_seconds, life_state, no_inherit, follow,
                  force, no_checksum, no_hfignore, no_zip, no_diff, list_timeout, sync_timeout,
-                 cloud_connect_timeout, token_expires, part_mb_size, proxy, options):
+                 cloud_connect_timeout, token_expires, part_mb_size, proxy, options, input, output):
     if cmd != 'exec' and not os.path.exists(experiment_py):
         print(f'{experiment_py} 文件不存在')
         return
@@ -293,4 +295,4 @@ async def python(experiment_type, experiment_py, experiment_args, name, nodes, p
     else:
         await func_python_cluster(experiment_py, experiment_args, name, nodes, priority, group, image, environments,
                                   no_inherit, follow, force, no_checksum, no_hfignore, no_zip, no_diff, list_timeout,
-                                  sync_timeout, cloud_connect_timeout, token_expires, part_mb_size, proxy, options)
+                                  sync_timeout, cloud_connect_timeout, token_expires, part_mb_size, proxy, options, input, output)

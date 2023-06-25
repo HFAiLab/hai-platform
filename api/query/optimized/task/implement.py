@@ -111,6 +111,7 @@ async def get_tasks_api(
         excluded_tag: List[str] = Query(default=None),
         group: List[str] = Query(default=None),
         only_star: bool = False,
+        shared_task: str = 'exclude',
         select_pods: bool = True,
         created_start_time: str = None,
         created_end_time: str = None,
@@ -146,8 +147,17 @@ async def get_tasks_api(
                 'success': 0,
                 'msg': 'created_start_time / created_end_time 格式不正确，需要为 isoformat'
             }
-    sql_where_and = ' and "user_name" = %s '
-    sql_where_and_args = (user.user_name, )
+    if shared_task not in {'exclude', 'only'}:
+        return {
+            'success': 0,
+            'msg': '共享任务筛选仅支持 exclude/only 选项'
+        }
+    if shared_task == 'only':
+        sql_where_and = ' and "chain_id" in (select "chain_id" from "task_tag" where "tag" = %s) '
+        sql_where_and_args = (user.shared_task_tag, )
+    else:
+        sql_where_and = ' and "user_name" = %s '
+        sql_where_and_args = (user.user_name, )
     if task_type is not None:
         sql_where_and += f''' and "task_type" in ({",".join("%s" for _ in task_type)}) '''
         sql_where_and_args += tuple(task_type)
@@ -161,8 +171,8 @@ async def get_tasks_api(
             sql_where_and += f''' and "config_json"->>'client_group' in ({",".join("%s" for _ in client_groups)}) '''
             sql_where_and_args += tuple(client_groups)
     if nb_name_pattern is not None:
-        sql_where_and += ' and ("nb_name" like %s or "id"::varchar like %s) '
-        sql_where_and_args += (f'%{nb_name_pattern}%', f'{nb_name_pattern}%', )
+        sql_where_and += ' and ("nb_name" like %s or "id"::varchar like %s or "chain_id" like %s) '
+        sql_where_and_args += (f'%{nb_name_pattern}%', f'{nb_name_pattern}%', f'%{nb_name_pattern}%')
     if worker_status is not None:
         sql_where_and += f''' and "worker_status" in ({",".join("%s" for _ in worker_status)}) '''
         sql_where_and_args += tuple(worker_status)
@@ -206,8 +216,8 @@ async def get_task_api(
         nb_name: str = None,
         user: User = Depends(get_api_user_with_token())
 ):
-    sql_where_and = ' and "user_name" = %s '
-    sql_where_and_args = (user.user_name, )
+    sql_where_and = ' and ("user_name" = %s or "chain_id" in (select "chain_id" from "task_tag" where "tag" = %s)) '
+    sql_where_and_args = (user.user_name, user.shared_task_tag)
     if id is not None:
         sql_where_and += ' and "chain_id" in (select "chain_id" from "task_ng" where "id" = %s) '
         sql_where_and_args += (id, )
@@ -215,8 +225,8 @@ async def get_task_api(
         sql_where_and += ' and "chain_id" = %s '
         sql_where_and_args += (chain_id, )
     elif nb_name is not None:
-        sql_where_and += ' and "nb_name" = %s '
-        sql_where_and_args += (nb_name, )
+        sql_where_and += ' and ("nb_name" = %s and "user_name" = %s)'
+        sql_where_and_args += (nb_name, user.user_name, )
     else:
         return {
             'success': 0,
@@ -301,6 +311,7 @@ async def get_running_tasks_api(
         "unfinished_task_ng"."user_name", "unfinished_task_ng"."priority", "unfinished_task_ng"."assigned_nodes",
         "unfinished_task_ng"."nodes", "unfinished_task_ng"."backend", "unfinished_task_ng"."begin_at", "unfinished_task_ng"."created_at",
         "unfinished_task_ng"."group", "unfinished_task_ng"."chain_id", "unfinished_task_ng"."task_type", "unfinished_task_ng"."first_id",
+        "chain_task_ng"."begin_at_list", "chain_task_ng"."end_at_list",
         case 
             when "unfinished_task_ng"."queue_status" = '{QUE_STATUS.FINISHED}' then '{CHAIN_STATUS.FINISHED}'
             when "unfinished_task_ng"."queue_status" = '{QUE_STATUS.QUEUED}' and "unfinished_task_ng"."id" != "unfinished_task_ng"."first_id" then '{CHAIN_STATUS.SUSPENDED}'
@@ -323,7 +334,21 @@ async def get_running_tasks_api(
     ) as "t" on "t"."max_id" = "unfinished_task_ng"."id"
     inner join "user" on "user"."user_name" = "unfinished_task_ng"."user_name"
     left join "task_runtime_config" "tr" on "tr"."task_id" = "unfinished_task_ng"."id" or "tr"."chain_id" = "unfinished_task_ng"."chain_id"
-    group by "unfinished_task_ng"."id","unfinished_task_ng","first_id", "user"."role"
+    left join (
+        select
+            max("id") as "max_id",
+            array_agg("begin_at" order by "id") as "begin_at_list",
+            array_agg("end_at" order by "id") as "end_at_list"
+        from "task_ng"
+        where "task_ng"."chain_id" in (
+            select
+                "chain_id"
+            from "unfinished_task_ng"
+        )
+        group by "task_ng"."chain_id"
+    ) as "chain_task_ng" on "chain_task_ng"."max_id" = "unfinished_task_ng"."id"
+    group by "unfinished_task_ng"."id","unfinished_task_ng"."first_id", "user"."role",
+        "chain_task_ng"."max_id", "chain_task_ng"."begin_at_list", "chain_task_ng"."end_at_list"
     order by "first_id" desc
     """, tuple(task_type))
     return {

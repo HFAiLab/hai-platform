@@ -3,7 +3,7 @@ import threading
 import socket
 import os
 from experiment_manager.manager.client_handler import set_whole_life_state, \
-    receive_suspend_command, go_suspend, set_priority, disable_warn, waiting_memory_free_failed
+    receive_suspend_command, go_suspend, set_priority, disable_warn, waiting_memory_free_failed, report_git_revision
 from experiment_manager.manager.manager_utils import get_log_uuid
 from logm import logger, log_stage
 
@@ -17,7 +17,8 @@ dealer_func_dict = {
     go_suspend.__name__: go_suspend,
     set_priority.__name__: set_priority,
     disable_warn.__name__: disable_warn,
-    waiting_memory_free_failed.__name__: waiting_memory_free_failed
+    waiting_memory_free_failed.__name__: waiting_memory_free_failed,
+    report_git_revision.__name__: report_git_revision,
 }
 
 

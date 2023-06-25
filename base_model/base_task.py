@@ -156,7 +156,7 @@ class BaseTask(HasTraits):
 
     @_bind_impl_
     def resume(self, *args, **kwargs):
-        return self.__impl__.create(*args, **kwargs)
+        return self.__impl__.resume(*args, **kwargs)
 
     @_bind_impl_
     def create_error_info(self, failed_msg):
@@ -181,6 +181,18 @@ class BaseTask(HasTraits):
     @_bind_impl_
     def untag_task(self, tag: str, *args, **kwargs):
         return self.__impl__.untag_task(tag, *args, **kwargs)
+
+    @_bind_impl_
+    def map_task_artifact(self, artifact_name: str, artifact_version: str, direction: str, *args, **kwargs):
+        return self.__impl__.map_task_artifact(artifact_name, artifact_version, direction, *args, **kwargs)
+
+    @_bind_impl_
+    def unmap_task_artifact(self, direction: str, *args, **kwargs):
+        return self.__impl__.unmap_task_artifact(direction, *args, **kwargs)
+
+    @_bind_impl_
+    def get_task_artifact(self, *args, **kwargs):
+        return self.__impl__.get_task_artifact(*args, **kwargs)
 
     @_bind_impl_
     def star_task(self, star: bool, *args, **kwargs):
@@ -377,6 +389,15 @@ class ITaskImpl:
         return NotImplementedError
 
     def untag_task(self, tag: str, *args, **kwargs):
+        return NotImplementedError
+
+    def map_task_artifact(self, artifact_name: str, artifact_version: str, direction: str, *args, **kwargs):
+        return NotImplementedError
+
+    def unmap_task_artifact(self, direction: str, *args, **kwargs):
+        return NotImplementedError
+
+    def get_task_artifact(self, *args, **kwargs):
         return NotImplementedError
 
     def star_task(self, star: bool, *args, **kwargs):

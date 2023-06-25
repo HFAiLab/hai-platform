@@ -26,10 +26,7 @@ class FIFOAssigner(Assigner):
                 elif raw_user_training_quota.get((task.user_name, task.priority, task.group), 0) < task.nodes:
                     self.task_df.loc[task.id, 'assign_result'] = ASSIGN_RESULT.QUOTA_EXCEEDED
             else:
-                for priority_level in [
-                    TASK_PRIORITY.EXTREME_HIGH, TASK_PRIORITY.VERY_HIGH, TASK_PRIORITY.HIGH, TASK_PRIORITY.ABOVE_NORMAL,
-                    TASK_PRIORITY.NORMAL, TASK_PRIORITY.BELOW_NORMAL, TASK_PRIORITY.LOW
-                ]:
+                for priority_level in TASK_PRIORITY.all_priorities():
                     if user_training_quota.get((task.user_name, priority_level.value, task.group), 0) - task.nodes >= 0:
                         self.task_df.loc[task.id, ['priority', 'assign_result']] = [priority_level.value, ASSIGN_RESULT.NOT_SURE]
                         user_training_quota[task.user_name, priority_level.value, task.group] -= task.nodes

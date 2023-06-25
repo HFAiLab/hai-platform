@@ -6,7 +6,7 @@ from hfai.base_model.base_user import BaseUser, UserModuleDescriptor
 from hfai.conf.flags import USER_ROLE
 from ...api.api_config import get_mars_url as mars_url
 from ...api.api_utils import async_requests, RequestMethod, request_url
-from ..user_impl import UserNodePort, UserQuota, UserStorage, UserAccess, UserMonitor, UserImage
+from ..user_impl import UserNodePort, UserQuota, UserStorage, UserAccess, UserMonitor, UserImage, UserArtifact
 
 
 class RemoteInfoDescriptor:
@@ -31,6 +31,7 @@ class User(UserExtras, BaseUser):
     access: UserAccess = UserModuleDescriptor()
     monitor: UserMonitor = UserModuleDescriptor()
     image: UserImage = UserModuleDescriptor()
+    artifact: UserArtifact = UserModuleDescriptor()
 
     user_id = RemoteInfoDescriptor()
     user_name = RemoteInfoDescriptor()

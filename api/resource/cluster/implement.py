@@ -6,6 +6,7 @@ from itertools import chain
 from typing import Optional, List, Union
 
 import pandas as pd
+from typing import List
 from fastapi import Depends, HTTPException
 from kubernetes.client import ApiException
 from pydantic import BaseModel
@@ -72,6 +73,7 @@ class HostInfo(BaseModel):
     origin_group: str = None
     room: str = None
     schedule_zone: str = None
+    flags: List[str] = []
 
 
 async def update_host_info_api(node: HostInfo, user: User = Depends(

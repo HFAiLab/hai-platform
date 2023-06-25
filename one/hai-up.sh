@@ -395,8 +395,8 @@ JUPYTER_DIR = '${HAI_PLATFORM_PATH}/workspace/{user_name}/jupyter'
 [jupyter.builtin_services.jupyter.environ.external]
 JUPYTER_DIR = '${HAI_PLATFORM_PATH}/workspace/{user_name}/jupyter'
 [jupyter.ingress_host]
-hfhub = '${INGRESS_HOST}'
-yinghuo = '${INGRESS_HOST}'
+internal = '${INGRESS_HOST}'
+external = '${INGRESS_HOST}'
 studio = '${INGRESS_HOST}'
 EOF
 

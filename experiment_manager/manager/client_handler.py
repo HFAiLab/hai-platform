@@ -1,5 +1,6 @@
 import os
 import time
+from threading import Lock
 
 import ujson
 
@@ -63,10 +64,7 @@ def set_priority(priority: int = None, custom_rank: float = None, **kwargs):
             priority = -1
         try:
             priority = int(priority)
-            if priority not in [
-                TASK_PRIORITY.EXTREME_HIGH.value, TASK_PRIORITY.VERY_HIGH.value, TASK_PRIORITY.HIGH.value,
-                TASK_PRIORITY.ABOVE_NORMAL.value, TASK_PRIORITY.AUTO.value
-            ]:
+            if priority not in TASK_PRIORITY.internal_priorities(with_auto=True):
                 raise Exception()
         except:
             return {
@@ -106,3 +104,19 @@ def waiting_memory_free_failed(error_msg, node, **kwargs):
         'success': 1,
         'msg': '发送报警成功'
     }
+
+
+git_rev_lock = Lock()
+
+def report_git_revision(rank, commit_sha, **kwargs):
+    with git_rev_lock:
+        if task.config_json.get('git_commit_sha', '') == '':
+            task.update(fields=('config_json', ), values=({'git_commit_sha': commit_sha}, ))
+            logger.info(f'rank {rank} reported first git revision {commit_sha}')
+        elif task.config_json['git_commit_sha'] != commit_sha:
+            # 有 rank 报告了不一致的 commit sha, 可能是在起 pod 期间远端 branch/tag 的 HEAD 变化了, 打断任务重启, 重新拉最新的 repo
+            task.update(fields=('config_json', ), values=({'git_commit_sha': ''}, ))
+            task.update(('suspend_code',), (SUSPEND_CODE.CAN_SUSPEND,))
+            redis_conn.lpush(f'{CONF.manager.stop_channel}:{task.id}', ujson.dumps({'action': 'stop', 'flag': STOP_CODE.INTERRUPT}))
+            return {'success': 0, 'msg': f'rank {rank} 报告了不一致的 git revision ({commit_sha}), 可能是远端 repo 有更新, 打断任务'}
+    return {'success': 1, 'msg': '成功'}

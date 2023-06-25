@@ -21,8 +21,8 @@ max_number = 50  # 最多创建 50 个
 num_free_node_thresholds.min_to_create = 200  # 空闲节点少于 200 个就不允许创建了
 num_free_node_thresholds.min_to_run = 100  # 空闲节点少于 100 个就回收所有 spot jupyters
 [jupyter.ingress_host]
-hfhub = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
-yinghuo = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
+internal = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
+external = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
 studio = 'nginx-ingress-lb.kube-system.c2c348f48c063452fa5738ec9caeb69ea.cn-hangzhou.alicontainer.com'
 
 [exporter]

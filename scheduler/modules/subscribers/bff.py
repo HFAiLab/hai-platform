@@ -199,7 +199,7 @@ class ProcessUnitUsedQuota(ProcessUnitMeta):
             result = {}
         else:
             priority_map = {v: k for k, v in TASK_PRIORITY.items()}
-            task_df['group-priority'] = task_df.group + '-' + task_df.priority.apply(lambda x: priority_map[x])
+            task_df['group-priority'] = task_df.group + '-' + task_df.priority.apply(lambda x: priority_map.get(x, 'UNKNOWN'))
             task_df = task_df[['user_name', 'group-priority', 'nodes']]
             res_df = task_df.groupby(['user_name', 'group-priority']).sum()
             result = defaultdict(dict)

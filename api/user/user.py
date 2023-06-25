@@ -1,5 +1,4 @@
 
-
 import pandas as pd
 from fastapi import Depends, HTTPException
 
@@ -28,7 +27,60 @@ async def set_user_gpu_quota(token, group_label: str, priority_label: str, quota
 
 
 async def get_user_all_quota(user: User = Depends(get_api_user_with_token())):
+    return {'success': 1, 'result': await user.quota.async_get()}
+
+
+async def get_user_artifact(name,
+                            version='default',
+                            page: int = 1,
+                            page_size: int = 1000,
+                            user: User = Depends(get_api_user_with_token())):
+    if not name:
+        return {'success': 0, "msg": 'artifact name not set'}
     return {
         'success': 1,
-        'result': await user.quota.async_get()
+        'msg': await user.artifact.async_get(name, version, page, page_size)
+    }
+
+
+async def create_update_user_artifact(name,
+                                      version='default',
+                                      type='',
+                                      location='',
+                                      description='',
+                                      extra='',
+                                      private: bool =False,
+                                      user: User = Depends(get_api_user_with_token())):
+    if not name:
+        return {'success': 0, "msg": 'artifact name not set'}
+    try:
+        await user.artifact.async_create_update_artifact(name, version, type,
+                                                         location, description,
+                                                         extra, private)
+        return {
+            'success': 1,
+            'msg': f'create or update artifact {name}:{version} success'
+        }
+    except Exception as e:
+        return {
+            'success': 0,
+            'msg': f'create or update artifact {name}:{version} failed, {str(e)}'
+        }
+
+
+async def delete_user_artifact(name,
+                               version='default',
+                               user: User = Depends(
+                                   get_api_user_with_token())):
+    if not name:
+        return {'success': 0, "msg": 'artifact name not set'}
+    count = await user.artifact.async_delete_artifact(name, version)
+    if count == 0:
+        return {
+            'success': 1,
+            'msg': f'{name}:{version}可能已经被删除，或者您不是owner'
+        }
+    return {
+        'success': 1,
+        'msg': f'delete artifact {name}:{version}, count: {count}'
     }

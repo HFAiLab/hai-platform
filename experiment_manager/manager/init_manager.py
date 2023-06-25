@@ -7,13 +7,15 @@ from concurrent.futures import ThreadPoolExecutor, wait
 
 import munch
 import ujson
+from functools import reduce
+from operator import ior
 from kubernetes.client.rest import ApiException
 from kubernetes.watch import Watch
 
 from api.task_schema import TaskService
 from base_model.training_task import TrainingTask
 from conf import CONTAINER_NAME, CONF
-from conf.flags import MOUNT_CODE, EXP_STATUS, QUE_STATUS, TASK_TYPE
+from conf.flags import MOUNT_CODE, EXP_STATUS, QUE_STATUS, TASK_TYPE, USER_ROLE
 from k8s.v1_api import client
 from k8s.v1_api import get_node_resource, get_env_var
 from logm import logger, log_stage, bind_logger_task
@@ -100,13 +102,11 @@ def create_headless_services(node):
     logger.info(f'为 {node.pod_id} 创建 headless 服务成功')  # 创建网络
 
 
-def create_http_service_ingress(node, base_ingress_name):
+def create_http_service_ingress(node, host, index):
     if 'ingress_rules' not in node.service or len(node.service.ingress_rules) == 0:
         return
-    host = CONF.jupyter.ingress_host[base_ingress_name]
-    ingress_name = f'{node.pod_id}-{base_ingress_name}'
     metadata = client.V1ObjectMeta(
-        name=ingress_name, labels=node.labels, namespace=node.namespace,
+        labels=node.labels, namespace=node.namespace,
         annotations={
             "nginx.ingress.kubernetes.io/proxy-buffering": "off",
             "nginx.ingress.kubernetes.io/proxy-read-timeout": "604800",
@@ -114,53 +114,70 @@ def create_http_service_ingress(node, base_ingress_name):
         },
         owner_references=[owner_ref],
     )
-    ingress_rules = [
-        client.NetworkingV1beta1IngressRule(
+    rules, rewrite_rules = list(), list()
+    for rule in node.service.ingress_rules:
+        ingress_rule = client.NetworkingV1beta1IngressRule(
             host=host, http=client.NetworkingV1beta1HTTPIngressRuleValue(
                 paths=[client.NetworkingV1beta1HTTPIngressPath(
                     backend=client.NetworkingV1beta1IngressBackend(
                         service_name=node.pod_id,
                         service_port=rule.port,
                     ),
-                    path=rule.path,
+                    path=f'{rule.path}(/|$)(.*)' if rule.rewrite_uri else rule.path,
                     path_type='Prefix'
                 )]
             )
         )
-        for rule in node.service.ingress_rules
-    ]
-    spec = client.NetworkingV1beta1IngressSpec(ingress_class_name='nginx', rules=ingress_rules)
-    ingress = client.NetworkingV1beta1Ingress(kind='Ingress', metadata=metadata, spec=spec)
-    try:
-        k8s_networkv1beta1_api.create_namespaced_ingress_with_retry(namespace=node.namespace, body=ingress)
-    except ApiException as ae:
-        if ae.status == 409:  # conflict
-            logger.info(f'ingress {ingress_name} already exits')
+        if rule.rewrite_uri:
+            rewrite_rules.append(ingress_rule)
         else:
-            logger.exception(ae)
-            logger.f_error(f'创建 ingress 失败: {ae}')
-            raise
+            rules.append(ingress_rule)
 
-    # wait for ingress provision
-    watch = Watch()
-    for event in watch.stream(func=k8s_networkv1beta1_api.list_namespaced_ingress,
-                              namespace=node.namespace,
-                              field_selector=f'metadata.name={ingress_name}'):
-        if event["object"].status.load_balancer.ingress is not None:
-            logger.info(f'为 {node.pod_id} 创建 ingress 成功，信息：'
-                         f'{event["object"].status.load_balancer.ingress}')
-            watch.stop()
+    for is_rewrite, rules in enumerate([rules, rewrite_rules]):
+        if not rules:
+            continue
+        ingress_name = f'{node.pod_id}-{index}'
+        if is_rewrite:
+            # rewrite uri for custom service
+            metadata.annotations['nginx.ingress.kubernetes.io/rewrite-target'] = '/$2'
+            ingress_name += '-rewrite'
+        metadata.name = ingress_name
+        ingress = client.NetworkingV1beta1Ingress(
+            kind='Ingress',
+            metadata=metadata,
+            spec=client.NetworkingV1beta1IngressSpec(ingress_class_name='nginx', rules=rules)
+        )
+        try:
+            k8s_networkv1beta1_api.create_namespaced_ingress_with_retry(namespace=node.namespace, body=ingress)
+        except ApiException as ae:
+            if ae.status == 409:  # conflict
+                logger.info(f'ingress {ingress_name} already exits')
+            else:
+                logger.exception(ae)
+                logger.f_error(f'创建 ingress 失败: {ae}')
+                raise
+
+        # wait for ingress provision
+        watch = Watch()
+        for event in watch.stream(func=k8s_networkv1beta1_api.list_namespaced_ingress,
+                                  namespace=node.namespace,
+                                  field_selector=f'metadata.name={ingress_name}'):
+            if event["object"].status.load_balancer.ingress is not None:
+                logger.info(f'为 {node.pod_id} 创建 ingress {ingress_name} 成功，信息：'
+                            f'{event["object"].status.load_balancer.ingress}')
+                watch.stop()
 
 
 @log_stage(log_id)
-def create_master_network(rank, node, is_internal):
+def create_master_network(rank, node, user_role):
     create_tcp_service_nodeport(rank, node)
     if rank == 0:  # 只有 master 才会创建
         create_headless_services(node)
-        if is_internal:
-            create_http_service_ingress(node, 'hfhub')
-        else:
-            create_http_service_ingress(node, 'yinghuo')
+        ingress_hosts = [CONF.jupyter.ingress_host[user_role]] if isinstance(
+            CONF.jupyter.ingress_host[user_role],
+            str) else CONF.jupyter.ingress_host[user_role]
+        for index, host in enumerate(ingress_hosts):
+            create_http_service_ingress(node, host, index)
 
 
 @log_stage(log_id)
@@ -183,6 +200,8 @@ def create_node_in_k8s(rank, node_schema):
         'NVIDIA_VISIBLE_DEVICES': nvidia_visible_devices,
         'MOUNT_LIST': ','.join(mount_item.mount_path for mount_item in node_schema.mounts),
         'MARSV2_SCHEDULE_ZONE': schedule_zone,
+        'MARSV2_NODE_FLAG': os.environ.get('MARSV2_NODE_FLAGS', '0').split(',')[rank],
+        'MARSV2_ASSIGNED_NODES_FLAG': str(reduce(ior, [int(f) for f in os.environ.get('MARSV2_NODE_FLAGS', '0').split(',')], 0)),
         'ROOM': schedule_zone,
     }
     # 目前只支持两个 NUMA 半节点调度
@@ -191,6 +210,10 @@ def create_node_in_k8s(rank, node_schema):
     # 用于jupyter任务获取studio地址
     if task.task_type == TASK_TYPE.JUPYTER_TASK and "studio" in CONF.jupyter.ingress_host.keys():
         k8s_envs['MARSV2_STUDIO_ADDR'] = CONF.jupyter.ingress_host["studio"]
+    # sidecar 中的 env
+    for sidecar in node_schema.sidecars:
+        k8s_envs.update(sidecar.extra_training_envs)
+
     logger.info(f'为任务 在 [{rank}] {node_schema.node} 创建运行脚本 configmap')
     start_scripts_configmap_prefix = f'start-scripts-{task.id}'
     start_scripts_configmap_id = f'{start_scripts_configmap_prefix}-{rank}'
@@ -350,8 +373,9 @@ def create_node_in_k8s(rank, node_schema):
         args=['cd /marsv2/entrypoints && bash entrypoint.sh'],
         env=[get_env_var(key=k, value=v) for k, v in k8s_envs.items()],
         resources=resources,
-        volume_mounts=volume_mounts + [client.V1VolumeMount(name='shm', mount_path='/dev/shm')]
+        volume_mounts=volume_mounts
     )]
+    shm_volume = 'shm'  # 默认使用 empty dir 作为 shm, sidecar 可将其修改为 host path
     for sidecar in node_schema.sidecars:
         containers += sidecar.containers
         for configmap in sidecar.configmaps:
@@ -368,10 +392,13 @@ def create_node_in_k8s(rank, node_schema):
                     raise
         for volume in sidecar.volumes:
             volumes.append(volume)
+            if volume.name == 'host-shm':
+                shm_volume = volume.name
         for extra_training_mount in sidecar.extra_training_mounts:
             containers[0].volume_mounts.append(extra_training_mount)
-        for key, value in sidecar.extra_training_envs.items():
-            containers[0].env.append(get_env_var(key=key, value=value))
+    containers[0].volume_mounts.append(
+        client.V1VolumeMount(name=shm_volume, mount_path='/dev/shm')
+    )
     # 为了启动 sbin init 的任务
     # todo 可能有安全问题
     if task.code_file == '/sbin/init':
@@ -414,7 +441,7 @@ def create_node_in_k8s(rank, node_schema):
             logger.exception(ae)
             logger.f_error(f'pod {node_schema.pod_id} init error: {ae}')
             raise
-    create_master_network(rank, node_schema, user.is_internal)
+    create_master_network(rank, node_schema, user.role)
 
 
 def _create_node_impl(rank, node_schema):

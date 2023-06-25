@@ -69,7 +69,7 @@ async def set_user_gpu_quota_limit(
     resource = f'node_limit-{group}-{priority_str}'
     target_user = await AioUserSelector.find_one(user_name=user_name)
 
-    if not target_user.is_external and priority < TASK_PRIORITY.BELOW_NORMAL.value:
+    if not target_user.is_external and priority < TASK_PRIORITY.min_internal_priority().value:
         raise HTTPException(status_code=403, detail={
             'success': 0,
             'msg': '不能设置更低优先级'
@@ -117,7 +117,7 @@ class RestUser(BaseModel):
 
 
 async def create_user_api(user: RestUser, api_user=Depends(
-            get_api_user_with_token(allowed_groups=['cluster_manager', 'ops', 'developer_admin']))):
+            get_api_user_with_token(allowed_groups=['cluster_manager', 'ops', 'developer_admin', 'account_manager']))):
     dup = (await MarsDB().a_execute('select * from "user" where "user_id" = %s or "user_name" = %s',
                                     (user.user_id, user.user_name))).fetchone()
     if dup is not None and dup.user_name == user.user_name:

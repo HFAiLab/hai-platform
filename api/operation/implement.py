@@ -4,8 +4,10 @@ from .default import *
 from .custom import *
 
 
+import git
 import os.path
 import re
+from git import Repo
 from typing import TYPE_CHECKING, List
 
 from base_model.base_task import BaseTask
@@ -137,16 +139,17 @@ def get_service_config_error(service: TaskService, services: List[TaskService]):
     return None
 
 
-def check_services_config_get_err(services, user):
+def check_services_config_get_err(services, user: User):
     # 为内建服务设置端口, 以供后续检验端口是否有重复
     for service in filter(lambda svc: svc.name in CONF.jupyter.builtin_services, services):
         if any(x is not None for x in [service.port, service.type, service.startup_script]):
             return f'"{service.name}" 是系统保留的内建服务名, 自定义服务请不要以此命名'
         service.port = CONF.jupyter.builtin_services.get(service.name).get('port', None)
-    # 检查自定义服务的参数
+    # 检查自定义服务的quota和参数
     for service in filter(lambda svc: svc.name not in CONF.jupyter.builtin_services, services):
-        if not user.is_internal: # TODO(role): 自定义服务
-            return '无权使用自定义服务'
+        allowed_ports = user.quota.custom_service(service.type)
+        if '*' not in allowed_ports and str(service.port) not in allowed_ports:
+            return f'无权自定义服务 {service.type}:{service.port}'
         if (err_msg := get_service_config_error(service, services)) is not None:
             return err_msg
     return None
@@ -202,6 +205,8 @@ async def create_task_base_queue_v2(user: User, task_schema: TaskSchema = None, 
         return fatal_response('task config 版本不对，应该是 [2]')
     if task_schema.task_type not in TASK_TYPE.all_task_types():
         return fatal_response('无效的task_type')
+    if task_schema.priority not in TASK_PRIORITY.values():
+        return fatal_response('无效的 priority')
     if task_schema.spec is None:
         return fatal_response('必须指定 task spec')
     if len(task_schema.spec.workspace) > 255:
@@ -210,6 +215,32 @@ async def create_task_base_queue_v2(user: User, task_schema: TaskSchema = None, 
         return fatal_response('workspace 不允许有空格')
     if task_schema.resource.node_count <= 0:
         return fatal_response('节点数必须大于 0')
+    config_json = {}
+    # git 相关校验和配置补全
+    # -- 任务指定记录 workspace 中的 git revision
+    if task_schema.options.get('record_git_revision', False):
+        if task_schema.spec.git_remote_repo + task_schema.spec.git_target_revision != '':
+            return fatal_response('指定记录 workspace git revision 时不能指定 git_remote_repo/git_target_revision')
+        if not os.path.isdir(task_schema.spec.workspace):
+            return fatal_response('指定的 workspace 不是合法目录')
+        try:
+            repo = Repo(task_schema.spec.workspace)
+        except git.InvalidGitRepositoryError:
+            return fatal_response(f'指定的 workspace 不是合法的 git repo: {task_schema.spec.workspace}')
+        if repo.is_dirty() or any(repo.untracked_files):
+            return fatal_response(f'指定的 workspace 中当前有未提交的修改')
+        remote_repo, current_rev = repo.remote().url, repo.head.object.hexsha
+        config_json['git_commit_sha'] = current_rev
+        config_json['git_remote_repo'] = remote_repo
+    # -- 任务指定 git repo 作为 workspace
+    if task_schema.spec.git_remote_repo != '':
+        if task_schema.spec.workspace:
+            return fatal_response('指定 git repo 时不能指定 workspace')
+        task_schema.spec.workspace = '${HOME}/experiment_repo'
+        config_json['git_commit_sha'] = ''
+        config_json['git_remote_repo'] = task_schema.spec.git_remote_repo
+    elif task_schema.spec.workspace is None:
+        return fatal_response('不指定 git repo 时, 必须指定 workspace')
     # 组装成数据库需要的 code file
     code_file = os.path.join(task_schema.spec.workspace, task_schema.spec.entrypoint) + ' ' + task_schema.spec.parameters
     if len(code_file) > 2047:
@@ -258,6 +289,10 @@ async def create_task_base_queue_v2(user: User, task_schema: TaskSchema = None, 
     if (err_msg := check_services_config_get_err(task_schema.services, user)) is not None:
         return fatal_response(err_msg)
 
+    # tag 校验
+    if any(t.startswith('_') for t in task_schema.options.get('tags', [])):
+        return fatal_response('任务 tag 不能以下划线开头')
+
     # 对 train task 的处理
     # if task_schema.task_type == TASK_TYPE.TRAINING_TASK:
     #     # 只需要对 training 任务判断 quota
@@ -300,13 +335,17 @@ async def create_task_base_queue_v2(user: User, task_schema: TaskSchema = None, 
         'train_image': train_image,  # 用于 client 端获取镜像完整 URL
         'override_node_resource': override_node_resource,
         'schema': raw_task_schema,  # 保存提交时候的样子
+        **config_json
     }
     result = await process_create_task(task_schema=task_schema, task=task)
     if result.get('success', 0) != 1:
         return result
     task = result['task']
+    # 给任务打 tag
     tags = task_schema.options.get('tags', [])
     if isinstance(tags, str):
         tags = tags.split(',')
     tags = [str(t) for t in tags if t] if isinstance(tags, list) else []
+    if task_schema.options.get('shared_in_group', False):
+        tags.append(user.shared_task_tag)
     return await create_base_task(task, tags=tags, remote_apply=remote_apply)

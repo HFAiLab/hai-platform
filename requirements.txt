@@ -83,3 +83,8 @@ envsubst==0.1.5
 pylint==2.16.2
 astunparse==1.6.3
 posix-ipc==1.1.1
+# 20230605
+sqlparse==0.4.3
+aiochclient[aiohttp]==2.3.1
+# 20230609
+GitPython==3.1.20

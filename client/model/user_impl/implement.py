@@ -10,9 +10,8 @@ from .custom import *
 
 from typing import TYPE_CHECKING
 
-from hfai.base_model.base_user_modules import IUserAccess
 from hfai.base_model.base_task import BaseTask
-from hfai.base_model.base_user_modules import IUserNodePort, IUserQuota, IUserStorage, IUserMonitor
+from hfai.base_model.base_user_modules import IUserAccess, IUserNodePort, IUserQuota, IUserStorage, IUserMonitor, IUserArtifact
 from ...api.api_config import get_mars_url as mars_url
 from ...api.api_utils import async_requests, RequestMethod, request_url
 
@@ -71,3 +70,19 @@ class UserAccess(IUserAccess):
     async def async_get(self):
         url = f'{mars_url()}/query/user/access_token/list?token={self.user.token}'
         return await async_requests(RequestMethod.POST, url)   # 权限不足时返回200/success=0, 不raise
+
+
+class UserArtifact(IUserArtifact):
+    async def async_get_artifact(self, name, version='default', page=1, page_size=1000):
+        url = f'{mars_url()}/query/user/artifact/get?name={name}&version={version}&page={page}&page_size={page_size}&token={self.user.token}'
+        return await async_requests(RequestMethod.POST, url)
+
+    async def async_create_update_artifact(self, name, version='default', type='', location='',
+                                           description='', extra='', private=False):
+        url = f'{mars_url()}/operating/user/artifact/createupdate'
+        url += f'?name={name}&version={version}&type={type}&location={location}&description={description}&extra={extra}&private={private}&token={self.user.token}'
+        return await async_requests(RequestMethod.POST, url)
+
+    async def async_delete_artifact(self, name, version='default'):
+        url = f'{mars_url()}/operating/user/artifact/delete?name={name}&version={version}&token={self.user.token}'
+        return await async_requests(RequestMethod.POST, url)

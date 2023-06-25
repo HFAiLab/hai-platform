@@ -11,6 +11,7 @@ from hfai.client.commands.hfai_python import python
 from hfai.client.commands.utils import HandleHfaiGroupArgs, HandleHfaiPluginCommandArgs, PLUGIN_LIST
 from hfai.client.commands.hfai_image import images
 from hfai.client.commands.hfai_whoami import whoami
+from hfai.client.commands.hfai_artifact import artifact
 vars_before_custom = dir()
 
 try:
@@ -62,6 +63,7 @@ cli.add_command(whoami)
 cli.add_command(run)
 cli.add_command(ssh)
 cli.add_command(images)
+cli.add_command(artifact)
 
 for var in custom_vars:
     cli.add_command(globals()[var])

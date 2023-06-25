@@ -44,6 +44,10 @@ if [ "${MARSV2_TASK_TYPE}" != "jupyter" ]; then
   fi
 fi
 
+if [[ -n "${MARSV2_GIT_REMOTE_REPO}" ]]; then
+  source /marsv2/scripts/init_git_repo.sh
+fi
+
 # 根据用户提交的任务生成的脚本
 bash /marsv2/scripts/init/task_run.sh
 

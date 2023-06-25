@@ -70,16 +70,18 @@ async def get_api_user_with_name(user_name: str = None):
     return user
 
 
-def check_user_access_to_task(task: TrainingTask, user: User):
+def check_user_access_to_task(task: TrainingTask, user: User, allow_shared_task=False):
     if task.task_type == TASK_TYPE.JUPYTER_TASK:
+        # jupyter 任务, 允许 admin 操作
         if task.user_name != user.user_name and not user.in_any_group([JUPYTER_ADMIN_GROUP, TASK_ADMIN_GROUP]):
             raise HTTPException(status_code=403, detail='无权操作其他人的容器')
-    elif task.user_name != user.user_name and not user.in_group(TASK_ADMIN_GROUP):
+    elif task.user_name != user.user_name and not user.in_group(TASK_ADMIN_GROUP) \
+            and not (allow_shared_task and user.shared_task_tag in task.tags):
         msg = f'[未授权操作] [{user.user_name}] 不能操作 [{task.user_name}] 的任务[{task.job_info}]，已经阻断!'
         raise HTTPException(status_code=403, detail=msg)
 
 
-def get_api_task(check_user=True, chain_task=True):
+def get_api_task(check_user=True, chain_task=True, allow_shared_task=False):
     async def __func(user: User = Depends(get_api_user_with_token()), chain_id: str = None, nb_name: str = None, id: int = None) -> TrainingTask:
         aio_selector = AioTrainingTaskSelector if chain_task else AioBaseTaskSelector
         if id is not None:
@@ -94,7 +96,7 @@ def get_api_task(check_user=True, chain_task=True):
                 'msg': f'no task of user [{user.user_name}] with id [{id}] or chain_id [{chain_id}] or nb_name [{nb_name}]!'
             })
         if check_user:
-            check_user_access_to_task(task=t, user=user)
+            check_user_access_to_task(task=t, user=user, allow_shared_task=allow_shared_task)
         if t.user_name == user.user_name:
             t.user = user
         return t

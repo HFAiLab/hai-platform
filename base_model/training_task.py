@@ -92,6 +92,18 @@ class TrainingTask(BaseTask):
         return await self.__impl__.untag_task(tag, *args, **kwargs)
 
     @BaseTask._bind_impl_
+    async def map_task_artifact(self, artifact_name: str, artifact_version: str, direction: str, *args, **kwargs):
+        return await self.__impl__.map_task_artifact(artifact_name, artifact_version, direction, *args, **kwargs)
+
+    @BaseTask._bind_impl_
+    async def unmap_task_artifact(self, direction: str, *args, **kwargs):
+        return await self.__impl__.unmap_task_artifact(direction, *args, **kwargs)
+
+    @BaseTask._bind_impl_
+    async def get_task_artifact(self, *args, **kwargs):
+        return await self.__impl__.get_task_artifact(*args, **kwargs)
+
+    @BaseTask._bind_impl_
     async def stop(self, *args, **kwargs):
         """
         停止训练任务
@@ -173,6 +185,15 @@ class ITrainingTaskImpl(ITaskImpl):
         raise NotImplementedError
 
     async def untag_task(self, tag, *args, **kwargs):
+        raise NotImplementedError
+
+    async def map_task_artifact(self, artifact_name: str, artifact_version: str, direction: str, *args, **kwargs):
+        raise NotImplementedError
+
+    async def unmap_task_artifact(self, direction: str, *args, **kwargs):
+        raise NotImplementedError
+
+    async def get_task_artifact(self, *args, **kwargs):
         raise NotImplementedError
 
     async def stop(self, *args, **kwargs):

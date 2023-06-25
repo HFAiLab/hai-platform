@@ -232,6 +232,40 @@ class ExperimentImpl(ITrainingTaskImpl, ABC):
         res = await async_requests(RequestMethod.POST, url, [1])
         return res['msg']
 
+    async def map_task_artifact(self, artifact_name: str, artifact_version: str, direction: str, *args, **kwargs):
+        """
+        设置当前任务制品信息
+        :param artifact_name: 制品命名
+        :param artifact_version: 制品版本
+        :param input: 是否为任务输入制品，False表示任务输出制品
+        """
+        assert artifact_name != '', 'artifact_name 不能为空'
+        task = self.task
+        token = kwargs.get('token', mars_token())
+        url = f'{mars_url()}/operating/task/artifact/map?token={token}&chain_id={task.chain_id}&artifact_name={artifact_name}&artifact_version={artifact_version}&direction={direction}'
+        res = await async_requests(RequestMethod.POST, url, [1])
+        return res['msg']
+
+    async def unmap_task_artifact(self, direction: str, *args, **kwargs):
+        """
+        删除当前任务制品信息
+        """
+        task = self.task
+        token = kwargs.get('token', mars_token())
+        url = f'{mars_url()}/operating/task/artifact/unmap?token={token}&chain_id={task.chain_id}&direction={direction}'
+        res = await async_requests(RequestMethod.POST, url, [1])
+        return res['msg']
+
+    async def get_task_artifact(self, *args, **kwargs):
+        """
+        获取当前任务制品信息
+        """
+        task = self.task
+        token = kwargs.get('token', mars_token())
+        url = f'{mars_url()}/query/task/artifact/get?token={token}&chain_id={task.chain_id}'
+        res = await async_requests(RequestMethod.POST, url, [1])
+        return res['msg']
+
     async def get_latest_point(self, *args, **kwargs):  # get_experiment_perf_current
         """获取任务当前的性能监控"""
         task = self.task
@@ -369,6 +403,11 @@ async def create_experiment(config: Union[str, StringIO, munch.Munch], **kwargs)
           image: registry.high-flyer.cn/hfai/docker_ubuntu2004:20220630.2   # 可选，不指定，默认 default，通过 hfai 上传的 image，或者集群内建的 template
           group: jd_a100#heavy                                              # 可选, jd_a100, jd_a100#heavy, jd_a100#light, jd_a100#A, jd_a100#B
           node_count: 1                                                     # 必填
+        services:                           # 可选，自定义服务
+        - name: custom
+          port: 8123
+          type: http
+          rewrite_uri: true
         options: # 可选
           whole_life_state: 1   # hfai.get_whole_life_state() => 1
           mount_code: 2         # use 3fs prod mount

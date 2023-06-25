@@ -1,18 +1,18 @@
-
 from .default import *
 from .custom import *
 
-from fastapi import Depends, HTTPException
+from fastapi import Depends, HTTPException, Body
 from logm import logger
 from pydantic import BaseModel, validator
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 from api.depends import get_api_user_with_token
 from conf.flags import ALL_USER_ROLES
 from db import MarsDB
 from server_model.user import User
 from server_model.user_data import UserWithAllGroupsTable
-from server_model.selector import AioUserSelector
+from server_model.selector import AioUserSelector, AioBaseTaskSelector
+from server_model.task_impl import AioDbOperationImpl, SingleTaskImpl
 
 
 WARNING_NOTE = '(使用 force=true 忽略告警)'
@@ -237,3 +237,25 @@ async def add_monitor_dir(monitor_dir: MonitorDirectory,
         logger.exception(e)
         return {'success': 0, 'msg': f'添加 monitor dir 失败: {e}'}
     return {'success': 1, 'msg': '添加成功'}
+
+
+async def get_storage_by_task(task_id: int, overwrite_attributes: Dict = Body(default={}),
+                              user: User = Depends(get_api_user_with_token(allowed_groups=['ops', 'platform']))):
+    """
+    查询任务容器的挂载点列表, 只包含数据库中配置的挂载, 不包括处理 sidecar 等起任务时动态添加的挂载
+    overwrite_attributes: 可以覆盖部分任务的属性方便测试
+    """
+    task = await AioBaseTaskSelector.find_one(None, id=task_id)
+    if task is None:
+        raise HTTPException(status_code=400, detail=f'任务 ID {task_id} 不存在')
+    task_traits = task.trait_dict()
+    if any(missing_key := list(k for k in overwrite_attributes if k not in task_traits)):
+        raise HTTPException(status_code=400, detail=f'任务属性 {missing_key} 不存在')
+    for k, v in overwrite_attributes.items():
+        setattr(task, k, v)
+    task_user = await AioUserSelector.find_one(user_name=task.user_name)
+    await task_user.storage.create_storage_df()
+    storages = task_user.storage.personal_storage(task=task)
+    for storage in storages:
+        del storage['name'] # 这个属性不需要, 只有起任务的时候需要
+    return {'success': 1, 'result': storages}

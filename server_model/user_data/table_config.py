@@ -176,7 +176,7 @@ class SchedulerUserTable(PublicDataTable,
         # resource 列的处理, 其值为 [node-{group}-{priority}] or [node_limit-{group}-{priority}]
         # or [jupyter:xxx] or [background_task]
         # 这里可以能有node_limit[weka]这种情况，在scheduler这里统一成node_limit，同样条件取最小值即可
-        if resource.startswith('node-') or resource.startswith('node_limit'):
+        if resource.startswith('node-') or resource.startswith('node_limit') or resource.startswith('node_role_limit'):
             resource, group, priority = resource.split('-')
             if '[' in resource:
                 resource = resource.split('[')[0]

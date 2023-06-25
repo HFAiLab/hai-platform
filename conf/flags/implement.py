@@ -5,7 +5,6 @@ from .custom import *
 try:
     from ..server_flags import *
 except Exception as e:
-    print(e)
     pass
 import collections
 import os
@@ -132,6 +131,8 @@ class EXP_PRIORITY:
         VERY_HIGH = 40
         HIGH = 30
         ABOVE_NORMAL = 20
+        NORMAL = 10
+        UNDER_NORMAL = 8
     AUTO = -1
 
     @classmethod

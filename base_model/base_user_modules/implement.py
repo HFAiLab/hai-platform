@@ -33,3 +33,15 @@ class IUserAccess(IUserModule):
 
 class IUserMonitor(IUserModule):
     pass
+
+
+class IUserArtifact(IUserModule):
+    async def async_get_artifact(self, name, version='default', page=1, page_size=1000):
+        raise NotImplementedError
+
+    async def async_create_update_artifact(self, name, version='default', type='', location='',
+                                           description='', extra='', private=False):
+        raise NotImplementedError
+
+    async def async_delete_artifact(self, name, version='default'):
+        raise NotImplementedError

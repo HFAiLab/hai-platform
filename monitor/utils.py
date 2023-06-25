@@ -50,7 +50,7 @@ def async_redis_cached(ttl_in_sec=None, enable_fallback=True):
                 except Exception as e:
                     logger.exception(e)
                     if enable_fallback and (fallback_data := await a_redis.get(fallback_key)):
-                        logger.warning(f'{coro_func.__name__} 查询最新数据失败: {e}, 使用 redis 中的旧数据')
+                        logger.f_error(f'{coro_func.__name__} 查询最新数据失败: {e}, 使用 redis 中的旧数据', frequency_limit=60)
                         result = ujson.loads(fallback_data)
             return result
         return wrapper

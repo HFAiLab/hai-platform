@@ -2,6 +2,7 @@
 from .default import *
 from .custom import *
 
+import ujson
 import ciso8601
 import datetime
 import inspect
@@ -95,7 +96,8 @@ async def suspend_task_by_name(
     return res
 
 
-async def task_node_log_api(task: TrainingTask = Depends(get_api_task()), rank: int = 0, last_seen: str = 'null', service: str = None):
+async def task_node_log_api(task: TrainingTask = Depends(get_api_task(allow_shared_task=True)), rank: int = 0,
+                            last_seen: str = 'null', service: str = None):
     try:
         last_seen = json.loads(last_seen)
     except:
@@ -126,7 +128,7 @@ async def task_search_in_global(content, task: TrainingTask = Depends(get_api_ta
     return res
 
 
-async def chain_perf_series_api(task: TrainingTask = Depends(get_api_task()),
+async def chain_perf_series_api(task: TrainingTask = Depends(get_api_task(allow_shared_task=True)),
                                 user: User = Depends(get_api_user_with_token()), typ: str = 'gpu', rank: int = 0, data_interval: Optional[str]= '5min'):
     # data_interval 使用query参数传入
     if data_interval not in ('1min', '5min'):
@@ -148,12 +150,9 @@ async def chain_perf_series_api(task: TrainingTask = Depends(get_api_task()),
         }
 
 
-INTERNAL_TAGS = {VISIBLE_TASK_TAG}
-
-
 async def tag_task(tag: str, task: TrainingTask = Depends(get_api_task())):
-    if tag in INTERNAL_TAGS:
-        return {'success': 0, 'msg': f'[{tag}] 是内部保留 tag, 请使用其他命名'}
+    if tag.startswith('_'):
+        return {'success': 0, 'msg': '以下划线开头的 tag 是系统保留 tag, 请使用其他命名'}
     await task.re_impl(AioDbOperationImpl).tag_task(tag, remote_apply=True)
     return {
         'success': 1,
@@ -162,8 +161,8 @@ async def tag_task(tag: str, task: TrainingTask = Depends(get_api_task())):
 
 
 async def untag_task(tag: str, task: TrainingTask = Depends(get_api_task())):
-    if tag in INTERNAL_TAGS:
-        return {'success': 0, 'msg': f'[{tag}] 是内部保留 tag, 无法删除'}
+    if tag.startswith('_'):
+        return {'success': 0, 'msg': '以下划线开头的 tag 是系统保留 tag, 无法删除'}
     await task.re_impl(AioDbOperationImpl).untag_task(tag, remote_apply=True)
     return {
         'success': 1,
@@ -177,8 +176,8 @@ async def delete_tags(tag: List[str] = Query(default=None), user: User = Depends
             'success': 0,
             'msg': '请指定要删除的 tag'
         }
-    if any(t in INTERNAL_TAGS for t in tag):
-        return {'success': 0, 'msg': f'不能删除内部保留的 tag: {[t for t in tag if t in INTERNAL_TAGS]}'}
+    if any(t.startswith('_') for t in tag):
+        return {'success': 0, 'msg': '以下划线开头的 tag 是系统保留 tag, 无法删除'}
     await MarsDB().a_execute(f"""
     delete from "task_tag" where "user_name" = '{user.user_name}' and tag in ('{"','".join(tag)}')
     """)
@@ -193,10 +192,90 @@ async def get_task_tags(user: User = Depends(get_api_user_with_token())):
         r.tag for r in
         await MarsDB().a_execute(f"""select distinct "tag" from "task_tag" where user_name = '{user.user_name}' """)
     ]
-    tags = list(set(tags) - set(INTERNAL_TAGS))
+    tags = [t for t in tags if not t.startswith('_')]
     return {
         'success': 1,
         'result': tags
+    }
+
+
+async def share_task(task: TrainingTask = Depends(get_api_task())):
+    await task.re_impl(AioDbOperationImpl).tag_task(task.user.shared_task_tag, remote_apply=True)
+    return {
+        'success': 1,
+        'msg': f'训练任务[{task.job_info}] 设置为组内共享成功'
+    }
+
+
+async def unshare_task(task: TrainingTask = Depends(get_api_task())):
+    await task.re_impl(AioDbOperationImpl).untag_task(task.user.shared_task_tag, remote_apply=True)
+    return {
+        'success': 1,
+        'msg': f'训练任务[{task.job_info}] 取消组内共享成功'
+    }
+
+
+async def map_task_artifact(artifact_name: str, artifact_version: str, direction: str, task: TrainingTask = Depends(get_api_task())):
+    err_msg = await task.re_impl(AioDbOperationImpl).map_task_artifact(artifact_name, artifact_version, direction, remote_apply=True)
+    if err_msg:
+        return {
+            'success': 0,
+            'msg': err_msg
+        }
+    return {
+        'success': 1,
+        'msg': f'任务[{task.job_info}] 设置 {"input" if input else "output"} artifact {artifact_name}:{artifact_version} 成功'
+    }
+
+
+async def unmap_task_artifact(direction: str, task: TrainingTask = Depends(get_api_task())):
+    await task.re_impl(AioDbOperationImpl).unmap_task_artifact(direction, remote_apply=True)
+    return {
+        'success': 1,
+        'msg': f'任务[{task.job_info}] 移除 artifact 成功'
+    }
+
+
+async def get_task_artifact_mapping(task: TrainingTask = Depends(get_api_task(check_user=False))):
+    artifact = await task.re_impl(AioDbOperationImpl).get_task_artifact(remote_apply=True)
+    return {
+        'success': 1,
+        'msg': artifact
+    }
+
+
+async def get_all_task_artifact_mapping(artifact_name: str = '', artifact_version: str = 'default', page: int = 1, page_size: int = 1000, days: int = 90, user: User = Depends(get_api_user_with_token())):
+    now = datetime.datetime.now()
+    last = now - datetime.timedelta(days=days)
+    artifact_info = [f'{user.user_name}:{artifact_name}:{artifact_version}', f'{user.shared_group}:{artifact_name}:{artifact_version}']
+    _sql = f"""
+        select "user_name", "chain_id", "nb_name", "task_ids", "in_artifact", "out_artifact"
+        from "task_artifact_mapping"
+        where ("user_name" = '{user.user_name}' or
+              "chain_id" in (select "chain_id" from "task_tag" where "tag" = '{user.shared_task_tag}'))
+              and ("created_at" between '{last.strftime("%Y-%m-%d %H:%M:%S")}' and '{now.strftime("%Y-%m-%d %H:%M:%S")}')
+              {f'''and ("in_artifact" in ('{artifact_info[0]}', '{artifact_info[1]}') or "out_artifact" in ('{artifact_info[0]}', '{artifact_info[1]}')) ''' if artifact_name else ''}
+        order by "user_name", "updated_at" desc
+        {f'limit {page_size} offset {page_size * (page - 1)}' if page else ''}
+    """
+    result = (await MarsDB().a_execute(_sql)).fetchall()
+    ret = list()
+    # 隐藏map到私有artifact的记录
+    for row in result:
+        row = row._asdict()
+        for index in ['in_artifact', 'out_artifact']:
+            if row[index]:
+                in_arr = row[index].split(':')
+                if in_arr[0] not in ['', user.user_name, user.shared_group]:
+                    row[index] = '***'
+                else:
+                    row[index] = ':'.join(in_arr[1:])
+        if row['in_artifact'] in ['', '***'] and row['out_artifact'] in ['', '***']:
+            continue
+        ret.append(row)
+    return {
+        'success': 1,
+        'msg': ret
     }
 
 
@@ -223,14 +302,20 @@ async def a_is_api_limited(key=None, waiting_seconds: int = 10) -> bool:
 async def update_priority(
         priority: int = None,
         custom_rank: float = None,
-        t: TrainingTask = Depends(get_api_task()),
-        user: User = Depends(get_api_user_with_token()),
+        real_priority: int = None,
+        t: TrainingTask = Depends(get_api_task(check_user=False)),
+        api_user: User = Depends(get_api_user_with_token()),
 ):
     if t.queue_status == QUE_STATUS.FINISHED:
         return {
             'success': 0,
             'msg': f'不能更新已经结束任务的优先级'
         }
+    if t.user_name != api_user.user_name and not api_user.in_group('cluster_manager'):
+        return HTTPException(403, detail='无权操作他人任务')
+    t.re_impl(AutoTaskApiImpl)  # for t.user
+    if real_priority is not None:
+        priority = real_priority
     if priority is None and custom_rank is None:
         return {
             'success': 0,
@@ -243,30 +328,37 @@ async def update_priority(
             'success': 0,
             'msg': f'该任务在{waiting_seconds}秒内已经更新过优先级'
         }
-    if priority:
-        if user.is_external:
+    if priority is not None:
+        if t.user.is_external:
             priority = -1
         try:
             priority = int(priority)
-            if priority not in [
-                TASK_PRIORITY.EXTREME_HIGH.value, TASK_PRIORITY.VERY_HIGH.value, TASK_PRIORITY.HIGH.value,
-                TASK_PRIORITY.ABOVE_NORMAL.value, TASK_PRIORITY.AUTO.value
-            ]:
-                raise Exception()
-        except:
-            return {'success': 0, 'msg': '优先级设置不对，请参考 hfai.client.EXP_PRIORITY'}
-    if priority is not None:
-        await t.re_impl(AioDbOperationImpl).update(('priority', ), (priority, ), remote_apply=False)
+            if priority in TASK_PRIORITY.external_priorities():
+                raise Exception(f'{[p.name for p in TASK_PRIORITY.external_priorities()]} 优先级仅支持外部用户使用')
+            elif priority not in TASK_PRIORITY.internal_priorities(with_auto=True):
+                raise Exception('优先级设置不对, 请参考 hfai.client.EXP_PRIORITY')
+        except Exception as e:
+            return {'success': 0, 'msg': f'优先级有误: {e}'}
     runtime_config_json = {
         'update_priority_called': True
     }
+    if real_priority is not None:
+        await MarsDB().a_execute("""
+        update "task_ng" set "config_json" = jsonb_set("config_json", '{ schema,priority }', %s)
+        where "id" = %s
+        """, (ujson.dumps(real_priority), t.id))
+        runtime_config_json['update_real_priority'] = real_priority
+    if priority is not None:
+        await t.re_impl(AioDbOperationImpl).update(('priority', ), (priority, ), remote_apply=False)
+        runtime_config_json['update_priority'] = priority
     if custom_rank is not None:
         runtime_config_json['custom_rank'] = custom_rank
     await TaskRuntimeConfig(t).a_insert('runtime_priority', runtime_config_json, chain=True, update=True)
     return {
         'success': 1,
         'msg': f'成功修改 [{t.user_name}][{t.nb_name}] 的{" priority 为 " + str(priority) if priority is not None else ""}'
-               f'{" custom_rank 为 " + str(custom_rank) if custom_rank is not None else ""}',
+               f'{" custom_rank 为 " + str(custom_rank) if custom_rank is not None else ""}'
+               f'{" real_priority 为 " + str(real_priority) if real_priority is not None else ""}',
         'timestamp': time.time()
     }
 

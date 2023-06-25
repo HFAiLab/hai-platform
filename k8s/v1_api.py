@@ -31,17 +31,6 @@ def set_node_label(node: str, key: str, value: str):
         return False
 
 
-def set_node_groups(node: str, *groups) -> bool:
-    """
-
-    @param node:
-    @param groups: 多层 group 如，*[‘jd_all’, 'jd_a100', 'jd_a200'] 等等
-    @return:
-    """
-    assert len(groups) >= 2, '必须设置 lv0 和 lv1 的 group'
-    return set_node_label(node, MARS_GROUP_FLAG, '.'.join(groups))
-
-
 def get_node_resource(resources, group=''):
     if os.environ.get('HAS_RDMA_HCA_RESOURCE', '1') == '1':
         limits = {'rdma/hca': 1}

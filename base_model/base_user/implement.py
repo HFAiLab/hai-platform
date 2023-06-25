@@ -14,6 +14,7 @@ class BaseUser(BaseUserExtras):
     storage: IUserStorage = UserModuleDescriptor()
     access: IUserAccess = UserModuleDescriptor()
     monitor: IUserMonitor = UserModuleDescriptor()
+    artifact: IUserArtifact = UserModuleDescriptor()
 
     # 防止实现类忘记实现子组件中的接口, 在 import 时就抛出异常
     def __init_subclass__(cls, **kwargs):

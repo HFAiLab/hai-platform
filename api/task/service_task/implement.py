@@ -9,7 +9,7 @@ from munch import Munch
 
 from api.depends import get_api_task, get_api_user_with_token
 from api.task_schema import TaskSchema
-from api.operation import check_restart, check_environment_get_err, check_services_config_get_err
+from api.operation import check_restart, check_environment_get_err, check_services_config_get_err, check_sidecar_get_err
 from api.utils import failed_response
 from base_model.base_task import BaseTask
 from conf import MARS_GROUP_FLAG, CONF
@@ -137,10 +137,14 @@ async def create_service_task(
             priority=TASK_PRIORITY.AUTO.value, task_type=TASK_TYPE.JUPYTER_TASK, whole_life_state=0,
             mount_code=task_schema.options.get('mount_code', 2)
         )
+        task.user = user
+        if (err := await check_sidecar_get_err(task_schema, task)) is not None:
+            return {'success': 0, 'msg': err}
+
         try:
             task = await task.create(remote_apply=True)
             await clear_visible_tag(nb_name=task.nb_name, user_name=task.user_name)
-            await task.tag_task(tag=VISIBLE_TASK_TAG)
+            await task.tag_task(tag=VISIBLE_TASK_TAG, remote_apply=True)
         except Exception:
             if not task:
                 return {

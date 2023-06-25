@@ -117,6 +117,7 @@ class UserData(UserDataBase):
             self.subscribe_tables(list(TABLES.keys()))
             time.sleep(1)
         self.user_last_activity_in_ns = {user: time.time_ns() for user in UserTable.df.user_name.tolist()}
+        self.shared_group_last_activity_in_ns = {group: time.time_ns() for group in set(UserTable.df.shared_group.tolist())}
         Thread(target=self._sync_timer, daemon=True).start()
         Thread(target=self._redis_dumper, daemon=True).start()
         Thread(target=self._last_activity_modifier, daemon=True).start()
@@ -140,6 +141,10 @@ class UserData(UserDataBase):
                 data = redis_conn.brpop('user_data_last_activity_update')
                 data = pickle.loads(data[1])
                 self.user_last_activity_in_ns[data['user_name']] = time.time_ns()
+                if data.get('from_shared_task', False):
+                    user_df = UserTable.df
+                    if len(sub_user_df := user_df[user_df.user_name == data['user_name']]) > 0:
+                        self.shared_group_last_activity_in_ns[sub_user_df.iloc[0].shared_group] = time.time_ns()
             except Exception as e:
                 log_error(f'处理 last activity 更新请求失败  {e}', e, fetion_interval=60)
                 # 可能是 redis down, 会丢消息, 主动刷新全部用户的时间戳
@@ -158,6 +163,16 @@ class UserData(UserDataBase):
                 ]
                 result.sort(key=lambda x: x['ts'], reverse=True)
                 redis_conn.set('user_last_activity_in_ns', ujson.dumps(result))
+                result = [{**r, 'ts': str(r['ts'])} for r in result]
+                redis_conn.set('user_last_activity_in_ns_str', ujson.dumps(result))
+                shared_group_result = [
+                    {'ts': int(time_ns), 'shared_group': shared_group}
+                    for shared_group, time_ns in self.shared_group_last_activity_in_ns.items()
+                ]
+                shared_group_result.sort(key=lambda x: x['ts'], reverse=True)
+                redis_conn.set('shared_group_last_activity_in_ns', ujson.dumps(shared_group_result))
+                shared_group_result = [{**r, 'ts': str(r['ts'])} for r in shared_group_result]
+                redis_conn.set('shared_group_last_activity_in_ns_str', ujson.dumps(shared_group_result))
                 # 主动更新一下 computed tables, 以便内容有更新时触发其注册的 update_hook, 目前用于 `UserWithAllGroupsTable` 的 update 时间戳更新
                 for table in self._tables.values():
                     if table.is_computed:

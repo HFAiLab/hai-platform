@@ -15,6 +15,8 @@ from rich.table import Table
 
 from hfai.client import get_experiments, create_experiment
 from hfai.client.api import Experiment, get_task_ssh_ip, get_task_container_log
+from hfai.client.commands.hfai_artifact import map_artifact
+from hfai.client.model.utils import get_current_user
 from hfai.conf.flags import STOP_CODE, CHAIN_STATUS
 from .utils import HandleHfaiCommandArgs, console_out_experiment, \
     ExperimentEncoder, get_experiment_auto, CLI_NAME
@@ -146,7 +148,9 @@ async def logs(experiment, follow, rank, exp_type, container=False):
 @click.option('-n', '--nodes', type=int, help='用多少个节点跑')
 @click.option('-g', '--group', help='任务跑在哪个分组')
 @click.option('-p', '--priority', type=int, help='任务优先级，从低到高: 20, 30, 40, 50')
-async def run(experiment_yml, follow, nodes, group, priority):
+@click.option('-i', '--input', required=False, default='', help='任务输入artifact，格式为name:version')
+@click.option('-o', '--output', required=False, default='', help='任务输出artifact, 格式为name:version')
+async def run(experiment_yml, follow, nodes, group, priority, input, output):
     """
     根据 yaml 文件来运行一个任务，可以通过参数来覆盖配置; nodes、group、priority 参数可以覆盖 yml 里面的配置
     """
@@ -159,12 +163,12 @@ async def run(experiment_yml, follow, nodes, group, priority):
         config_yml = experiment_yml
     assert config_yml.get('version', None) == 2, '请使用 create_experiment 的配置文件'
     if group:
-        experiment_yml.resource.group = group
+        config_yml.resource.group = group
     if priority:
-        experiment_yml.priority = priority
+        config_yml.priority = priority
     if nodes:
-        experiment_yml.resource.node_count = nodes
-    experiment = await create_experiment(experiment_yml)
+        config_yml.resource.node_count = nodes
+    experiment = await create_experiment(config_yml)
     experiment_table, job_table = experiment.tables()
     console.print('=' * 20 + ' experiment ' + '=' * 20)
     console.print(experiment_table)
@@ -172,6 +176,13 @@ async def run(experiment_yml, follow, nodes, group, priority):
                   f'   {CLI_NAME} status {experiment.nb_name}  # 查看任务状态\n'
                   f'   {CLI_NAME} logs -f {experiment.nb_name} # 查看任务日志\n'
                   f'   {CLI_NAME} stop {experiment.nb_name} # 关闭任务\n')
+    try:
+        if input:
+            await map_artifact.callback(experiment.nb_name, input, 'input')
+        if output:
+            await map_artifact.callback(experiment.nb_name, output, 'output')
+    except Exception as e:
+        console.print(f'设置artifact失败 {str(e)}, 请检查后通过hfai artifact子命令手动设置')
     if follow:
         console.print('')
         await logs.callback(experiment.id, follow, 0, 'id')
@@ -238,6 +249,8 @@ async def ssh(experiment, rank, exp_type):
     pod_name = f'{getpass.getuser()}-{experiment.id}-{rank}'
     ip = await get_task_ssh_ip(pod_name=pod_name)
     cmd = f'ssh -o ServerAliveInterval=60 -o StrictHostKeyChecking=no {ip}'
+    if not get_current_user().is_internal:
+        cmd += ' -p 20022'
     if not ip:
         print("没有正确获取到这个任务的ip，可能已经停止了")
         sys.exit()

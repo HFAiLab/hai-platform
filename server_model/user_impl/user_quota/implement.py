@@ -153,6 +153,15 @@ class UserQuota(UserQuotaExtras, IUserQuota):
         """
         return self.prefix_quotas('train_environment:')
 
+    def custom_service(self, service_type) -> List[str]:
+        """
+        用户允许的自定义服务, service_type 目前仅支持 tcp / http
+        resource 格式如: custom_service:http:service_port
+        service_port 为 '*' 表示允许所有 port
+        @return: list
+        """
+        return self.prefix_quotas(f'custom_service:{service_type}:')
+
     @classmethod
     def df_to_jupyter_quota(cls, df: pd.DataFrame):
         res = {}

@@ -4,6 +4,8 @@ import sys
 import toml
 import time
 import ujson
+import asyncio
+import threading
 from cachetools import cached, Cache
 from kubernetes.client.rest import ApiException
 
@@ -17,6 +19,7 @@ from k8s import K8sPreStopHook, get_corev1_api, get_appsv1_api
 from k8s.v1_api import client
 from k8s.v1_api import get_env_var
 from logm import logger, log_stage
+from k8s.async_v1_api import async_get_nodes_df
 from roman_parliament import register_parliament, add_archive_trigger, archive_dict, add_archive_for_senators
 from roman_parliament.archive_triggers.launcher_task_trigger import LauncherTaskTrigger
 from server_model.auto_task_impl import AutoTaskSchemaWithDbImpl
@@ -58,15 +61,29 @@ def get_image_info(image_name):
     return TrainImageSelector.find_one(os.path.basename(image_name))
 
 
-node_zone_cache = {}
-def get_node_zones(nodes):
-    query_nodes = [node for node in nodes if node not in node_zone_cache]
-    if query_nodes:
-        result = MarsDB().execute('select "node", "schedule_zone" from "host" where "node" = any(%s)', params=(query_nodes,)).fetchall()
-        node_zone_cache.update({r.node: r.schedule_zone for r in result})
-        if any(missing_node := set(query_nodes) - set(r.node for r in result)):
-            raise Exception(f'任务起到的节点没有设置 host info: {missing_node}')
-    return [node_zone_cache[node] for node in nodes]
+nodes_dict = {}
+lock = threading.Lock()
+def start_get_nodes_df():
+    global nodes_dict
+    interval = 60 * 60
+    last_get = 0
+    loop = asyncio.new_event_loop()
+    while True:
+        try:
+            if time.time() - last_get > interval:
+                nodes_df = loop.run_until_complete(async_get_nodes_df())
+                _nodes_dict = {
+                    node: {'flag': flag, 'schedule_zone': schedule_zone}
+                    for node, flag, schedule_zone in zip(nodes_df.name, nodes_df.flag, nodes_df.schedule_zone)
+                }
+                if len(_nodes_dict) > 0:
+                    lock.acquire()
+                    nodes_dict = {**nodes_dict, **_nodes_dict}
+                    lock.release()
+                    last_get = time.time()
+        except Exception as e:
+            logger.error(e)
+        time.sleep(10)
 
 
 @log_stage(module)
@@ -97,6 +114,15 @@ def create_manager(task: TrainingTask, user_name):
     namespace = task.user.config.task_namespace
     # 先创建 configmap
     manager_name = f'{user_name.replace("_", "-")}-{task_id}-manager'
+    lock.acquire()
+    try:
+        nodes_flags = [str(nodes_dict[n]['flag']) for n in task.assigned_nodes]
+        nodes_zones = [str(nodes_dict[n]['schedule_zone']) for n in task.assigned_nodes]
+    except Exception as e:
+        logger.error('没有正确获取到 nodes_df')
+        logger.error(e)
+        raise e
+    lock.release()
     env = [
         get_env_var(key='TASK_ID', value=task_id),
         get_env_var(key='MANAGER_NAME', value=manager_name),
@@ -105,7 +131,8 @@ def create_manager(task: TrainingTask, user_name):
         get_env_var(key='MARSV2_SERVER', value=os.environ.get('MARSV2_SERVER', CONF.try_get('launcher.api_server'))),
         get_env_var(key='DEBUG', value=os.environ.get('DEBUG', '0')),
         get_env_var(key='MODULE_NAME', value='manager'),
-        get_env_var(key='MARSV2_SCHEDULE_ZONES', value=','.join(get_node_zones(task.assigned_nodes))),
+        get_env_var(key='MARSV2_SCHEDULE_ZONES', value=','.join(nodes_zones)),
+        get_env_var(key='MARSV2_NODE_FLAGS', value=','.join(nodes_flags)),
         get_env_var(key='MARSV2_TASK_SIDECARS', value=ujson.dumps(task.schema.get('options', {}).get('sidecar', [])))
     ]
     if 'CUSTOM_FILE_NAME' in os.environ:
@@ -335,6 +362,12 @@ if __name__ == '__main__':
         add_archive_trigger(LauncherTaskTrigger)
         # 启动过的任务记录一下
         started_archive_keys = set()
+    thrd = threading.Thread(target=start_get_nodes_df, daemon=True)
+    thrd.start()
+    while len(nodes_dict) == 0:
+        time.sleep(1)
+        logger.info('等待获取 nodes_df')
+    logger.info('开始接收任务启动消息...')
     with logger.contextualize(uuid=f'{module}.loop'):
         while True:
             if K8sPreStopHook.receive_stop_pod():

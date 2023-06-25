@@ -4,6 +4,7 @@ import random
 import subprocess
 import sys
 import time
+import os
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
@@ -12,11 +13,16 @@ import six
 import sysv_ipc
 import ujson
 from kubernetes import client, config
+from kubernetes.client.api_client import ApiClient
 from kubernetes.client.exceptions import ApiTypeError, ApiValueError
 from kubernetes.client.rest import ApiException
 from kubernetes.leaderelection import leaderelection, electionconfig
 from logm import logger
+from conf import CONF
 
+
+KUBECLIENTS = dict()
+CURRENT_CLUSTER_HOST = os.environ[config.incluster_config.SERVICE_HOST_ENV_NAME]
 
 
 def once(func):
@@ -29,42 +35,64 @@ def once(func):
     return wrapper
 
 
+def load_api_client(config_file=None):
+    client_config = type.__call__(client.Configuration)
+    if config_file:
+        config.load_kube_config(config_file=config_file, client_configuration=client_config)
+    else:
+        config.load_incluster_config(client_configuration=client_config)
+    return ApiClient(configuration=client_config)
+
+
 @once
-def load_k8s_config():
-    try:
-        config.load_incluster_config()
-    except Exception:
-        config.load_kube_config()
+def load_all_api_client_cached():
+    k8s_configs = CONF.try_get('k8s.config', default=[{'config_file': ''}])
+    for i in k8s_configs:
+        config_file = i.get('config_file', '')
+        client = load_api_client(config_file)
+        if config_file:
+            try:
+                service = Corev1ApiWithRetry(api_client=client).read_namespaced_service_with_retry(name='kubernetes', namespace='default')
+                cluster_host = service.spec.cluster_ip
+            except Exception as e:
+                # ignore single cluster error
+                logger.error(f'cluster {config_file} is not available: {e}!')
+                continue
+        else:
+            cluster_host = CURRENT_CLUSTER_HOST
+        KUBECLIENTS[cluster_host] = client
+        logger.info(f'initialized {cluster_host} kubeclient')
+    if CURRENT_CLUSTER_HOST not in KUBECLIENTS.keys():
+        KUBECLIENTS[CURRENT_CLUSTER_HOST] = load_api_client()
+        logger.info(f'initialized {CURRENT_CLUSTER_HOST} kubeclient')
 
 
-def get_corev1_api():
-    load_k8s_config()
-    return Corev1ApiWithRetry()
+def get_corev1_api(cluster_host = CURRENT_CLUSTER_HOST):
+    load_all_api_client_cached()
+    if cluster_host == 'all':
+        return {host: Corev1ApiWithRetry(api_client=client) for host, client in KUBECLIENTS.items()}
+    return Corev1ApiWithRetry(api_client=KUBECLIENTS[cluster_host])
 
 
-def get_custom_corev1_api():
-    load_k8s_config()
-    return CustomCorev1Api()
+def get_custom_corev1_api(cluster_host = CURRENT_CLUSTER_HOST):
+    load_all_api_client_cached()
+    if cluster_host == 'all':
+        return {host: CustomCorev1Api(api_client=client) for host, client in KUBECLIENTS.items()}
+    return CustomCorev1Api(api_client=KUBECLIENTS[cluster_host])
 
 
-def get_appsv1_api():
-    load_k8s_config()
-    return AppsV1ApiWithRetry()
+def get_appsv1_api(cluster_host = CURRENT_CLUSTER_HOST):
+    load_all_api_client_cached()
+    if cluster_host == 'all':
+        return {host: AppsV1ApiWithRetry(api_client=client) for host, client in KUBECLIENTS.items()}
+    return AppsV1ApiWithRetry(api_client=KUBECLIENTS[cluster_host])
 
 
-def get_networkv1beta1_api():
-    load_k8s_config()
-    return NetworkingV1beta1ApiWithRetry()
-
-
-def get_networkv1_api():
-    load_k8s_config()
-    return client.NetworkingV1Api()
-
-
-def get_batchv1_api():
-    load_k8s_config()
-    return client.BatchV1Api()
+def get_networkv1beta1_api(cluster_host = CURRENT_CLUSTER_HOST):
+    load_all_api_client_cached()
+    if cluster_host == 'all':
+        return {host: NetworkingV1beta1ApiWithRetry(api_client=client) for host, client in KUBECLIENTS.items()}
+    return NetworkingV1beta1ApiWithRetry(api_client=KUBECLIENTS[cluster_host])
 
 
 class Backoff:
